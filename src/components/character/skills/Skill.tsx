@@ -33,12 +33,16 @@ export default function Skill({ name, canHaveSpecialities }: ISkillProps) {
 				<span
 					className={twMerge(
 						'flex-1 self-center',
-						rating !== null && 'text-gray-500',
+						rating === null && 'text-gray-500',
 					)}
 				>
 					{name}
 				</span>
 				<div className='flex space-x-0.5'>
+					<input
+						className='w-12 text-black'
+						{...register(`skills.${name}.rating`)}
+					/>
 					<NumberInput
 						className='w-12 py-0.5 text-center'
 						title='Rating'
