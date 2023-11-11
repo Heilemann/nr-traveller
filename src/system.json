@@ -1,8 +1,8 @@
 {
-	"name": "Trail of Cthulhu",
+	"name": "Traveller",
 	"version": "0.1.0",
 	"author": "Michael Heilemann",
-	"description": "Trail of Cthulhu reference game system implementation.",
+	"description": "Mongoose Traveller 2E reference game system implementation.",
 	"code": "dist/index.html",
 	"grid": {
 		"type": "square",

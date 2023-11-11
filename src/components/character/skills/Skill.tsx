@@ -2,7 +2,6 @@ import { NumberInput } from 'nrsystemtools'
 import { useFormContext, useWatch } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
 import Specialty from './Speciality'
-import { useEffect, useState } from 'react'
 
 export interface ISkillProps {
 	name: string
@@ -17,14 +16,8 @@ export default function Skill({ name, specialities }: ISkillProps) {
 		defaultValue: null,
 	})
 
-	const [specialties, setSpecialties] = useState<null[]>([])
-
-	useEffect(() => {
-		const parsedRating = parseInt(rating)
-		if (!isNaN(parsedRating)) {
-			setSpecialties(Array(parsedRating).fill(null))
-		}
-	}, [rating])
+	const parsedRating = parseInt(rating)
+	const specialties = isNaN(parsedRating) ? [] : Array(parsedRating).fill(null)
 
 	const SkillContent = (
 		<div
