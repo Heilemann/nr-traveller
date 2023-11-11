@@ -12,7 +12,6 @@ const Specialty = ({ index, skillName }: Props) => {
 	return (
 		<Input
 			{...register(`skills.${skillName}.specialty${index}`)}
-			type='text'
 			placeholder={`Specialty ${index + 1}`}
 		/>
 	)

@@ -12,7 +12,9 @@ type CharacteristicNames =
 type DiceModifierNames = `${CharacteristicNames}DiceModifier`
 
 type FormData = {
-	[K in CharacteristicNames | DiceModifierNames]: string
+	characteristics: {
+		[K in CharacteristicNames | DiceModifierNames]: string
+	}
 }
 
 type CharacteristicProps = {
@@ -25,12 +27,12 @@ const Characteristic: React.FC<CharacteristicProps> = ({
 	characteristic,
 }) => {
 	const { register, watch, setValue } = useFormContext<FormData>()
-	const characteristicScore = watch(characteristic)
+	const characteristicScore = watch(`characteristics.${characteristic}`)
 
 	useEffect(() => {
 		const diceModifier = getDiceModifier(Number(characteristicScore))
 		setValue(
-			`${characteristic}DiceModifier` as DiceModifierNames,
+			`characteristics.${characteristic}DiceModifier` as `characteristics.${DiceModifierNames}`,
 			diceModifier.toString(),
 		)
 	}, [characteristic, characteristicScore, setValue])
@@ -55,19 +57,19 @@ const Characteristic: React.FC<CharacteristicProps> = ({
 
 	return (
 		<div>
-			<label className='block text-center'>{label}</label>
-			<div className='flex flex-col space-y-1 md:flex-row md:space-x-1 md:space-y-0'>
-				<Input
-					className='md:max-w-20 w-full'
-					type='text'
-					{...register(characteristic)}
-				/>
-				<Input
-					className='md:max-w-20 w-full'
-					type='text'
-					{...register(`${characteristic}DiceModifier` as DiceModifierNames)}
-				/>
-			</div>
+			{/* ... */}
+			<Input
+				className='md:max-w-20 w-full'
+				type='text'
+				{...register(`characteristics.${characteristic}`)}
+			/>
+			<Input
+				className='md:max-w-20 w-full'
+				type='text'
+				{...register(
+					`characteristics.${characteristic}DiceModifier` as `characteristics.${DiceModifierNames}`,
+				)}
+			/>
 		</div>
 	)
 }
