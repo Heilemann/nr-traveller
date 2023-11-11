@@ -30,7 +30,7 @@ export default function Skill({ name, specialities }: ISkillProps) {
 				<span
 					className={twMerge(
 						'flex-1 self-center',
-						rating === 0 && 'text-gray-500',
+						rating !== null && 'text-gray-500',
 					)}
 				>
 					{name}
@@ -41,14 +41,9 @@ export default function Skill({ name, specialities }: ISkillProps) {
 						title='Rating'
 						placeholder='0'
 						centerValue={true}
-						// min={0}
-						{...register(
-							`skills.${name}.rating`,
-							// {
-							// min: 0,
-							// valueAsNumber: true,
-							// }
-						)}
+						{...register(`skills.${name}.rating`, {
+							valueAsNumber: true,
+						})}
 					/>
 				</div>
 			</div>
