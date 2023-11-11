@@ -1,5 +1,5 @@
 import React from 'react'
-import { useForm } from 'react-hook-form'
+import { useFormContext } from 'react-hook-form'
 import HInput from '../BaseComponents/Form/HInput'
 import Traits from './Traits'
 
@@ -10,7 +10,7 @@ type FormData = {
 }
 
 const CharacterDetails: React.FC = () => {
-	const { register } = useForm<FormData>()
+	const { register } = useFormContext<FormData>()
 
 	return (
 		<div className='flex flex-col space-y-1'>

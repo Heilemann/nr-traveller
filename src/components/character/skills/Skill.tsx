@@ -14,7 +14,7 @@ export default function Skill({ name, specialities }: ISkillProps) {
 
 	const rating = useWatch({
 		name: `skills.${name}.rating`,
-		defaultValue: 0,
+		defaultValue: null,
 	})
 
 	const [specialties, setSpecialties] = useState<null[]>([])
