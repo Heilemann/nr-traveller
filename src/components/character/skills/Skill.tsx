@@ -20,7 +20,10 @@ export default function Skill({ name, specialities }: ISkillProps) {
 	const [specialties, setSpecialties] = useState<null[]>([])
 
 	useEffect(() => {
-		setSpecialties(Array(parseInt(rating)).fill(null))
+		const parsedRating = parseInt(rating)
+		if (!isNaN(parsedRating)) {
+			setSpecialties(Array(parsedRating).fill(null))
+		}
 	}, [rating])
 
 	const SkillContent = (
