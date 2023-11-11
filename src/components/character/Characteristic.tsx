@@ -1,6 +1,6 @@
+import { Input } from 'nrsystemtools'
 import React, { useEffect } from 'react'
 import { useFormContext, useWatch } from 'react-hook-form'
-import HInput from '../BaseComponents/Form/HInput'
 
 type CharacteristicNames =
 	| 'strength'
@@ -54,14 +54,12 @@ const Characteristic: React.FC<CharacteristicProps> = ({
 		<div>
 			<label className='block text-center'>{label}</label>
 			<div className='flex flex-col space-y-1 md:flex-row md:space-x-1 md:space-y-0'>
-				<HInput
-					label='Score'
+				<Input
 					className='md:max-w-20 w-full'
 					type='text'
 					{...register(`characteristics.${characteristic}`)}
 				/>
-				<HInput
-					label='Dice Modifier'
+				<Input
 					className='md:max-w-20 w-full'
 					type='text'
 					{...register(`characteristics.${characteristic}DiceModifier`)}
