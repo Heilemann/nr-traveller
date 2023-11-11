@@ -38,6 +38,9 @@ const Relations: React.FC<RelationsProps> = ({ title, name }) => {
 					<tr>
 						<th>Name</th>
 						<th>Notes</th>
+						<th>
+							<PlusButton onClick={() => append({ name: '', notes: '' })} />
+						</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -53,7 +56,6 @@ const Relations: React.FC<RelationsProps> = ({ title, name }) => {
 					))}
 				</tbody>
 			</table>
-			<PlusButton onClick={() => append({ name: '', notes: '' })} />
 		</div>
 	)
 }

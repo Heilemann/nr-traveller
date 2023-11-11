@@ -35,34 +35,39 @@ const Wounds: React.FC = () => {
 						<th>Location</th>
 						<th>Recovery Period</th>
 						<th>Notes</th>
+						<th>
+							<PlusButton
+								onClick={() =>
+									append({
+										type: '',
+										location: '',
+										recoveryPeriod: '',
+										notes: '',
+									})
+								}
+							/>
+						</th>
 					</tr>
 				</thead>
 				<tbody>
 					{fields.map((field, index) => (
 						<tr key={field.id}>
 							<td>
-								<Input {...register(`wounds.${index}.type` as const)} />
+								<Input {...register(`wounds.${index}.type`)} />
 							</td>
 							<td>
-								<Input {...register(`wounds.${index}.location` as const)} />
+								<Input {...register(`wounds.${index}.location`)} />
 							</td>
 							<td>
-								<Input
-									{...register(`wounds.${index}.recoveryPeriod` as const)}
-								/>
+								<Input {...register(`wounds.${index}.recoveryPeriod`)} />
 							</td>
 							<td>
-								<Input {...register(`wounds.${index}.notes` as const)} />
+								<Input {...register(`wounds.${index}.notes`)} />
 							</td>
 						</tr>
 					))}
 				</tbody>
 			</table>
-			<PlusButton
-				onClick={() =>
-					append({ type: '', location: '', recoveryPeriod: '', notes: '' })
-				}
-			/>
 		</div>
 	)
 }

@@ -49,6 +49,11 @@ const character: TDocument = {
 				...weapon,
 			},
 		],
+		skills: {
+			Art: {
+				rating: '1',
+			},
+		},
 	},
 }
 

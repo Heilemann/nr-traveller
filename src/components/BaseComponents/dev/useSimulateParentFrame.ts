@@ -9,7 +9,7 @@ import defaultDocuments from '../../defaultData'
 
 let initialData: TState = {
 	editMode: 'edit' as TEditMode,
-	documentId: defaultDocuments.allIds[0],
+	documentId: defaultDocuments.allIds[2],
 	document: defaultDocuments.byId[defaultDocuments.allIds[0]],
 	documents: defaultDocuments,
 	assets: {

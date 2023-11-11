@@ -5,16 +5,19 @@ import Specialty from './Speciality'
 
 export interface ISkillProps {
 	name: string
-	specialities: boolean
+	canHaveSpecialities: boolean
 }
 
-export default function Skill({ name, specialities }: ISkillProps) {
+export default function Skill({ name, canHaveSpecialities }: ISkillProps) {
 	const { register } = useFormContext()
 
 	const rating = useWatch({
 		name: `skills.${name}.rating`,
 		defaultValue: null,
 	})
+	if (name === 'Art') {
+		console.log('rating', rating)
+	}
 
 	const parsedRating = parseInt(rating)
 	const specialties = isNaN(parsedRating) ? [] : Array(parsedRating).fill(null)
@@ -48,11 +51,13 @@ export default function Skill({ name, specialities }: ISkillProps) {
 				</div>
 			</div>
 
-			<div className='flex space-x-1'>
-				{specialities &&
-					specialties.map((_, index) => (
-						<Specialty key={index} index={index} skillName={name} />
-					))}
+			<div className='flex flex-col space-x-1'>
+				{canHaveSpecialities &&
+					specialties
+						.slice(0, rating)
+						.map((_, index) => (
+							<Specialty key={index} index={index} skillName={name} />
+						))}
 			</div>
 		</div>
 	)
