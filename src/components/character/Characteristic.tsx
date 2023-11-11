@@ -57,19 +57,21 @@ const Characteristic: React.FC<CharacteristicProps> = ({
 
 	return (
 		<div>
-			{/* ... */}
-			<Input
-				className='md:max-w-20 w-full'
-				type='text'
-				{...register(`characteristics.${characteristic}`)}
-			/>
-			<Input
-				className='md:max-w-20 w-full'
-				type='text'
-				{...register(
-					`characteristics.${characteristic}DiceModifier` as `characteristics.${DiceModifierNames}`,
-				)}
-			/>
+			<label className='block text-center'>{label}</label>
+			<div className='flex flex-col space-y-1 md:flex-row md:space-x-1 md:space-y-0'>
+				<Input
+					className='md:max-w-20 w-full'
+					type='text'
+					{...register(`characteristics.${characteristic}`)}
+				/>
+				<Input
+					className='md:max-w-20 w-full'
+					type='text'
+					{...register(
+						`characteristics.${characteristic}DiceModifier` as `characteristics.${DiceModifierNames}`,
+					)}
+				/>
+			</div>
 		</div>
 	)
 }
