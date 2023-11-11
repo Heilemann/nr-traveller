@@ -22,9 +22,6 @@ const HTextArea = React.forwardRef<HTMLTextAreaElement, ITextareaProps>(
 					borderStyle,
 					className,
 				)}
-				style={{
-					fontFamily: 'CovingtonCondensed',
-				}}
 			>
 				<Label
 					className='mt-2 whitespace-nowrap text-gray-500 '

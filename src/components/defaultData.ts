@@ -26,16 +26,12 @@ const weapon: TWeaponDocument = {
 	access: 'public',
 	accessList: [],
 	values: {
-		name: 'Sword',
-		skill: 'Weapons',
-		range: {
-			pointblank: 1,
-			close: 0,
-			near: null,
-			long: null,
-		},
-		ammo: '',
-		notes: '',
+		name: 'Knife',
+		TL: '3',
+		range: '0',
+		damage: '1d6+1',
+		kg: '1',
+		magazine: '0',
 	},
 }
 

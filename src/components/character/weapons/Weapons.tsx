@@ -1,42 +1,37 @@
-import { PlusIcon } from '@heroicons/react/24/solid'
-import { DragEvent, useContext, useState } from 'react'
-import { FieldValues, useFieldArray, useFormContext } from 'react-hook-form'
-import { twMerge } from 'tailwind-merge'
-import { TWeapon, TWeaponOnCharacter } from '../../../interfaces'
-import Button from '../../BaseComponents/Form/Button'
-import DecoBox from '../../DecoBox'
-import { borderStyle } from '../../styles/borderStyle'
+import { Input } from 'nrsystemtools'
+import React, { useContext, useEffect, useState } from 'react'
+import { useFieldArray, useFormContext } from 'react-hook-form'
 import context from '../../BaseComponents/context'
-import WeaponRow from './WeaponRow'
+import { TWeapon, TWeaponOnCharacter } from '../../../interfaces'
+import PlusButton from '../../BaseComponents/PlusButton'
 
-const emptyWeapon: TWeaponOnCharacter = {
-	documentId: '',
-	name: 'Unnamed Weapon',
-	skill: 'Weapons',
-	range: {
-		pointblank: null,
-		close: null,
-		near: null,
-		long: null,
-	},
-	ammo: '',
-	notes: '',
+type FormData = {
+	weapons: TWeapon[]
 }
 
-export default function Weapons() {
+const Weapons: React.FC = () => {
 	const { state } = useContext(context)
 	const { documents } = state
-	const { control } = useFormContext()
-	const { fields, prepend, remove } = useFieldArray<FieldValues, any, any>({
+	const { register, control } = useFormContext<FormData>()
+	const { fields, append } = useFieldArray({
 		control,
 		name: 'weapons',
 	})
 
-	const handleAdd = () => {
-		prepend(emptyWeapon)
-	}
+	useEffect(() => {
+		if (fields.length === 0) {
+			append({
+				name: '',
+				TL: '',
+				range: '',
+				damage: '',
+				kg: '',
+				magazine: '',
+			})
+		}
+	}, [fields, append])
 
-	const handleDrop = (e: DragEvent) => {
+	const handleDrop = (e: React.DragEvent) => {
 		// @ts-ignore
 		const droppedDocumentId = e.dataTransfer.getData('documentId').documentId
 		const droppedDoc = documents.byId[droppedDocumentId]
@@ -51,7 +46,7 @@ export default function Weapons() {
 
 		const droppedWeapon = droppedDoc.values as TWeapon
 
-		prepend({
+		append({
 			...droppedWeapon,
 			documentId: droppedDoc._id,
 		} as TWeaponOnCharacter)
@@ -61,72 +56,76 @@ export default function Weapons() {
 
 	const [dragIsOver, setDragIsOver] = useState(false)
 
-	const handleDragEnter = (e: DragEvent) => {
+	const handleDragEnter = (e: React.DragEvent) => {
 		setDragIsOver(true)
 		e.preventDefault()
 	}
 
-	const handleDragLeave = (e: DragEvent) => {
+	const handleDragLeave = (e: React.DragEvent) => {
 		setDragIsOver(false)
 		e.preventDefault()
 	}
 
 	return (
-		<DecoBox
-			onDrop={handleDrop}
-			onDragEnter={handleDragEnter}
-			onDragLeave={handleDragLeave}
-			className={dragIsOver ? 'bg-white/10' : ''}
-		>
-			<table
-				className='w-full border-collapse text-center text-base'
-				style={{
-					fontFamily: 'DustismoRoman',
-				}}
+		<div>
+			<h2>Weapons</h2>
+			<div
+				onDrop={handleDrop}
+				onDragEnter={handleDragEnter}
+				onDragLeave={handleDragLeave}
+				className={dragIsOver ? 'bg-white/10' : ''}
 			>
-				<thead>
-					<tr className={twMerge('p-2 text-left', borderStyle)}>
-						<th className='font-normal text-gray-500'>Name</th>
-						<th className='w-44 font-normal text-gray-500'>Skill</th>
-						<th className='w-14 text-center font-normal text-gray-500 md:w-20'>
-							<div className='hidden md:inline'>Pt. Blank</div>
-							<div className='md:hidden'>Pt. Blnk</div>
-						</th>
-						<th className='w-14 text-center font-normal text-gray-500 md:w-20'>
-							Close
-						</th>
-						<th className='w-14 text-center font-normal text-gray-500 md:w-20'>
-							Near
-						</th>
-						<th className='w-14 text-center font-normal text-gray-500 md:w-20'>
-							Long
-						</th>
-						<th className='w-12 text-center font-normal text-gray-500 md:w-20'>
-							Ammo
-						</th>
-						<th className='w-5'></th>
-						<th className='w-5 text-center'>
-							<Button
-								onClick={handleAdd}
-								className='my-1 p-1.5'
-								aria-label='Add a weapon'
-							>
-								<PlusIcon className='h-4 w-4' title='Add weapon' />
-							</Button>
-						</th>
-					</tr>
-				</thead>
-				<tbody>
-					{fields.map((weapon, index) => (
-						<WeaponRow
-							key={index}
-							index={index}
-							remove={remove}
-							weapon={weapon as any}
-						/>
-					))}
-				</tbody>
-			</table>
-		</DecoBox>
+				<table>
+					<thead>
+						<tr>
+							<th>Weapon</th>
+							<th>TL</th>
+							<th>Range</th>
+							<th>Damage</th>
+							<th>KG</th>
+							<th>Magazine</th>
+						</tr>
+					</thead>
+					<tbody>
+						{fields.map((field, index) => (
+							<tr key={field.id}>
+								<td>
+									<Input {...register(`weapons.${index}.name` as const)} />
+								</td>
+								<td>
+									<Input {...register(`weapons.${index}.TL` as const)} />
+								</td>
+								<td>
+									<Input {...register(`weapons.${index}.range` as const)} />
+								</td>
+								<td>
+									<Input {...register(`weapons.${index}.damage` as const)} />
+								</td>
+								<td>
+									<Input {...register(`weapons.${index}.kg` as const)} />
+								</td>
+								<td>
+									<Input {...register(`weapons.${index}.magazine` as const)} />
+								</td>
+							</tr>
+						))}
+					</tbody>
+				</table>
+			</div>
+			<PlusButton
+				onClick={() =>
+					append({
+						name: '',
+						TL: '',
+						range: '',
+						damage: '',
+						kg: '',
+						magazine: '',
+					})
+				}
+			/>
+		</div>
 	)
 }
+
+export default Weapons

@@ -1,54 +1,38 @@
-import { useContext } from 'react'
-import { useWatch } from 'react-hook-form'
-import context from '../BaseComponents/context'
-import DecoBox from '../DecoBox'
-import HInput from '../BaseComponents/Form/HInput'
-import BasicInfo from './BasicInfo'
-import Notes from './CharacterNotes'
-import Settings from './Settings'
-import Token from './Token'
+import BackgroundNotes from './BackgroundNotes'
+import CharacterDetails from './CharacterDetails'
+import Characteristics from './Characteristics'
+import Portrait from './Portrait'
+import Armour from './armour/Armour'
+import Augments from './augments/Augments'
+import Careers from './careers/Careers'
+import Equipment from './equipment/Equipment'
+import Finances from './finances/Finances'
+import Relations from './relations/Relations'
 import Skills from './skills/Skills'
 import Weapons from './weapons/Weapons'
+import Wounds from './wounds/Wounds'
 
-export interface ICharacterProps {}
-
-export default function Character(props: ICharacterProps) {
-	const { state } = useContext(context)
-	const { document } = state
-	const { values } = document
-	const { skills } = values
-
-	const athletics = useWatch({
-		name: 'skills.Athletics.rating',
-		defaultValue: skills?.athletics?.rating || 0,
-	})
-	const athleticsInt = parseInt(athletics || 0, 10)
-	const defaultHitThreshold = athleticsInt < 8 ? '3' : '4'
-
+export default function Character() {
 	return (
-		<div className='space-y-4'>
-			<div className='space-y-4 md:flex md:space-x-4 md:space-y-0'>
-				<BasicInfo />
-
-				<div className='flex flex-col space-y-4'>
-					<Token />
-
-					<DecoBox>
-						<HInput
-							label='Hit Threshold'
-							placeholder={defaultHitThreshold}
-							className='border-0'
-						/>
-					</DecoBox>
-				</div>
+		<div className=''>
+			<div className='grid grid-cols-2 gap-4'>
+				<CharacterDetails />
+				<Portrait />
 			</div>
-
-			<Weapons />
+			<Characteristics />
+			<Careers />
 			<Skills />
-			<Notes />
-			<Settings />
-
-			{/* <Backstory /> */}
+			<Finances />
+			<Armour />
+			<Weapons />
+			<Augments />
+			<Equipment />
+			<BackgroundNotes />
+			<Relations title='Allies' name='allies' />
+			<Relations title='Contacts' name='contacts' />
+			<Relations title='Rivals' name='rivals' />
+			<Relations title='Enemies' name='enemies' />
+			<Wounds />
 		</div>
 	)
 }

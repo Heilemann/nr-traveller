@@ -237,15 +237,11 @@ export type TWeaponSkills = 'Firearms' | 'Weapons' | 'Scuffling'
 
 export type TWeapon = {
 	name: string
-	skill: TWeaponSkills
-	range: {
-		pointblank: number | null
-		close: number | null
-		near: number | null
-		long: number | null
-	}
-	ammo: string
-	notes: string
+	TL: string
+	range: string
+	damage: string
+	kg: string
+	magazine: string
 }
 
 export type TWeaponOnCharacter = TWeapon & {

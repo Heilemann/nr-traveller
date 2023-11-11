@@ -22,9 +22,6 @@ const HInput = forwardRef<HTMLInputElement, IHInputProps>(
 		return (
 			<div
 				className={twMerge('flex space-x-4 text-xl', borderStyle, className)}
-				style={{
-					fontFamily: 'CovingtonCondensed',
-				}}
 			>
 				<Label
 					className={twMerge('w-2/5 self-center text-gray-500', labelClassName)}
