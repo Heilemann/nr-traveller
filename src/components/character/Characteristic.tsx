@@ -1,6 +1,6 @@
-import { Input } from 'nrsystemtools'
 import React, { useEffect } from 'react'
-import { useFormContext } from 'react-hook-form'
+import { useFormContext, useWatch } from 'react-hook-form'
+import HInput from '../BaseComponents/Form/HInput'
 
 type CharacteristicNames =
 	| 'strength'
@@ -9,13 +9,6 @@ type CharacteristicNames =
 	| 'intellect'
 	| 'education'
 	| 'social'
-type DiceModifierNames = `${CharacteristicNames}DiceModifier`
-
-type FormData = {
-	characteristics: {
-		[K in CharacteristicNames | DiceModifierNames]: string
-	}
-}
 
 type CharacteristicProps = {
 	label: string
@@ -26,16 +19,10 @@ const Characteristic: React.FC<CharacteristicProps> = ({
 	label,
 	characteristic,
 }) => {
-	const { register, watch, setValue } = useFormContext<FormData>()
-	const characteristicScore = watch(`characteristics.${characteristic}`)
-
-	useEffect(() => {
-		const diceModifier = getDiceModifier(Number(characteristicScore))
-		setValue(
-			`characteristics.${characteristic}DiceModifier` as `characteristics.${DiceModifierNames}`,
-			diceModifier.toString(),
-		)
-	}, [characteristic, characteristicScore, setValue])
+	const { register, setValue } = useFormContext()
+	const characteristicScore = useWatch({
+		name: `characteristics.${characteristic}`,
+	})
 
 	function getDiceModifier(characteristicScore: number): number {
 		if (characteristicScore <= 0) {
@@ -55,21 +42,29 @@ const Characteristic: React.FC<CharacteristicProps> = ({
 		}
 	}
 
+	useEffect(() => {
+		const diceModifier = getDiceModifier(Number(characteristicScore))
+		setValue(
+			`characteristics.${characteristic}DiceModifier`,
+			diceModifier.toString(),
+		)
+	}, [characteristic, characteristicScore, setValue])
+
 	return (
 		<div>
 			<label className='block text-center'>{label}</label>
 			<div className='flex flex-col space-y-1 md:flex-row md:space-x-1 md:space-y-0'>
-				<Input
+				<HInput
+					label='Score'
 					className='md:max-w-20 w-full'
 					type='text'
 					{...register(`characteristics.${characteristic}`)}
 				/>
-				<Input
+				<HInput
+					label='Dice Modifier'
 					className='md:max-w-20 w-full'
 					type='text'
-					{...register(
-						`characteristics.${characteristic}DiceModifier` as `characteristics.${DiceModifierNames}`,
-					)}
+					{...register(`characteristics.${characteristic}DiceModifier`)}
 				/>
 			</div>
 		</div>

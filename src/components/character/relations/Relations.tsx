@@ -21,7 +21,7 @@ const Relations: React.FC<RelationsProps> = ({ title, name }) => {
 	const { register, control } = useFormContext<FormData>()
 	const { fields, append } = useFieldArray({
 		control,
-		name,
+		name: `relations.${name}`, // Adjust the name here
 	})
 
 	useEffect(() => {
@@ -44,10 +44,10 @@ const Relations: React.FC<RelationsProps> = ({ title, name }) => {
 					{fields.map((item, index) => (
 						<tr key={item.id}>
 							<td>
-								<Input {...register(`${name}.${index}.name`)} />
+								<Input {...register(`relations.${name}.${index}.name`)} />
 							</td>
 							<td>
-								<Input {...register(`${name}.${index}.notes`)} />
+								<Input {...register(`relations.${name}.${index}.notes`)} />
 							</td>
 						</tr>
 					))}
