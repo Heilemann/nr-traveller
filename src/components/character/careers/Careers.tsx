@@ -23,7 +23,6 @@ const Careers: React.FC = () => {
 			append({ career: '', terms: '', rank: '' })
 		}
 	}, [fields, append])
-
 	return (
 		<div>
 			<h2>Careers</h2>
@@ -33,6 +32,11 @@ const Careers: React.FC = () => {
 						<th>Career</th>
 						<th>Terms</th>
 						<th>Rank</th>
+						<th>
+							<PlusButton
+								onClick={() => append({ career: '', terms: '', rank: '' })}
+							/>
+						</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -51,7 +55,6 @@ const Careers: React.FC = () => {
 					))}
 				</tbody>
 			</table>
-			<PlusButton onClick={() => append({ career: '', terms: '', rank: '' })} />
 		</div>
 	)
 }
