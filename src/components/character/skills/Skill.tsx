@@ -40,7 +40,7 @@ export default function Skill({ name, canHaveSpecialities }: ISkillProps) {
 				</span>
 				<div className='flex space-x-0.5'>
 					<input
-						className='w-12 text-black'
+						className='hidden w-12 text-black'
 						defaultValue=''
 						{...register(`skills.${name}.rating`, {
 							// valueAsNumber: true,
