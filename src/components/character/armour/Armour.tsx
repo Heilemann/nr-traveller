@@ -22,7 +22,10 @@ const Armour: React.FC = () => {
 
 	useEffect(() => {
 		if (fields.length === 0) {
-			append({ type: '', rad: '', protection: '', kg: '', options: '' })
+			append(
+				{ type: '', rad: '', protection: '', kg: '', options: '' },
+				{ shouldFocus: false },
+			)
 		}
 	}, [fields, append])
 
@@ -37,6 +40,19 @@ const Armour: React.FC = () => {
 						<th>Protection</th>
 						<th>KG</th>
 						<th>Options</th>
+						<th>
+							<PlusButton
+								onClick={() =>
+									append({
+										type: '',
+										rad: '',
+										protection: '',
+										kg: '',
+										options: '',
+									})
+								}
+							/>
+						</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -61,11 +77,6 @@ const Armour: React.FC = () => {
 					))}
 				</tbody>
 			</table>
-			<PlusButton
-				onClick={() =>
-					append({ type: '', rad: '', protection: '', kg: '', options: '' })
-				}
-			/>
 		</div>
 	)
 }

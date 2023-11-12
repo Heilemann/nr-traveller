@@ -20,14 +20,17 @@ const Weapons: React.FC = () => {
 
 	useEffect(() => {
 		if (fields.length === 0) {
-			append({
-				name: '',
-				TL: '',
-				range: '',
-				damage: '',
-				kg: '',
-				magazine: '',
-			})
+			append(
+				{
+					name: '',
+					TL: '',
+					range: '',
+					damage: '',
+					kg: '',
+					magazine: '',
+				},
+				{ shouldFocus: false },
+			)
 		}
 	}, [fields, append])
 
@@ -46,10 +49,13 @@ const Weapons: React.FC = () => {
 
 		const droppedWeapon = droppedDoc.values as TWeapon
 
-		append({
-			...droppedWeapon,
-			documentId: droppedDoc._id,
-		} as TWeaponOnCharacter)
+		append(
+			{
+				...droppedWeapon,
+				documentId: droppedDoc._id,
+			} as TWeaponOnCharacter,
+			{ shouldFocus: false },
+		)
 
 		setDragIsOver(false)
 	}
@@ -84,6 +90,20 @@ const Weapons: React.FC = () => {
 							<th>Damage</th>
 							<th>KG</th>
 							<th>Magazine</th>
+							<th>
+								<PlusButton
+									onClick={() =>
+										append({
+											name: '',
+											TL: '',
+											range: '',
+											damage: '',
+											kg: '',
+											magazine: '',
+										})
+									}
+								/>
+							</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -112,18 +132,6 @@ const Weapons: React.FC = () => {
 					</tbody>
 				</table>
 			</div>
-			<PlusButton
-				onClick={() =>
-					append({
-						name: '',
-						TL: '',
-						range: '',
-						damage: '',
-						kg: '',
-						magazine: '',
-					})
-				}
-			/>
 		</div>
 	)
 }

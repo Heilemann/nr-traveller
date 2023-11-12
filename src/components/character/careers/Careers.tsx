@@ -20,7 +20,7 @@ const Careers: React.FC = () => {
 
 	useEffect(() => {
 		if (fields.length === 0) {
-			append({ career: '', terms: '', rank: '' })
+			append({ career: '', terms: '', rank: '' }, { shouldFocus: false })
 		}
 	}, [fields, append])
 	return (

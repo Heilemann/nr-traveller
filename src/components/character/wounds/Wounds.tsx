@@ -21,7 +21,10 @@ const Wounds: React.FC = () => {
 
 	useEffect(() => {
 		if (fields.length === 0) {
-			append({ type: '', location: '', recoveryPeriod: '', notes: '' })
+			append(
+				{ type: '', location: '', recoveryPeriod: '', notes: '' },
+				{ shouldFocus: false },
+			)
 		}
 	}, [fields, append])
 

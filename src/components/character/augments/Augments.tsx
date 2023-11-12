@@ -20,7 +20,7 @@ const Augments: React.FC = () => {
 
 	useEffect(() => {
 		if (fields.length === 0) {
-			append({ type: '', TL: '', improvement: '' })
+			append({ type: '', TL: '', improvement: '' }, { shouldFocus: false })
 		}
 	}, [fields, append])
 
@@ -33,6 +33,11 @@ const Augments: React.FC = () => {
 						<th>Type</th>
 						<th>TL</th>
 						<th>Improvement</th>
+						<th>
+							<PlusButton
+								onClick={() => append({ type: '', TL: '', improvement: '' })}
+							/>
+						</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -51,9 +56,6 @@ const Augments: React.FC = () => {
 					))}
 				</tbody>
 			</table>
-			<PlusButton
-				onClick={() => append({ type: '', TL: '', improvement: '' })}
-			/>
 		</div>
 	)
 }

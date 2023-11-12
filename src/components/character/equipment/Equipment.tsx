@@ -19,7 +19,7 @@ const Equipment: React.FC = () => {
 
 	useEffect(() => {
 		if (fields.length === 0) {
-			append({ name: '', mass: '' })
+			append({ name: '', mass: '' }, { shouldFocus: false })
 		}
 	}, [fields, append])
 
@@ -35,6 +35,9 @@ const Equipment: React.FC = () => {
 					<tr>
 						<th>Name</th>
 						<th>Mass</th>
+						<th>
+							<PlusButton onClick={() => append({ name: '', mass: '' })} />
+						</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -50,7 +53,6 @@ const Equipment: React.FC = () => {
 					))}
 				</tbody>
 			</table>
-			<PlusButton onClick={() => append({ name: '', mass: '' })} />
 			<div>Total Mass Carried: {totalMass}</div>
 		</div>
 	)

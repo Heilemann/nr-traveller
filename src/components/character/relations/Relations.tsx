@@ -26,7 +26,7 @@ const Relations: React.FC<RelationsProps> = ({ title, name }) => {
 
 	useEffect(() => {
 		if (fields.length === 0) {
-			append({ name: '', notes: '' })
+			append({ name: '', notes: '' }, { shouldFocus: false })
 		}
 	}, [fields, append])
 
