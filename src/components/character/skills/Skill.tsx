@@ -41,15 +41,19 @@ export default function Skill({ name, canHaveSpecialities }: ISkillProps) {
 				<div className='flex space-x-0.5'>
 					<input
 						className='w-12 text-black'
-						{...register(`skills.${name}.rating`)}
+						defaultValue=''
+						{...register(`skills.${name}.rating`, {
+							// valueAsNumber: true,
+						})}
 					/>
 					<NumberInput
 						className='w-12 py-0.5 text-center'
 						title='Rating'
 						placeholder='0'
 						centerValue={true}
+						defaultValue=''
 						{...register(`skills.${name}.rating`, {
-							valueAsNumber: true,
+							// valueAsNumber: true,
 						})}
 					/>
 				</div>
