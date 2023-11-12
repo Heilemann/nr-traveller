@@ -1,4 +1,4 @@
-import { NumberInput } from 'nrsystemtools'
+import { Input, NumberInput } from 'nrsystemtools'
 import { useFormContext, useWatch } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
 import Specialty from './Speciality'
@@ -40,21 +40,9 @@ export default function Skill({ name, canHaveSpecialities }: ISkillProps) {
 				</span>
 				<div className='flex space-x-0.5'>
 					<input
-						className='hidden w-12 text-black'
+						className='w-12 rounded-md border border-gray-800 bg-gray-800 text-center text-white focus:border-transparent focus:outline-none focus:ring-2 focus:ring-gray-800'
 						defaultValue=''
-						{...register(`skills.${name}.rating`, {
-							// valueAsNumber: true,
-						})}
-					/>
-					<NumberInput
-						className='w-12 py-0.5 text-center'
-						title='Rating'
-						placeholder='0'
-						centerValue={true}
-						defaultValue=''
-						{...register(`skills.${name}.rating`, {
-							// valueAsNumber: true,
-						})}
+						{...register(`skills.${name}.rating`)}
 					/>
 				</div>
 			</div>
