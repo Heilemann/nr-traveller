@@ -8,6 +8,7 @@ import Reducer from './components/BaseComponents/reducer'
 import { TState, TValues } from './interfaces'
 import './App.css'
 import './assets/logo.png'
+import './assets/cover.jpg'
 
 function App() {
 	const [state, dispatch] = useReducer(Reducer, {} as TState)
