@@ -5,16 +5,6 @@ body,
 	height: 100%;
 }
 
-@font-face {
-	font-family: 'CovingtonCondensed';
-	src: url(./assets/CovingtonCond.ttf);
-}
-
-@font-face {
-	font-family: 'DustismoRoman';
-	src: url(./assets/Dustismo_Roman.ttf);
-}
-
 .w-md-editor-text-pre > code,
 .w-md-editor-text-input {
 	font-size: 40px !important;
