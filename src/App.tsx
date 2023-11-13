@@ -7,6 +7,7 @@ import DevToolbar from './components/BaseComponents/dev/DevMode'
 import Reducer from './components/BaseComponents/reducer'
 import { TState, TValues } from './interfaces'
 import './App.css'
+import './assets/logo.png'
 
 function App() {
 	const [state, dispatch] = useReducer(Reducer, {} as TState)
