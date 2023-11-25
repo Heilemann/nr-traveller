@@ -45,6 +45,9 @@ const Characteristic: React.FC<CharacteristicProps> = ({
 
 	useEffect(() => {
 		const diceModifier = getDiceModifier(Number(characteristicScore))
+		console.log(
+			`characteristicScore: ${characteristicScore}, diceModifier: ${diceModifier}`,
+		)
 		setValue(
 			`characteristics.${characteristic}DiceModifier`,
 			diceModifier.toString(),
