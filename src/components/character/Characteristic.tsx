@@ -61,6 +61,7 @@ const Characteristic: React.FC<CharacteristicProps> = ({
 					{...register(`characteristics.${characteristic}`)}
 				/>
 				<Input
+					disabled
 					className='md:max-w-20 w-full text-center'
 					type='text'
 					{...register(`characteristics.${characteristic}DiceModifier`)}
