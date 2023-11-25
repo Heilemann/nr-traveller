@@ -40,7 +40,7 @@
 			"singularName": "Scene",
 			"pluralName": "Scenes",
 			"description": "Provide context, cover art and maps.",
-			"hasEditMode": "false",
+			"hasEditMode": "true",
 			"thumbnailField": ["mapId", "coverId"],
 			"windowSize": "small",
 			"allowCreate": "false",
