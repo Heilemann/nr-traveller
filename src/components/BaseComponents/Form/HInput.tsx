@@ -33,7 +33,7 @@ const HInput = forwardRef<HTMLInputElement, IHInputProps>(
 				<Input
 					ref={ref}
 					className={twMerge(
-						'my-1 w-3/5 py-1.5 text-right',
+						'mb-1 w-3/5 py-1.5 text-right',
 						editMode === 'view' && 'cursor-default bg-transparent px-0',
 						inputClassName,
 					)}

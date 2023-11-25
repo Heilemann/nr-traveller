@@ -11,6 +11,7 @@ const Specialty = ({ index, skillName }: Props) => {
 
 	return (
 		<Input
+			className='ml-12 mt-1'
 			{...register(`skills.${skillName}.specialty${index}`)}
 			placeholder={`Specialty ${index + 1}`}
 		/>

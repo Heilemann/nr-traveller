@@ -2,6 +2,7 @@ import { Input } from 'nrsystemtools'
 import React, { useEffect } from 'react'
 import { useFieldArray, useFormContext } from 'react-hook-form'
 import PlusButton from '../../BaseComponents/PlusButton'
+import Heading from '../../BaseComponents/Heading'
 
 type FormData = {
 	armour: {
@@ -31,7 +32,7 @@ const Armour: React.FC = () => {
 
 	return (
 		<div>
-			<h2>Armour</h2>
+			<Heading>Armour</Heading>
 			<table>
 				<thead>
 					<tr>

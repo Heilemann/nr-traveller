@@ -1,17 +1,21 @@
 import React from 'react'
 import Skill from './Skill'
 import skillslist from './skillslist'
+import Heading from '../../BaseComponents/Heading'
 
 const Skills: React.FC = () => {
 	return (
-		<div className='columns gap-2 sm:columns-2 md:columns-3 lg:columns-4 xl:columns-5'>
-			{Object.keys(skillslist).map(skillName => (
-				<Skill
-					key={skillName}
-					name={skillName}
-					canHaveSpecialities={skillslist[skillName].can_have_specialties}
-				/>
-			))}
+		<div>
+			<Heading>Skills</Heading>
+			<div className='columns gap-2 sm:columns-2 md:columns-3 lg:columns-4 xl:columns-5'>
+				{Object.keys(skillslist).map(skillName => (
+					<Skill
+						key={skillName}
+						name={skillName}
+						canHaveSpecialities={skillslist[skillName].can_have_specialties}
+					/>
+				))}
+			</div>
 		</div>
 	)
 }

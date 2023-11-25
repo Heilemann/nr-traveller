@@ -4,6 +4,7 @@ import { useFieldArray, useFormContext } from 'react-hook-form'
 import context from '../../BaseComponents/context'
 import { TWeapon, TWeaponOnCharacter } from '../../../interfaces'
 import PlusButton from '../../BaseComponents/PlusButton'
+import Heading from '../../BaseComponents/Heading'
 
 type FormData = {
 	weapons: TWeapon[]
@@ -74,7 +75,7 @@ const Weapons: React.FC = () => {
 
 	return (
 		<div>
-			<h2>Weapons</h2>
+			<Heading>Weapons</Heading>
 			<div
 				onDrop={handleDrop}
 				onDragEnter={handleDragEnter}

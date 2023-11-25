@@ -2,6 +2,7 @@ import { Input } from 'nrsystemtools'
 import React, { useEffect } from 'react'
 import { useFieldArray, useFormContext } from 'react-hook-form'
 import PlusButton from '../../BaseComponents/PlusButton'
+import Heading from '../../BaseComponents/Heading'
 
 type FormData = {
 	augments: {
@@ -26,7 +27,7 @@ const Augments: React.FC = () => {
 
 	return (
 		<div>
-			<h2>Augments</h2>
+			<Heading>Augments</Heading>
 			<table>
 				<thead>
 					<tr>

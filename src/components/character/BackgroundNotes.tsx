@@ -1,6 +1,7 @@
 import React from 'react'
 import { useFormContext } from 'react-hook-form'
 import TextArea from '../BaseComponents/Form/Textarea'
+import Heading from '../BaseComponents/Heading'
 
 type FormData = {
 	backgroundNotes: string
@@ -11,7 +12,7 @@ const BackgroundNotes: React.FC = () => {
 
 	return (
 		<div>
-			<h2>Background Notes</h2>
+			<Heading>Background Notes</Heading>
 			<TextArea {...register('backgroundNotes')} />
 		</div>
 	)

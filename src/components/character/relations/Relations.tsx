@@ -1,7 +1,9 @@
-import { Input } from 'nrsystemtools'
+import { Input, RichTextEditor } from 'nrsystemtools'
 import React, { useEffect } from 'react'
 import { useFieldArray, useFormContext } from 'react-hook-form'
 import PlusButton from '../../BaseComponents/PlusButton'
+import Heading from '../../BaseComponents/Heading'
+import TextArea from '../../BaseComponents/Form/Textarea'
 
 type Relation = {
 	name: string
@@ -32,12 +34,12 @@ const Relations: React.FC<RelationsProps> = ({ title, name }) => {
 
 	return (
 		<div>
-			<h2>{title}</h2>
+			<Heading>{title}</Heading>
 			<table>
 				<thead>
 					<tr>
-						<th>Name</th>
-						<th>Notes</th>
+						<th className='w-1/3 text-left'>Name</th>
+						<th className='w-2/3 text-left'>Notes</th>
 						<th>
 							<PlusButton onClick={() => append({ name: '', notes: '' })} />
 						</th>
@@ -46,11 +48,17 @@ const Relations: React.FC<RelationsProps> = ({ title, name }) => {
 				<tbody>
 					{fields.map((item, index) => (
 						<tr key={item.id}>
-							<td>
-								<Input {...register(`relations.${name}.${index}.name`)} />
+							<td className='align-top'>
+								<Input
+									className='w-full'
+									{...register(`relations.${name}.${index}.name`)}
+								/>
 							</td>
-							<td>
-								<Input {...register(`relations.${name}.${index}.notes`)} />
+							<td className='align-top'>
+								<TextArea
+									className='mt-0'
+									{...register(`relations.${name}.${index}.notes`)}
+								/>
 							</td>
 						</tr>
 					))}

@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useFieldArray, useFormContext } from 'react-hook-form'
 import PlusButton from '../../BaseComponents/PlusButton'
 import { Input } from 'nrsystemtools'
+import Heading from '../../BaseComponents/Heading'
 
 type FormData = {
 	wounds: {
@@ -30,16 +31,17 @@ const Wounds: React.FC = () => {
 
 	return (
 		<div>
-			<h2>Wounds</h2>
+			<Heading>Wounds</Heading>
 			<table>
 				<thead>
-					<tr>
+					<tr className='text-gray-500'>
 						<th>Type</th>
 						<th>Location</th>
 						<th>Recovery Period</th>
 						<th>Notes</th>
 						<th>
 							<PlusButton
+								className='hover:text-white'
 								onClick={() =>
 									append({
 										type: '',

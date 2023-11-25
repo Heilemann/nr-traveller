@@ -1,6 +1,7 @@
 import { useFormContext, useWatch } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
 import Specialty from './Speciality'
+import Label from '../../BaseComponents/Form/Label'
 
 export interface ISkillProps {
 	name: string
@@ -29,14 +30,11 @@ export default function Skill({ name, canHaveSpecialities }: ISkillProps) {
 			)}
 		>
 			<div className='flex space-x-2'>
-				<span
-					className={twMerge(
-						'flex-1 self-center',
-						rating === null && 'text-gray-500',
-					)}
+				<Label
+					className={twMerge('flex-1 self-center', !rating && 'text-gray-500')}
 				>
 					{name}
-				</span>
+				</Label>
 				<div className='flex space-x-0.5'>
 					<input
 						className='w-12 rounded-md border border-gray-800 bg-gray-800 text-center text-white focus:border-transparent focus:outline-none focus:ring-2 focus:ring-gray-800'
@@ -46,7 +44,7 @@ export default function Skill({ name, canHaveSpecialities }: ISkillProps) {
 				</div>
 			</div>
 
-			<div className='flex flex-col space-x-1'>
+			<div className='flex flex-col'>
 				{canHaveSpecialities &&
 					specialties
 						.slice(0, rating)

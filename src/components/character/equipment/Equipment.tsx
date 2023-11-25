@@ -2,6 +2,7 @@ import { Input } from 'nrsystemtools'
 import React, { useEffect } from 'react'
 import { useFieldArray, useFormContext } from 'react-hook-form'
 import PlusButton from '../../BaseComponents/PlusButton'
+import Heading from '../../BaseComponents/Heading'
 
 type FormData = {
 	equipment: {
@@ -29,7 +30,7 @@ const Equipment: React.FC = () => {
 
 	return (
 		<div>
-			<h2>Equipment</h2>
+			<Heading>Equipment</Heading>
 			<table>
 				<thead>
 					<tr>
@@ -44,10 +45,16 @@ const Equipment: React.FC = () => {
 					{fields.map((item, index) => (
 						<tr key={item.id}>
 							<td>
-								<Input {...register(`equipment.${index}.name`)} />
+								<Input
+									className='w-full'
+									{...register(`equipment.${index}.name`)}
+								/>
 							</td>
 							<td>
-								<Input {...register(`equipment.${index}.mass`)} />
+								<Input
+									className='w-full'
+									{...register(`equipment.${index}.mass`)}
+								/>
 							</td>
 						</tr>
 					))}

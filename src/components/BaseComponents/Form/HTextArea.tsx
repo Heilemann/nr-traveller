@@ -18,13 +18,13 @@ const HTextArea = React.forwardRef<HTMLTextAreaElement, ITextareaProps>(
 		return (
 			<div
 				className={twMerge(
-					'flex flex-1 flex-col text-xl',
+					'flex flex-1 space-x-4 pb-1 text-xl',
 					borderStyle,
 					className,
 				)}
 			>
 				<Label
-					className='mt-2 whitespace-nowrap text-gray-500 '
+					className='mt-2 w-2/5 whitespace-nowrap text-gray-500 '
 					htmlFor={rest.name}
 				>
 					{label}
@@ -34,7 +34,7 @@ const HTextArea = React.forwardRef<HTMLTextAreaElement, ITextareaProps>(
 				<TextareaAutosize
 					ref={ref}
 					className={twMerge(
-						`leading-16 block w-full rounded-lg border-0 bg-transparent py-2 text-xl text-white placeholder-gray-500  shadow-none transition-all focus:ring-0 sm:text-sm`,
+						`leading-16 block w-3/5 rounded-lg border-0 bg-transparent py-2 text-xl text-white placeholder-gray-500  shadow-none transition-all focus:ring-0 sm:text-sm`,
 						editMode === 'edit'
 							? 'bg-gray-800 bg-opacity-50 px-2'
 							: 'cursor-default resize-none px-0',

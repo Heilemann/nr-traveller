@@ -2,6 +2,7 @@ import { Input } from 'nrsystemtools'
 import React, { useEffect } from 'react'
 import { useFieldArray, useFormContext } from 'react-hook-form'
 import PlusButton from '../../BaseComponents/PlusButton'
+import Heading from '../../BaseComponents/Heading'
 
 type FormData = {
 	careers: {
@@ -25,15 +26,16 @@ const Careers: React.FC = () => {
 	}, [fields, append])
 	return (
 		<div>
-			<h2>Careers</h2>
+			<Heading>Careers</Heading>
 			<table>
 				<thead>
-					<tr>
+					<tr className='text-gray-500'>
 						<th>Career</th>
 						<th>Terms</th>
 						<th>Rank</th>
 						<th>
 							<PlusButton
+								className='hover:text-white'
 								onClick={() => append({ career: '', terms: '', rank: '' })}
 							/>
 						</th>
