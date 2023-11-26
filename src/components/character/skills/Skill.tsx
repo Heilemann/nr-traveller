@@ -15,9 +15,6 @@ export default function Skill({ name, canHaveSpecialities }: ISkillProps) {
 		name: `skills.${name}.rating`,
 		defaultValue: null,
 	})
-	if (name === 'Art') {
-		console.log('rating', rating)
-	}
 
 	const parsedRating = parseInt(rating)
 	const specialties = isNaN(parsedRating) ? [] : Array(parsedRating).fill(null)
