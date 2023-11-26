@@ -33,6 +33,8 @@ export default function Container() {
 				return
 			}
 
+			console.log('VALUES CHANGED', values)
+
 			const payload = {
 				...state.document,
 				values: {
