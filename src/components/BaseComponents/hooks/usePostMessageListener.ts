@@ -70,9 +70,7 @@ const usePostMessageListener = ({ resetInProgress }: Props) => {
 						return
 					}
 
-					// somehow a stale version of the document gets pushed to the parent,
-					// maybe because the platform updates the asset first and pushes that down
-					// and then the document gets updated and pushed down causing a loop
+					console.log('LOAD DATA', newDocument)
 
 					dispatch({
 						type: 'LOAD',
