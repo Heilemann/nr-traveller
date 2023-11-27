@@ -32,10 +32,13 @@ const Characteristic: React.FC<CharacteristicProps> = ({
 	})
 
 	const handleRoll = () => {
+		let DM = diceModifier ? diceModifier : null
+		if (DM && DM > 0) DM = `+${DM}`
+
 		messageToApp({
 			message: 'send message',
 			data: {
-				message: `/roll 2d6+${diceModifier} ${characteristic}`,
+				message: `/roll 2d6${DM} ${characteristic}`,
 			},
 		})
 	}
