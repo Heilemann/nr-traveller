@@ -8,10 +8,14 @@ const CharacterDetails: React.FC = () => {
 
 	return (
 		<div className='flex flex-col space-y-1'>
-			<HInput label='Name' {...register('name')} />
-			<HInput label='Age' {...register('age')} />
-			<HInput label='Species' {...register('species')} />
-			<HInput label='Homeworld' {...register('homeworld')} />
+			<HInput className='text-sm' label='Name' {...register('name')} />
+			<HInput className='text-sm' label='Age' {...register('age')} />
+			<HInput className='text-sm' label='Species' {...register('species')} />
+			<HInput
+				className='text-sm'
+				label='Homeworld'
+				{...register('homeworld')}
+			/>
 			<Traits />
 		</div>
 	)
