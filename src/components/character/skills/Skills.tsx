@@ -7,7 +7,7 @@ const Skills: React.FC = () => {
 	return (
 		<div>
 			<Heading>Skills</Heading>
-			<div className='columns gap-2 sm:columns-2 md:columns-3 lg:columns-4 xl:columns-5'>
+			<div className='sm:columns-2 md:columns-3 lg:columns-4 xl:columns-5'>
 				{Object.keys(skillslist).map(skillName => (
 					<Skill
 						key={skillName}

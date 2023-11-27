@@ -35,7 +35,7 @@ const Characteristic: React.FC<CharacteristicProps> = ({
 		messageToApp({
 			message: 'send message',
 			data: {
-				message: `/roll 2d6${DM} ${characteristic}`,
+				message: `/roll 2d6${DM} for ${label}`,
 			},
 		})
 	}
