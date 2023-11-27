@@ -1,9 +1,8 @@
-import React, { useContext } from 'react'
-import { twMerge } from 'tailwind-merge'
-import Label from './Label'
+import React from 'react'
 import TextareaAutosize from 'react-textarea-autosize'
+import { twMerge } from 'tailwind-merge'
 import { borderStyle } from '../../styles/borderStyle'
-import context from '../context'
+import Label from './Label'
 
 interface ITextareaProps
 	extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
@@ -12,9 +11,6 @@ interface ITextareaProps
 
 const HTextArea = React.forwardRef<HTMLTextAreaElement, ITextareaProps>(
 	({ className, label, ...rest }, ref) => {
-		const { state } = useContext(context)
-		const { editMode } = state
-
 		return (
 			<div
 				className={twMerge(
@@ -33,13 +29,7 @@ const HTextArea = React.forwardRef<HTMLTextAreaElement, ITextareaProps>(
 				{/* @ts-ignore */}
 				<TextareaAutosize
 					ref={ref}
-					className={twMerge(
-						`leading-16 block w-3/5 rounded-lg border-0 bg-transparent py-2 text-xl text-white placeholder-gray-500  shadow-none transition-all focus:ring-0 sm:text-sm`,
-						editMode === 'edit'
-							? 'bg-gray-800 bg-opacity-50 px-2'
-							: 'cursor-default resize-none px-0',
-					)}
-					disabled={editMode === 'view'}
+					className='leading-16 block w-3/5 rounded-lg border-0 bg-gray-800 bg-transparent bg-opacity-50 px-2 py-2  text-xl text-white placeholder-gray-500 shadow-none transition-all focus:ring-0 sm:text-sm'
 					// @ts-ignore - the component is typed wrong; it works fine
 					style={{
 						fontSize: '1.25rem',
