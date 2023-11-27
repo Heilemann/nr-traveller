@@ -1,5 +1,5 @@
 import { Input } from 'nrsystemtools'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useFormContext, useWatch } from 'react-hook-form'
 import Label from '../BaseComponents/Form/Label'
 import useMessageToApp from '../BaseComponents/hooks/UseMessageToApp'
@@ -26,14 +26,11 @@ const Characteristic: React.FC<CharacteristicProps> = ({
 		name: `characteristics.${characteristic}`,
 	})
 	const messageToApp = useMessageToApp()
-
-	const diceModifier = useWatch({
-		name: `characteristics.${characteristic}DiceModifier`,
-	})
+	const [diceModifier, setDiceModifier] = useState<string>('0')
 
 	const handleRoll = () => {
 		let DM = diceModifier ? diceModifier : null
-		if (DM && DM > 0) DM = `+${DM}`
+		if (DM && parseInt(DM) > 0) DM = `+${DM}`
 
 		messageToApp({
 			message: 'send message',
@@ -63,15 +60,9 @@ const Characteristic: React.FC<CharacteristicProps> = ({
 
 	useEffect(() => {
 		const diceModifier = getDiceModifier(Number(characteristicScore))
-		console.log(
-			`characteristicScore: ${characteristicScore}, diceModifier: ${diceModifier}`,
-		)
-		setValue(
-			`characteristics.${characteristic}DiceModifier`,
-			diceModifier.toString(),
-		)
+		setDiceModifier(diceModifier.toString())
 
-		console.log(characteristic, characteristicScore, diceModifier)
+		console.log('------->', characteristic, characteristicScore, diceModifier)
 	}, [characteristic, characteristicScore, setValue])
 
 	return (
@@ -87,7 +78,7 @@ const Characteristic: React.FC<CharacteristicProps> = ({
 					disabled
 					className='md:max-w-20 w-full text-center'
 					type='text'
-					{...register(`characteristics.${characteristic}DiceModifier`)}
+					value={diceModifier}
 				/>
 				<button onClick={handleRoll}>Roll</button>
 			</div>
