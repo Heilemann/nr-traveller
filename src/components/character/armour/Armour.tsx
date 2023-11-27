@@ -3,6 +3,7 @@ import { Input } from 'nrsystemtools'
 import React, { useEffect } from 'react'
 import { useFieldArray, useFormContext } from 'react-hook-form'
 import PlusButton from '../../BaseComponents/PlusButton'
+import Checkbox from '../../BaseComponents/Form/Checkbox'
 
 type Armours = {
 	armour: {
@@ -11,6 +12,7 @@ type Armours = {
 		protection: string
 		kg: string
 		notes: string
+		worn: boolean
 	}[]
 }
 
@@ -20,6 +22,7 @@ const emptyArmoor = {
 	protection: '',
 	kg: '',
 	notes: '',
+	worn: false,
 }
 
 const Armour: React.FC = () => {
@@ -45,7 +48,8 @@ const Armour: React.FC = () => {
 						<th className='w-1/12 text-xs'>Protection</th>
 						<th className='w-1/12 text-xs'>Rad</th>
 						<th className='w-1/12 text-xs'>KG</th>
-						<th className='w-6/12 text-left text-xs'>Notes</th>
+						<th className='w-5/12 text-left text-xs'>Notes</th>
+						<th className='w-0.5/12'>Worn</th>
 						<th>
 							<PlusButton onClick={() => append(emptyArmoor)} />
 						</th>
@@ -82,6 +86,12 @@ const Armour: React.FC = () => {
 								<Input
 									className='w-full'
 									{...register(`armour.${index}.notes` as const)}
+								/>
+							</td>
+							<td className='text-center'>
+								<input
+									type='checkbox'
+									{...register(`armour.${index}.worn` as const)}
 								/>
 							</td>
 							<td>

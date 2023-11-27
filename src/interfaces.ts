@@ -244,6 +244,7 @@ export type TWeapon = {
 	magazine: string
 	magazineCost: string
 	traits: string
+	worn: boolean
 }
 
 export type TWeaponOnCharacter = TWeapon & {

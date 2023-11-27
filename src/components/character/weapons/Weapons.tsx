@@ -1,11 +1,10 @@
+import { MinusCircleIcon } from '@heroicons/react/24/solid'
 import { Input } from 'nrsystemtools'
 import React, { useContext, useEffect, useState } from 'react'
 import { useFieldArray, useFormContext } from 'react-hook-form'
-import context from '../../BaseComponents/context'
 import { TWeapon, TWeaponOnCharacter } from '../../../interfaces'
 import PlusButton from '../../BaseComponents/PlusButton'
-import Heading from '../../BaseComponents/Heading'
-import { MinusCircleIcon } from '@heroicons/react/24/solid'
+import context from '../../BaseComponents/context'
 
 type FormData = {
 	weapons: TWeapon[]
@@ -20,6 +19,7 @@ const emptyWeapon: TWeapon = {
 	magazine: '',
 	magazineCost: '',
 	traits: '',
+	worn: false,
 }
 
 const Weapons: React.FC = () => {
@@ -95,6 +95,7 @@ const Weapons: React.FC = () => {
 							<th className='w-1/12 text-xs'>Magazine</th>
 							<th className='w-1/12 text-xs'>Mag Cost</th>
 							<th className='w-3/12 text-left text-xs'>Traits</th>
+							<th className='w-0.5/12'>Worn</th>
 							<th>
 								<PlusButton onClick={() => append(emptyWeapon)} />
 							</th>
@@ -149,6 +150,12 @@ const Weapons: React.FC = () => {
 									<Input
 										className='w-full'
 										{...register(`weapons.${index}.traits` as const)}
+									/>
+								</td>
+								<td className='text-center'>
+									<input
+										type='checkbox'
+										{...register(`weapons.${index}.worn` as const)}
 									/>
 								</td>
 								<td>

@@ -34,6 +34,7 @@ const weapon: TWeaponDocument = {
 		magazine: '0',
 		magazineCost: '0',
 		traits: '',
+		worn: false,
 	},
 }
 
