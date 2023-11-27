@@ -83,8 +83,8 @@ const Characteristic: React.FC<CharacteristicProps> = ({
 					className='md:max-w-20 w-full text-center'
 					type='text'
 					{...register(`characteristics.${characteristic}DiceModifier`)}
-					onClick={handleRoll}
 				/>
+				<button onClick={handleRoll}>Roll</button>
 			</div>
 		</div>
 	)
