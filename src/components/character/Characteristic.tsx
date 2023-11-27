@@ -70,6 +70,8 @@ const Characteristic: React.FC<CharacteristicProps> = ({
 			`characteristics.${characteristic}DiceModifier`,
 			diceModifier.toString(),
 		)
+
+		console.log(characteristic, characteristicScore, diceModifier)
 	}, [characteristic, characteristicScore, setValue])
 
 	return (
