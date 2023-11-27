@@ -4,6 +4,7 @@ import { useFieldArray, useFormContext } from 'react-hook-form'
 import PlusButton from '../../BaseComponents/PlusButton'
 import Heading from '../../BaseComponents/Heading'
 import TextArea from '../../BaseComponents/Form/Textarea'
+import { MinusCircleIcon } from '@heroicons/react/24/solid'
 
 type Relation = {
 	name: string
@@ -21,7 +22,7 @@ type RelationsProps = {
 
 const Relations: React.FC<RelationsProps> = ({ title, name }) => {
 	const { register, control } = useFormContext<FormData>()
-	const { fields, append } = useFieldArray({
+	const { fields, append, remove } = useFieldArray({
 		control,
 		name: `relations.${name}`, // Adjust the name here
 	})
@@ -59,6 +60,11 @@ const Relations: React.FC<RelationsProps> = ({ title, name }) => {
 									className='mt-0'
 									{...register(`relations.${name}.${index}.notes`)}
 								/>
+							</td>
+							<td className='align-top'>
+								<button onClick={() => remove(index)}>
+									<MinusCircleIcon className='h-6 w-6 text-red-500' />
+								</button>
 							</td>
 						</tr>
 					))}

@@ -242,6 +242,8 @@ export type TWeapon = {
 	damage: string
 	kg: string
 	magazine: string
+	magazineCost: string
+	traits: string
 }
 
 export type TWeaponOnCharacter = TWeapon & {

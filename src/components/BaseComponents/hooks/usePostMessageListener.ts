@@ -70,7 +70,12 @@ const usePostMessageListener = ({ resetInProgress }: Props) => {
 						return
 					}
 
-					console.log('LOAD DATA', newDocument)
+					// I think the problem is that when you type fast, the data coming back is lagging behind
+					// which causes the above check to fail, and the document to be reset to the old one
+					// I might have to add a timestamp to the message and only accept the latest one
+					// possibly a version instead of a timestamp
+					// I don't love any of this because it's one more complication, and I don't want to
+					// fuck up the system SDK with stuff
 
 					dispatch({
 						type: 'LOAD',

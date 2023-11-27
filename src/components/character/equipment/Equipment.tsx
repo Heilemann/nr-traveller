@@ -2,7 +2,7 @@ import { Input } from 'nrsystemtools'
 import React, { useEffect } from 'react'
 import { useFieldArray, useFormContext } from 'react-hook-form'
 import PlusButton from '../../BaseComponents/PlusButton'
-import Heading from '../../BaseComponents/Heading'
+import { MinusCircleIcon } from '@heroicons/react/24/solid'
 
 type FormData = {
 	equipment: {
@@ -13,7 +13,7 @@ type FormData = {
 
 const Equipment: React.FC = () => {
 	const { register, control } = useFormContext<FormData>()
-	const { fields, append } = useFieldArray({
+	const { fields, append, remove } = useFieldArray({
 		control,
 		name: 'equipment',
 	})
@@ -30,12 +30,12 @@ const Equipment: React.FC = () => {
 
 	return (
 		<div>
-			<Heading>Equipment</Heading>
+			{/* <Heading>Equipment</Heading> */}
 			<table>
 				<thead>
 					<tr>
-						<th>Name</th>
-						<th>Mass</th>
+						<th className='w-11/12 text-left'>Equipment</th>
+						<th className='w-1/12'>KG</th>
 						<th>
 							<PlusButton onClick={() => append({ name: '', mass: '' })} />
 						</th>
@@ -55,6 +55,11 @@ const Equipment: React.FC = () => {
 									className='w-full'
 									{...register(`equipment.${index}.mass`)}
 								/>
+							</td>
+							<td>
+								<button onClick={() => remove(index)}>
+									<MinusCircleIcon className='h-6 w-6 text-red-500 hover:text-red-700' />
+								</button>
 							</td>
 						</tr>
 					))}

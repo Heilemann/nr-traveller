@@ -5,33 +5,35 @@ import context from '../../BaseComponents/context'
 import { TWeapon, TWeaponOnCharacter } from '../../../interfaces'
 import PlusButton from '../../BaseComponents/PlusButton'
 import Heading from '../../BaseComponents/Heading'
+import { MinusCircleIcon } from '@heroicons/react/24/solid'
 
 type FormData = {
 	weapons: TWeapon[]
+}
+
+const emptyWeapon: TWeapon = {
+	name: '',
+	TL: '',
+	range: '',
+	damage: '',
+	kg: '',
+	magazine: '',
+	magazineCost: '',
+	traits: '',
 }
 
 const Weapons: React.FC = () => {
 	const { state } = useContext(context)
 	const { documents } = state
 	const { register, control } = useFormContext<FormData>()
-	const { fields, append } = useFieldArray({
+	const { fields, append, remove } = useFieldArray({
 		control,
 		name: 'weapons',
 	})
 
 	useEffect(() => {
 		if (fields.length === 0) {
-			append(
-				{
-					name: '',
-					TL: '',
-					range: '',
-					damage: '',
-					kg: '',
-					magazine: '',
-				},
-				{ shouldFocus: false },
-			)
+			append({ ...emptyWeapon }, { shouldFocus: false })
 		}
 	}, [fields, append])
 
@@ -75,7 +77,7 @@ const Weapons: React.FC = () => {
 
 	return (
 		<div>
-			<Heading>Weapons</Heading>
+			{/* <Heading>Weapons</Heading> */}
 			<div
 				onDrop={handleDrop}
 				onDragEnter={handleDragEnter}
@@ -85,25 +87,16 @@ const Weapons: React.FC = () => {
 				<table>
 					<thead>
 						<tr>
-							<th>Weapon</th>
-							<th>TL</th>
-							<th>Range</th>
-							<th>Damage</th>
-							<th>KG</th>
-							<th>Magazine</th>
+							<th className='w-3-/12 text-left text-xs'>Weapon</th>
+							<th className='w-1/12 text-xs'>TL</th>
+							<th className='w-1/12 text-xs'>Range</th>
+							<th className='w-1/12 text-xs'>Damage</th>
+							<th className='w-1/12 text-xs'>KG</th>
+							<th className='w-1/12 text-xs'>Magazine</th>
+							<th className='w-1/12 text-xs'>Mag Cost</th>
+							<th className='w-3/12 text-left text-xs'>Traits</th>
 							<th>
-								<PlusButton
-									onClick={() =>
-										append({
-											name: '',
-											TL: '',
-											range: '',
-											damage: '',
-											kg: '',
-											magazine: '',
-										})
-									}
-								/>
+								<PlusButton onClick={() => append(emptyWeapon)} />
 							</th>
 						</tr>
 					</thead>
@@ -111,22 +104,57 @@ const Weapons: React.FC = () => {
 						{fields.map((field, index) => (
 							<tr key={field.id}>
 								<td>
-									<Input {...register(`weapons.${index}.name` as const)} />
+									<Input
+										className='w-full'
+										{...register(`weapons.${index}.name` as const)}
+									/>
 								</td>
 								<td>
-									<Input {...register(`weapons.${index}.TL` as const)} />
+									<Input
+										className='w-full'
+										{...register(`weapons.${index}.TL` as const)}
+									/>
 								</td>
 								<td>
-									<Input {...register(`weapons.${index}.range` as const)} />
+									<Input
+										className='w-full'
+										{...register(`weapons.${index}.range` as const)}
+									/>
 								</td>
 								<td>
-									<Input {...register(`weapons.${index}.damage` as const)} />
+									<Input
+										className='w-full'
+										{...register(`weapons.${index}.damage` as const)}
+									/>
 								</td>
 								<td>
-									<Input {...register(`weapons.${index}.kg` as const)} />
+									<Input
+										className='w-full'
+										{...register(`weapons.${index}.kg` as const)}
+									/>
 								</td>
 								<td>
-									<Input {...register(`weapons.${index}.magazine` as const)} />
+									<Input
+										className='w-full'
+										{...register(`weapons.${index}.magazine` as const)}
+									/>
+								</td>
+								<td>
+									<Input
+										className='w-full'
+										{...register(`weapons.${index}.magazineCost` as const)}
+									/>
+								</td>
+								<td>
+									<Input
+										className='w-full'
+										{...register(`weapons.${index}.traits` as const)}
+									/>
+								</td>
+								<td>
+									<button onClick={() => remove(index)}>
+										<MinusCircleIcon className='h-6 w-6 text-red-500 hover:text-red-700' />
+									</button>
 								</td>
 							</tr>
 						))}

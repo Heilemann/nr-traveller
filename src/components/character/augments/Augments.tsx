@@ -1,8 +1,8 @@
+import { MinusCircleIcon } from '@heroicons/react/24/solid'
 import { Input } from 'nrsystemtools'
 import React, { useEffect } from 'react'
 import { useFieldArray, useFormContext } from 'react-hook-form'
 import PlusButton from '../../BaseComponents/PlusButton'
-import Heading from '../../BaseComponents/Heading'
 
 type FormData = {
 	augments: {
@@ -14,7 +14,7 @@ type FormData = {
 
 const Augments: React.FC = () => {
 	const { register, control } = useFormContext<FormData>()
-	const { fields, append } = useFieldArray({
+	const { fields, append, remove } = useFieldArray({
 		control,
 		name: 'augments',
 	})
@@ -27,13 +27,13 @@ const Augments: React.FC = () => {
 
 	return (
 		<div>
-			<Heading>Augments</Heading>
+			{/* <Heading>Augments</Heading> */}
 			<table>
 				<thead>
 					<tr>
-						<th>Type</th>
-						<th>TL</th>
-						<th>Improvement</th>
+						<th className='w-4/12 text-left'>Augment</th>
+						<th className='w-1/12'>TL</th>
+						<th className='w-7/12'>Improvement</th>
 						<th>
 							<PlusButton
 								onClick={() => append({ type: '', TL: '', improvement: '' })}
@@ -45,13 +45,27 @@ const Augments: React.FC = () => {
 					{fields.map((item, index) => (
 						<tr key={item.id}>
 							<td>
-								<Input {...register(`augments.${index}.type`)} />
+								<Input
+									className='w-full'
+									{...register(`augments.${index}.type`)}
+								/>
 							</td>
 							<td>
-								<Input {...register(`augments.${index}.TL`)} />
+								<Input
+									className='w-full'
+									{...register(`augments.${index}.TL`)}
+								/>
 							</td>
 							<td>
-								<Input {...register(`augments.${index}.improvement`)} />
+								<Input
+									className='w-full'
+									{...register(`augments.${index}.improvement`)}
+								/>
+							</td>
+							<td>
+								<button onClick={() => remove(index)}>
+									<MinusCircleIcon className='h-6 w-6 text-red-500 hover:text-red-700' />
+								</button>
 							</td>
 						</tr>
 					))}

@@ -14,7 +14,7 @@ import Wounds from './wounds/Wounds'
 
 export default function Character() {
 	return (
-		<div className=''>
+		<div className='space-y-8'>
 			<div className='grid grid-cols-2 gap-4'>
 				<CharacterDetails />
 				<Portrait />
