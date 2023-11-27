@@ -34,7 +34,7 @@ export default function Skill({ name, canHaveSpecialities }: ISkillProps) {
 				</Label>
 				<div className='flex space-x-0.5'>
 					<input
-						className='w-12 rounded-md border border-gray-800 bg-gray-800 text-center text-sm text-white focus:border-transparent focus:outline-none focus:ring-2 focus:ring-gray-800'
+						className='focus:ring-gray-800` w-12 rounded-md border border-gray-800 bg-gray-800 text-center text-sm text-white focus:border-transparent focus:outline-none focus:ring-2'
 						defaultValue=''
 						{...register(`skills.${name}.rating`)}
 					/>

@@ -1,9 +1,8 @@
-import { forwardRef, useContext } from 'react'
+import { Input } from 'nrsystemtools'
+import { forwardRef } from 'react'
 import { twMerge } from 'tailwind-merge'
 import { borderStyle } from '../../styles/borderStyle'
-import { Input } from 'nrsystemtools'
 import Label from './Label'
-import context from '../context'
 
 interface IHInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
 	label: string
@@ -16,9 +15,6 @@ const HInput = forwardRef<HTMLInputElement, IHInputProps>(
 		{ className, label, labelClassName, inputClassName, ...rest }: IHInputProps,
 		ref,
 	) => {
-		const { state } = useContext(context)
-		const { editMode } = state
-
 		return (
 			<div
 				className={twMerge('flex space-x-4 text-xl', borderStyle, className)}
@@ -32,13 +28,7 @@ const HInput = forwardRef<HTMLInputElement, IHInputProps>(
 
 				<Input
 					ref={ref}
-					className={twMerge(
-						'mb-1 w-3/5 py-1.5 text-right',
-						editMode === 'view' && 'cursor-default bg-transparent px-0',
-						inputClassName,
-					)}
-					// id={rest.name}
-					disabled={editMode === 'view'}
+					className={twMerge('mb-1 w-3/5 py-1.5 text-right', inputClassName)}
 					{...rest}
 				/>
 			</div>

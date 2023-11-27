@@ -19,7 +19,7 @@
 			"singularName": "Character",
 			"pluralName": "Characters",
 			"description": "A player character.",
-			"hasEditMode": "true",
+			"hasEditMode": "false",
 			"windowSize": "large",
 			"thumbnailField": ["portrait", "token"],
 			"allowCreate": "true",
