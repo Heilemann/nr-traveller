@@ -2,6 +2,7 @@ import { Input } from 'nrsystemtools'
 import React, { useEffect } from 'react'
 import { useFormContext, useWatch } from 'react-hook-form'
 import Label from '../BaseComponents/Form/Label'
+import useMessageToApp from '../BaseComponents/hooks/UseMessageToApp'
 
 type CharacteristicNames =
 	| 'strength'
@@ -24,6 +25,20 @@ const Characteristic: React.FC<CharacteristicProps> = ({
 	const characteristicScore = useWatch({
 		name: `characteristics.${characteristic}`,
 	})
+	const messageToApp = useMessageToApp()
+
+	const diceModifier = useWatch({
+		name: `characteristics.${characteristic}DiceModifier`,
+	})
+
+	const handleRoll = () => {
+		messageToApp({
+			message: 'send message',
+			data: {
+				message: `/roll 2d6+${diceModifier} ${characteristic}`,
+			},
+		})
+	}
 
 	function getDiceModifier(characteristicScore: number): number {
 		if (characteristicScore <= 0) {
@@ -68,6 +83,7 @@ const Characteristic: React.FC<CharacteristicProps> = ({
 					className='md:max-w-20 w-full text-center'
 					type='text'
 					{...register(`characteristics.${characteristic}DiceModifier`)}
+					onClick={handleRoll}
 				/>
 			</div>
 		</div>
