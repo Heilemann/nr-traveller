@@ -1,10 +1,9 @@
+import { Input } from 'nrsystemtools'
 import React, { useContext } from 'react'
 import { useFormContext, useWatch } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
-import { Input } from 'nrsystemtools'
-import context from '../BaseComponents/context'
-import DecoBox from '../DecoBox'
 import RichTextEditor from '../BaseComponents/Form/RTE/RichTextEditor'
+import context from '../BaseComponents/context'
 
 const Note: React.FC = () => {
 	const { state } = useContext(context)
@@ -18,7 +17,7 @@ const Note: React.FC = () => {
 	})
 
 	return (
-		<DecoBox>
+		<div>
 			{/* {editMode === 'view' && values?.name && (
 				<h1
 					className='text-xl font-bold'
@@ -42,7 +41,7 @@ const Note: React.FC = () => {
 				defaultValue={text}
 				className={editMode === 'edit' ? 'mt-3' : ''}
 			/>
-		</DecoBox>
+		</div>
 	)
 }
 
