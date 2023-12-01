@@ -1,14 +1,13 @@
+import { Input } from 'nrsystemtools'
 import { useContext } from 'react'
 import { useFormContext } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
 import Asset from '../BaseComponents/Asset'
 import Button from '../BaseComponents/Form/Button'
-import DecoBox from '../DecoBox'
-import { Input } from 'nrsystemtools'
 import Label from '../BaseComponents/Form/Label'
-import SectionDivider from '../SectionDivider'
-import useMessageToApp from '../BaseComponents/hooks/UseMessageToApp'
 import context from '../BaseComponents/context'
+import useMessageToApp from '../BaseComponents/hooks/UseMessageToApp'
+import SectionDivider from '../SectionDivider'
 
 export default function Scene() {
 	const { state } = useContext(context)
@@ -31,7 +30,7 @@ export default function Scene() {
 	if (!values) return null
 
 	return (
-		<DecoBox className='mx-auto w-full max-w-2xl space-y-2 lg:space-y-4'>
+		<div className='mx-auto w-full max-w-2xl space-y-2 lg:space-y-4'>
 			<Button onClick={handleSetScene} className='w-full'>
 				Set Scene
 			</Button>
@@ -199,6 +198,6 @@ export default function Scene() {
 					/>
 				</div>
 			</div> */}
-		</DecoBox>
+		</div>
 	)
 }
