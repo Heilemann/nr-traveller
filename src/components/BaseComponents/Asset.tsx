@@ -105,7 +105,10 @@ const Asset: FC<AssetProps> = props => {
 				/>
 			)}
 			<Button
-				className={twMerge('w-full', editMode === 'view' ? 'hidden' : 'block')}
+				className={twMerge(
+					'w-full',
+					// editMode === 'view' ? 'hidden' : 'block'
+				)}
 				onClick={handleRemoveAsset}
 			>
 				{removeLabel || 'Remove'}
