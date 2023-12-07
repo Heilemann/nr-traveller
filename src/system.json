@@ -66,6 +66,15 @@
 			"allowCreate": "false",
 			"thumbnailField": ["image"],
 			"canAssumeAsCharacter": "false"
+		},
+		{
+			"type": "effect",
+			"singularName": "Effect",
+			"pluralName": "Effects",
+			"description": "Effects are modifiers that can be applied to characters.",
+			"windowSize": "small",
+			"allowCreate": "false",
+			"canAssumeAsCharacter": "false"
 		}
 	]
 }

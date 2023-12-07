@@ -2,6 +2,7 @@ import {
 	Documents,
 	TAccess,
 	TDocument,
+	TEffect,
 	TNote,
 	TScene,
 	TWeaponDocument,
@@ -88,6 +89,19 @@ const scene: TScene = {
 	},
 }
 
+const effect: TEffect = {
+	_id: 'effect',
+	creator: 'abc',
+	access: 'public' as TAccess,
+	accessList: [],
+	type: 'effect',
+	values: {
+		name: 'Effect Name',
+		description: 'Effect Description',
+		roundsRemaining: '3',
+	},
+}
+
 const defaultDocuments: Documents = {
 	byId: {
 		note,
@@ -95,8 +109,9 @@ const defaultDocuments: Documents = {
 		character,
 		handout,
 		scene,
+		effect,
 	},
-	allIds: ['note', 'weapon', 'character'],
+	allIds: ['note', 'weapon', 'character', 'handout', 'scene', 'effect'],
 }
 
 export default defaultDocuments

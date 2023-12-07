@@ -2,6 +2,7 @@
 // This is where you add and remove your sheets.
 import { TDocumentType } from '../interfaces'
 import Character from './character/Character'
+import Effect from './effect/Effect'
 import Handout from './handout/Handout'
 import Note from './note/Note'
 import Scene from './scene/Scene'
@@ -21,6 +22,7 @@ export default function TypeSwitcher({ type }: Props) {
 			{type === 'scene' && <Scene />}
 			{type === 'weapon' && <Weapon />}
 			{type === 'handout' && <Handout />}
+			{type === 'effect' && <Effect />}
 		</div>
 	)
 }

@@ -46,10 +46,10 @@ export type TSystemConfig = {
 export type TDocumentType =
 	| 'character'
 	| 'note'
-	| 'book'
 	| 'scene'
 	| 'weapon'
 	| 'handout'
+	| 'effect'
 
 export type TDocument = {
 	_id: string // UID
@@ -259,5 +259,13 @@ export type TNote = TDocument & {
 	values: {
 		name: string
 		text: string
+	}
+}
+
+export type TEffect = TDocument & {
+	values: {
+		name: string
+		description: string
+		roundsRemaining: string
 	}
 }
