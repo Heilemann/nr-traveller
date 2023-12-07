@@ -21,7 +21,7 @@ There are probably other ways to create and package systems, but this is the way
 
 The first thing to understand is that all runtime code in a system is served in a sandboxed iframe. One of the key tenants of our systems implementation is that the system should not be able to affect the platform in any way. This is why the system is served in an iframe. The iframe is also sandboxed, which means that the system cannot access the parent window, and the parent window cannot access the system window. This is a security feature of iframes that prevents cross site scripting attacks.
 
-Because of this there are two main constraints to be aware of. Firstly all communication with the platform happens through post messages. This is the API for the platform, and through it data can be safely passed back and forth.
+Because of this there are two main constraints to be aware of: All communication with the platform happens through post messages. This is the API for the platform, and through it data can be safely passed back and forth, while keeping the system sandboxed, and the platform secure.
 
 Secondly, the system itself is only run inside of the iframe, never within the platform. There it is in fact only transported and stored as a string. This is key, because while the reference implementation you have here is written in React, it could just as easily be written in Angular, Vue, or even vanilla javascript. The platform doesn't care, it just needs to be able to store the system as a string, and then serve it up in an iframe.
 
