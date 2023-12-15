@@ -3,15 +3,15 @@ import { useFormContext } from 'react-hook-form'
 import HInput from '../BaseComponents/Form/HInput'
 
 type FormData = {
-	weapon: string
-	TL: string
-	range: string
-	damage: string
-	KG: string
-	cost: string
-	magazine: string
-	magazineCost: string
-	traits: string
+	name: string // name
+	TL: string // tech level
+	range: string // range
+	damage: string // damage
+	KG: string // weight
+	cost: string // cost
+	magazine: string // magazine capacity
+	magazineCost: string // magazine cost
+	traits: string // weapon traits
 }
 
 const Weapon: React.FC = () => {
@@ -19,7 +19,7 @@ const Weapon: React.FC = () => {
 
 	return (
 		<div>
-			<HInput label='Weapon' {...register('weapon')} />
+			<HInput label='Weapon' {...register('name')} />
 			<HInput label='TL' {...register('TL')} />
 			<HInput label='Range' {...register('range')} />
 			<HInput label='Damage' {...register('damage')} />
