@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useFormContext, useWatch } from 'react-hook-form'
 import VInput from '../BaseComponents/Form/VInput'
 import TextArea from '../BaseComponents/Form/Textarea'
@@ -6,6 +6,7 @@ import Label from '../BaseComponents/Form/Label'
 import Asset from '../BaseComponents/Asset'
 import RollButton from '../BaseComponents/RollButton'
 import useMessageToApp from '../BaseComponents/hooks/UseMessageToApp'
+import context from '../BaseComponents/context'
 
 type FormData = {
 	name: string // name
@@ -21,14 +22,17 @@ type FormData = {
 }
 
 const Weapon: React.FC = () => {
+	const { state } = useContext(context)
 	const { register } = useFormContext<FormData>()
 	const messageToApp = useMessageToApp()
 
 	const name = useWatch({
 		name: 'name',
+		defaultValue: state.document.values.name,
 	})
 	const damage = useWatch({
 		name: 'damage',
+		defaultValue: state.document.values.damage,
 	})
 
 	console.log('name', name)
