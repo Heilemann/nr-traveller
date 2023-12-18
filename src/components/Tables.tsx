@@ -7,13 +7,7 @@ export default function Tables() {
 			<table className='border border-yellow-400/60 text-center'>
 				<thead>
 					<tr>
-						<td
-							className='text-2xl'
-							colSpan={4}
-							style={{
-								fontFamily: 'CovingtonCondensed',
-							}}
-						>
+						<td className='text-2xl' colSpan={4}>
 							Sanity
 						</td>
 					</tr>
@@ -47,13 +41,7 @@ export default function Tables() {
 			<table className='border border-yellow-400/60 text-center'>
 				<thead>
 					<tr>
-						<td
-							className='text-2xl'
-							colSpan={4}
-							style={{
-								fontFamily: 'CovingtonCondensed',
-							}}
-						>
+						<td className='text-2xl' colSpan={4}>
 							Stability
 						</td>
 					</tr>

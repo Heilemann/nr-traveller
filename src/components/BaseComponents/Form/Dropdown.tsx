@@ -15,9 +15,6 @@ const Dropdown = forwardRef<HTMLSelectElement, IDropdownProps>(
 			<select
 				ref={ref}
 				className={twMerge(inputStyle, 'cursor-pointer text-xl', className)}
-				style={{
-					fontFamily: 'CovingtonCondensed',
-				}}
 				{...rest}
 			>
 				{children}

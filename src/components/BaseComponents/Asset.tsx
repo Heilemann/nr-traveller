@@ -70,7 +70,10 @@ const Asset: FC<AssetProps> = props => {
 	// TODO: Other file types
 	// TODO: alt text
 	return (
-		<div className={twMerge('max-w-xs space-y-2', className)} style={style}>
+		<div
+			className={twMerge('m-auto max-w-xs space-y-2', className)}
+			style={style}
+		>
 			{asset.filetype.includes('image') && (
 				<img
 					alt='wonderful'

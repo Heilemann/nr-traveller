@@ -9,32 +9,34 @@ interface IVInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
 }
 
 const VInput = React.forwardRef<HTMLInputElement, IVInputProps>(
-	({ className, label, ...rest }: IVInputProps, ref) => {
+	({ children, className, label, ...rest }: IVInputProps, ref) => {
 		const { state } = React.useContext(context)
 		const { editMode } = state
 
 		return (
-			<div
-				className={twMerge(
-					'mb-1 flex flex-1 flex-col border-b border-gray-800 px-1',
-					className,
-				)}
-				style={{
-					fontFamily: 'CovingtonCondensed',
-				}}
-			>
-				<Label className='-mb-2 text-center text-gray-500' htmlFor={rest.name}>
+			<div className={twMerge('mb-1 flex flex-1 flex-col px-1', className)}>
+				<Label
+					className='font-semibold uppercase text-gray-500'
+					style={{
+						fontSize: '0.65rem',
+					}}
+					htmlFor={rest.name}
+				>
 					{label}
 				</Label>
-				<Input
-					ref={ref}
-					className={twMerge(
-						'flex-1 bg-transparent text-center',
-						editMode === 'edit' ? 'hover:bg-gray-800' : '',
-					)}
-					id={rest.name}
-					{...rest}
-				/>
+				<div className='flex items-center'>
+					<Input
+						ref={ref}
+						className={twMerge(
+							'w-full flex-1 bg-transparent',
+							editMode === 'edit' ? 'hover:bg-gray-800' : '',
+						)}
+						id={rest.name}
+						disabled={editMode === 'view'}
+						{...rest}
+					/>
+					{children}
+				</div>
 			</div>
 		)
 	},
