@@ -54,7 +54,8 @@
 			"hasEditMode": "true",
 			"windowSize": "small",
 			"allowCreate": "false",
-			"canAssumeAsCharacter": "false"
+			"canAssumeAsCharacter": "false",
+			"thumbnailField": ["portrait", "token"]
 		},
 		{
 			"type": "handout",
