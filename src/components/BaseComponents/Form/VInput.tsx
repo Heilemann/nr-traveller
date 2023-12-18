@@ -14,7 +14,7 @@ const VInput = React.forwardRef<HTMLInputElement, IVInputProps>(
 		const { editMode } = state
 
 		return (
-			<div className={twMerge('mb-1 flex flex-1 flex-col px-1', className)}>
+			<div className={twMerge('mb-1 flex flex-1 flex-col', className)}>
 				<Label
 					className='font-semibold uppercase text-gray-500'
 					style={{
@@ -31,7 +31,7 @@ const VInput = React.forwardRef<HTMLInputElement, IVInputProps>(
 							'w-full flex-1 bg-transparent',
 							editMode === 'edit' ? 'hover:bg-gray-800' : 'px-0',
 						)}
-						placeholder='$mdash;'
+						placeholder='—'
 						id={rest.name}
 						disabled={editMode === 'view'}
 						{...rest}
