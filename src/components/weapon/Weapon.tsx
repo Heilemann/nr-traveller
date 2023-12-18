@@ -32,6 +32,7 @@ const Weapon: React.FC = () => {
 	})
 
 	const handleRoll = (notation: string) => {
+		console.log('handleRoll1', notation)
 		// Check if the notation is valid
 		const validNotation = /^[0-9]+d[0-9]+(\+[0-9]+)?(<[0-9]+)?$/i.test(notation)
 
@@ -44,6 +45,7 @@ const Weapon: React.FC = () => {
 			}
 		}
 
+		console.log('handleRoll2', notation)
 		messageToApp({
 			message: 'send message',
 			data: {
