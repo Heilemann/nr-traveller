@@ -23,6 +23,7 @@ type FormData = {
 
 const Weapon: React.FC = () => {
 	const { state } = useContext(context)
+	const { editMode } = state
 	const { register } = useFormContext<FormData>()
 	const messageToApp = useMessageToApp()
 
@@ -35,12 +36,7 @@ const Weapon: React.FC = () => {
 		defaultValue: state.document.values.damage,
 	})
 
-	console.log('name', name)
-	console.log('damage', damage)
-
 	const handleRoll = (notation: string) => {
-		console.log('handleRoll1', notation)
-
 		// Check if the notation ends with 'd' or 'D' followed by a plus sign and a number
 		if (/d\+[0-9]+$/i.test(notation)) {
 			// If it does, insert '6' after 'd' or 'D'
@@ -50,7 +46,6 @@ const Weapon: React.FC = () => {
 			notation += '6'
 		}
 
-		console.log('handleRoll2', notation)
 		messageToApp({
 			message: 'send message',
 			data: {
@@ -72,15 +67,30 @@ const Weapon: React.FC = () => {
 				/>
 				<VInput
 					className='w-3/12 flex-initial'
+					hide={editMode === 'view'}
 					label='Damage'
 					{...register('damage')}
-				>
-					<RollButton
-						onClick={() => {
-							handleRoll(damage)
-						}}
-					/>
-				</VInput>
+				/>
+				{editMode === 'view' && (
+					<div className='w-3/12 flex-initial'>
+						<Label
+							className='font-semibold uppercase text-gray-500'
+							style={{
+								fontSize: '0.65rem',
+							}}
+						>
+							Damage
+						</Label>
+						<div className='flex h-7 items-center space-x-1'>
+							<div>{damage}</div>
+							<RollButton
+								onClick={() => {
+									handleRoll(damage)
+								}}
+							/>
+						</div>
+					</div>
+				)}
 				<VInput label='TL' {...register('TL')} />
 				<VInput label='KG' {...register('KG')} />
 				<VInput label='Mag.' {...register('magazine')} />

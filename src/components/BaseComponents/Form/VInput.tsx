@@ -6,15 +6,25 @@ import context from '../context'
 
 interface IVInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
 	label: string
+	hide?: boolean
 }
 
 const VInput = React.forwardRef<HTMLInputElement, IVInputProps>(
-	({ children, className, label, ...rest }: IVInputProps, ref) => {
+	(
+		{ children, className, label, hide = false, ...rest }: IVInputProps,
+		ref,
+	) => {
 		const { state } = React.useContext(context)
 		const { editMode } = state
 
 		return (
-			<div className={twMerge('mb-1 flex flex-1 flex-col', className)}>
+			<div
+				className={twMerge(
+					'mb-1 flex flex-1 flex-col',
+					hide ? 'hidden' : 'block',
+					className,
+				)}
+			>
 				<Label
 					className='font-semibold uppercase text-gray-500'
 					style={{
@@ -24,13 +34,15 @@ const VInput = React.forwardRef<HTMLInputElement, IVInputProps>(
 				>
 					{label}
 				</Label>
-				<div className='flex items-center'>
+				<div
+					className={twMerge(
+						'flex items-center',
+						editMode === 'edit' ? 'bg-gray-800/50 hover:bg-gray-800' : 'px-0',
+					)}
+				>
 					<Input
 						ref={ref}
-						className={twMerge(
-							'w-full flex-1 bg-transparent',
-							editMode === 'edit' ? 'bg-gray-800/50 hover:bg-gray-800' : 'px-0',
-						)}
+						className={twMerge('w-full flex-1 bg-transparent')}
 						placeholder='—'
 						id={rest.name}
 						disabled={editMode === 'view'}
