@@ -44,7 +44,7 @@ const Weapon: React.FC = () => {
 		<div>
 			<Asset name='token' addLabel='Add Image' />
 
-			<div className='flex'>
+			<div className='flex space-x-1'>
 				<VInput label='Weapon' {...register('name')} />
 				<VInput
 					className='w-3/12 flex-initial'
@@ -63,7 +63,7 @@ const Weapon: React.FC = () => {
 					/>
 				</VInput>
 			</div>
-			<div className='flex'>
+			<div className='flex space-x-1'>
 				<VInput label='TL' {...register('TL')} />
 				<VInput label='KG' {...register('KG')} />
 				<VInput label='Magazine' {...register('magazine')} />
