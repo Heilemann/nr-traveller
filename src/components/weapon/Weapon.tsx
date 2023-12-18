@@ -40,16 +40,14 @@ const Weapon: React.FC = () => {
 
 	const handleRoll = (notation: string) => {
 		console.log('handleRoll1', notation)
-		// Check if the notation is valid
-		const validNotation = /^[0-9]+d[0-9]+(\+[0-9]+)?(<[0-9]+)?$/i.test(notation)
 
-		// If the notation is not valid, fix it
-		if (!validNotation) {
-			// Check if the notation ends with 'd' or 'D'
-			if (/d$/i.test(notation)) {
-				// If it does, append '6' to it
-				notation += '6'
-			}
+		// Check if the notation ends with 'd' or 'D' followed by a plus sign and a number
+		if (/d\+[0-9]+$/i.test(notation)) {
+			// If it does, insert '6' after 'd' or 'D'
+			notation = notation.replace(/d\+/i, 'd6+')
+		} else if (/d$/i.test(notation)) {
+			// If the notation ends with 'd' or 'D', append '6' to it
+			notation += '6'
 		}
 
 		console.log('handleRoll2', notation)
