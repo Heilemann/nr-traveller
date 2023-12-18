@@ -49,7 +49,7 @@ const Weapon: React.FC = () => {
 		messageToApp({
 			message: 'send message',
 			data: {
-				message: `/roll ${notation} for ${name}`,
+				message: `/roll ${notation}`,
 			},
 		})
 	}
@@ -82,7 +82,7 @@ const Weapon: React.FC = () => {
 							Damage
 						</Label>
 						<div className='flex h-7 items-center space-x-1'>
-							<div>{damage}</div>
+							<div className='text-gray-500'>{damage}</div>
 							<RollButton
 								onClick={() => {
 									handleRoll(damage)
