@@ -35,6 +35,10 @@ const Weapon: React.FC = () => {
 		name: 'damage',
 		defaultValue: state.document.values.damage,
 	})
+	const traits = useWatch({
+		name: 'traits',
+		defaultValue: state.document.values.traits,
+	})
 
 	const handleRoll = (notation: string) => {
 		// Check if the notation ends with 'd' or 'D' followed by a plus sign and a number
@@ -95,9 +99,13 @@ const Weapon: React.FC = () => {
 				<VInput label='KG' {...register('KG')} />
 				<VInput label='Mag.' {...register('magazine')} />
 			</div>
-			<VInput label='Traits' {...register('traits')} />
-			<VInput label='Mag. Cost' {...register('magazineCost')} />
-			<VInput label='Cost' {...register('cost')} />
+			{editMode === 'view' && traits && (
+				<VInput label='Traits' {...register('traits')} />
+			)}
+			<div className='flex space-x-1'>
+				<VInput label='Cost' {...register('cost')} />
+				<VInput label='Mag. Cost' {...register('magazineCost')} />
+			</div>
 
 			<Label
 				className='font-semibold uppercase text-gray-500'
