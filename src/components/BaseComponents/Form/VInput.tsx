@@ -42,7 +42,10 @@ const VInput = React.forwardRef<HTMLInputElement, IVInputProps>(
 				>
 					<Input
 						ref={ref}
-						className={twMerge('w-full flex-1 bg-transparent')}
+						className={twMerge(
+							'w-full flex-1 bg-transparent transition-all duration-200 ease-in-out',
+							editMode === 'edit' ? '' : 'px-0',
+						)}
 						placeholder='—'
 						id={rest.name}
 						disabled={editMode === 'view'}
