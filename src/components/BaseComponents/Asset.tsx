@@ -99,7 +99,7 @@ const Asset: FC<AssetProps> = props => {
 			)}
 			<Button
 				className={twMerge(
-					'absolute right-0 top-0 p-1',
+					'absolute right-2 top-2 m-0 p-2',
 					editMode === 'view' ? 'hidden' : 'block',
 				)}
 				onClick={handleRemoveAsset}
