@@ -32,6 +32,18 @@ const Weapon: React.FC = () => {
 	})
 
 	const handleRoll = (notation: string) => {
+		// Check if the notation is valid
+		const validNotation = /^[0-9]+d[0-9]+(\+[0-9]+)?(<[0-9]+)?$/i.test(notation)
+
+		// If the notation is not valid, fix it
+		if (!validNotation) {
+			// Check if the notation ends with 'd' or 'D'
+			if (/d$/i.test(notation)) {
+				// If it does, append '6' to it
+				notation += '6'
+			}
+		}
+
 		messageToApp({
 			message: 'send message',
 			data: {
