@@ -31,6 +31,9 @@ const Weapon: React.FC = () => {
 		name: 'damage',
 	})
 
+	console.log('name', name)
+	console.log('damage', damage)
+
 	const handleRoll = (notation: string) => {
 		console.log('handleRoll1', notation)
 		// Check if the notation is valid
