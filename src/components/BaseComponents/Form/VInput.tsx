@@ -29,8 +29,9 @@ const VInput = React.forwardRef<HTMLInputElement, IVInputProps>(
 						ref={ref}
 						className={twMerge(
 							'w-full flex-1 bg-transparent',
-							editMode === 'edit' ? 'hover:bg-gray-800' : '',
+							editMode === 'edit' ? 'hover:bg-gray-800' : 'px-0',
 						)}
+						placeholder='$mdash;'
 						id={rest.name}
 						disabled={editMode === 'view'}
 						{...rest}
