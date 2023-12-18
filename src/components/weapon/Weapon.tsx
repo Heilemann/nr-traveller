@@ -39,6 +39,10 @@ const Weapon: React.FC = () => {
 		name: 'traits',
 		defaultValue: state.document.values.traits,
 	})
+	const description = useWatch({
+		name: 'description',
+		defaultValue: state.document.values.description,
+	})
 
 	const handleRoll = (notation: string) => {
 		// Check if the notation ends with 'd' or 'D' followed by a plus sign and a number
@@ -115,7 +119,9 @@ const Weapon: React.FC = () => {
 			>
 				Description
 			</Label>
-			<TextArea {...register('description')} />
+			{editMode === 'view' && description && (
+				<TextArea {...register('description')} />
+			)}
 		</div>
 	)
 }
