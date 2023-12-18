@@ -7,6 +7,7 @@ import { twMerge } from 'tailwind-merge'
 import Button from './Form/Button'
 import context from './context'
 import useMessageToApp from './hooks/UseMessageToApp'
+import { TrashIcon } from '@heroicons/react/24/solid'
 
 interface AssetProps {
 	name: string
@@ -19,7 +20,7 @@ interface AssetProps {
 const Asset: FC<AssetProps> = props => {
 	const { name, className, style, addLabel, removeLabel } = props
 	const { state } = useContext(context)
-	const { assets, document } = state
+	const { editMode, assets, document } = state
 	const [assetId, setAssetId] = useState<string>(document?.values[name])
 	const asset = assets.byId[assetId]
 	const { setValue } = useFormContext()
@@ -71,7 +72,7 @@ const Asset: FC<AssetProps> = props => {
 	// TODO: alt text
 	return (
 		<div
-			className={twMerge('m-auto max-w-xs space-y-2', className)}
+			className={twMerge('relative m-auto max-w-xs space-y-2', className)}
 			style={style}
 		>
 			{asset.filetype.includes('image') && (
@@ -96,25 +97,14 @@ const Asset: FC<AssetProps> = props => {
 					}}
 				/>
 			)}
-			{asset.filetype.includes('pdf') && (
-				<iframe
-					title='PDF Preview'
-					src={parentOrigin + asset.fileurl}
-					style={{
-						objectFit: 'cover',
-						width: '100%',
-						height: '100%',
-					}}
-				/>
-			)}
 			<Button
 				className={twMerge(
-					'w-full',
-					// editMode === 'view' ? 'hidden' : 'block'
+					'absolute right-0 top-0 p-1',
+					editMode === 'view' ? 'hidden' : 'block',
 				)}
 				onClick={handleRemoveAsset}
 			>
-				{removeLabel || 'Remove'}
+				<TrashIcon className='h-4 w-4' />
 			</Button>
 		</div>
 	)
