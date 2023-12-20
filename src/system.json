@@ -55,7 +55,33 @@
 			"windowSize": "small",
 			"allowCreate": "false",
 			"canAssumeAsCharacter": "false",
-			"thumbnailField": ["portrait", "token"]
+			"thumbnailField": ["portrait", "token"],
+			"highlights": [
+				{
+					"id": "TL",
+					"name": "TL"
+				},
+				{
+					"id": "damage",
+					"name": ""
+				},
+				{
+					"id": "range",
+					"name": "Range"
+				},
+				{
+					"id": "KG",
+					"name": "Weight"
+				},
+				{
+					"id": "magazine",
+					"name": "Magazine"
+				},
+				{
+					"id": "traits",
+					"name": "Traits"
+				}
+			]
 		},
 		{
 			"type": "handout",
