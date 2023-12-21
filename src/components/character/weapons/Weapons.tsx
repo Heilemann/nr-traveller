@@ -5,6 +5,7 @@ import { useFieldArray, useFormContext } from 'react-hook-form'
 import { TWeapon, TWeaponOnCharacter } from '../../../interfaces'
 import PlusButton from '../../BaseComponents/PlusButton'
 import context from '../../BaseComponents/context'
+import WeaponReferenceButton from './WeaponReferenceButton'
 
 type FormData = {
 	weapons: TWeapon[]
@@ -158,6 +159,7 @@ const Weapons: React.FC = () => {
 										{...register(`weapons.${index}.worn` as const)}
 									/>
 								</td>
+								<WeaponReferenceButton index={index} />
 								<td>
 									<button onClick={() => remove(index)}>
 										<MinusCircleIcon className='h-6 w-6 text-red-500 hover:text-red-700' />
