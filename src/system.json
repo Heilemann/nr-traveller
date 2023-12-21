@@ -55,7 +55,7 @@
 			"windowSize": "small",
 			"allowCreate": "false",
 			"canAssumeAsCharacter": "false",
-			"thumbnailField": ["portrait", "token"],
+			"thumbnailField": ["portrait"],
 			"highlights": [
 				{
 					"id": "TL",
