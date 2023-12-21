@@ -52,6 +52,8 @@ const Asset: FC<AssetProps> = props => {
 		messageToApp({ message: 'remove asset', data: { assetId } })
 	}
 
+	console.log('editMode', editMode)
+
 	if (!asset) {
 		return (
 			<div>
