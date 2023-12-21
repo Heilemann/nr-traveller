@@ -31,7 +31,7 @@ const weapon: TWeaponDocument = {
 		TL: '3',
 		range: '0',
 		damage: '1d6+1',
-		kg: '1',
+		KG: '1',
 		magazine: '0',
 		magazineCost: '0',
 		traits: '',

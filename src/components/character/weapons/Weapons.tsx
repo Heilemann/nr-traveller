@@ -16,7 +16,7 @@ const emptyWeapon: TWeapon = {
 	TL: '',
 	range: '',
 	damage: '',
-	kg: '',
+	KG: '',
 	magazine: '',
 	magazineCost: '',
 	traits: '',
@@ -132,7 +132,7 @@ const Weapons: React.FC = () => {
 								<td>
 									<Input
 										className='w-full'
-										{...register(`weapons.${index}.kg` as const)}
+										{...register(`weapons.${index}.KG` as const)}
 									/>
 								</td>
 								<td>

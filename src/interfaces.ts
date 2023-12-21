@@ -240,7 +240,7 @@ export type TWeapon = {
 	TL: string
 	range: string
 	damage: string
-	kg: string
+	KG: string
 	magazine: string
 	magazineCost: string
 	traits: string
