@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { useFormContext, useWatch } from 'react-hook-form'
 import Label from '../BaseComponents/Form/Label'
 import useMessageToApp from '../BaseComponents/hooks/UseMessageToApp'
+import Button from '../BaseComponents/Form/Button'
 
 type CharacteristicNames =
 	| 'strength'
@@ -70,17 +71,19 @@ const Characteristic: React.FC<CharacteristicProps> = ({
 			<Label className='block text-center text-gray-500'>{label}</Label>
 			<div className='flex flex-col space-y-1 md:flex-row md:space-x-1 md:space-y-0'>
 				<Input
-					className='md:max-w-20 w-full text-center'
+					className='md:max-w-20 w-1/2 text-center'
 					type='text'
 					{...register(`characteristics.${characteristic}`)}
 				/>
-				<Input
+				{/*<Input
 					disabled
 					className='md:max-w-20 w-full text-center'
 					type='text'
 					value={diceModifier}
-				/>
-				<button onClick={handleRoll}>Roll</button>
+	/>*/}
+				<Button className='w-1/2 p-1' onClick={handleRoll}>
+					{parseInt(diceModifier) > 0 ? `+${diceModifier}` : diceModifier}
+				</Button>
 			</div>
 		</div>
 	)

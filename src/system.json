@@ -55,7 +55,8 @@
 			"windowSize": "small",
 			"allowCreate": "false",
 			"canAssumeAsCharacter": "false",
-			"thumbnailField": ["portrait"]
+			"thumbnailField": ["portrait"],
+			"defaultAccess": "public"
 		},
 		{
 			"type": "handout",
