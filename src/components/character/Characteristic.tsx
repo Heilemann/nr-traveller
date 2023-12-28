@@ -42,7 +42,6 @@ const Characteristic: React.FC<CharacteristicProps> = ({
 	}
 
 	function getDiceModifier(characteristicScore: number): number | string {
-		if (!characteristicScore) return '-'
 		if (characteristicScore <= 0) {
 			return -3
 		} else if (characteristicScore <= 2) {
