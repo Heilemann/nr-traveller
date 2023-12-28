@@ -41,7 +41,8 @@ const Characteristic: React.FC<CharacteristicProps> = ({
 		})
 	}
 
-	function getDiceModifier(characteristicScore: number): number {
+	function getDiceModifier(characteristicScore: number): number | string {
+		if (!characteristicScore) return '-'
 		if (characteristicScore <= 0) {
 			return -3
 		} else if (characteristicScore <= 2) {
@@ -60,10 +61,10 @@ const Characteristic: React.FC<CharacteristicProps> = ({
 	}
 
 	useEffect(() => {
-		const diceModifier = getDiceModifier(Number(characteristicScore))
-		setDiceModifier(diceModifier.toString())
-
-		console.log('------->', characteristic, characteristicScore, diceModifier)
+		console.log(characteristicScore)
+		if (!characteristicScore) setDiceModifier('-')
+		const newDiceModifier = getDiceModifier(Number(characteristicScore))
+		setDiceModifier(newDiceModifier.toString())
 	}, [characteristic, characteristicScore, setValue])
 
 	return (
@@ -75,13 +76,11 @@ const Characteristic: React.FC<CharacteristicProps> = ({
 					type='text'
 					{...register(`characteristics.${characteristic}`)}
 				/>
-				{/*<Input
-					disabled
-					className='md:max-w-20 w-full text-center'
-					type='text'
-					value={diceModifier}
-	/>*/}
-				<Button className='w-1/2 p-1' onClick={handleRoll}>
+				<Button
+					className='w-1/2 p-1'
+					onClick={handleRoll}
+					disabled={diceModifier === '-'}
+				>
 					{parseInt(diceModifier) > 0 ? `+${diceModifier}` : diceModifier}
 				</Button>
 			</div>
