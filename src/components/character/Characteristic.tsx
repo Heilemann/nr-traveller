@@ -26,6 +26,9 @@ const Characteristic: React.FC<CharacteristicProps> = ({
 	const characteristicScore = useWatch({
 		name: `characteristics.${characteristic}`,
 	})
+	const characteristicScoreCurrent = useWatch({
+		name: `characteristics.${characteristic}Current`,
+	})
 	const messageToApp = useMessageToApp()
 	const [diceModifier, setDiceModifier] = useState<string>('0')
 
@@ -60,11 +63,10 @@ const Characteristic: React.FC<CharacteristicProps> = ({
 	}
 
 	useEffect(() => {
-		console.log(characteristicScore)
-		if (!characteristicScore) setDiceModifier('-')
-		const newDiceModifier = getDiceModifier(Number(characteristicScore))
+		if (!characteristicScoreCurrent) setDiceModifier('-')
+		const newDiceModifier = getDiceModifier(Number(characteristicScoreCurrent))
 		setDiceModifier(newDiceModifier.toString())
-	}, [characteristic, characteristicScore, setValue])
+	}, [characteristic, characteristicScoreCurrent, setValue])
 
 	return (
 		<div>
@@ -74,6 +76,11 @@ const Characteristic: React.FC<CharacteristicProps> = ({
 					className='md:max-w-20 w-1/2 text-center'
 					type='text'
 					{...register(`characteristics.${characteristic}`)}
+				/>
+				<Input
+					className='md:max-w-20 w-1/2 text-center'
+					type='text'
+					{...register(`characteristics.${characteristic}Current`)}
 				/>
 				<Button
 					className='w-1/2 p-1'
