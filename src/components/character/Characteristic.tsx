@@ -23,9 +23,6 @@ const Characteristic: React.FC<CharacteristicProps> = ({
 	characteristic,
 }) => {
 	const { register, setValue } = useFormContext()
-	const characteristicScore = useWatch({
-		name: `characteristics.${characteristic}`,
-	})
 	const characteristicScoreCurrent = useWatch({
 		name: `characteristics.${characteristic}Current`,
 	})

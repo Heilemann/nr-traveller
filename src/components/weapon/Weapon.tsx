@@ -27,10 +27,6 @@ const Weapon: React.FC = () => {
 	const { register } = useFormContext<FormData>()
 	const messageToApp = useMessageToApp()
 
-	const name = useWatch({
-		name: 'name',
-		defaultValue: state.document.values.name,
-	})
 	const damage = useWatch({
 		name: 'damage',
 		defaultValue: state.document.values.damage,
