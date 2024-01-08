@@ -64,7 +64,11 @@ const Weapon: React.FC = () => {
 
 	return (
 		<div>
-			<Asset name='portrait' addLabel='Add Image' />
+			<Asset
+				name='portrait'
+				addLabel='Add Image'
+				className='aspect-content-1/1 grid'
+			/>
 
 			<VInput label='Weapon' {...register('name')} />
 			<div className='flex space-x-1'>

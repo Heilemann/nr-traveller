@@ -18,7 +18,7 @@ interface AssetProps {
 }
 
 const Asset: FC<AssetProps> = props => {
-	const { name, className, style, addLabel, removeLabel } = props
+	const { name, className, style, addLabel } = props
 	const { state } = useContext(context)
 	const { editMode, assets, document } = state
 	const [assetId, setAssetId] = useState<string>(document?.values[name])
@@ -81,7 +81,7 @@ const Asset: FC<AssetProps> = props => {
 				<img
 					alt='wonderful'
 					src={parentOrigin + asset.fileurl}
-					className='rounded-lg'
+					className='rounded-lg object-cover'
 					style={{
 						objectFit: 'cover',
 					}}
@@ -94,9 +94,7 @@ const Asset: FC<AssetProps> = props => {
 					muted={true}
 					playsInline={true}
 					src={parentOrigin + asset.fileurl}
-					style={{
-						objectFit: 'cover',
-					}}
+					className='object-cover'
 				/>
 			)}
 			<Button
