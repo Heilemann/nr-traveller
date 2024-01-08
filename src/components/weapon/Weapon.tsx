@@ -67,7 +67,7 @@ const Weapon: React.FC = () => {
 			<Asset
 				name='portrait'
 				addLabel='Add Image'
-				style={{ display: 'grid', aspectRatio: '1 / 1' }}
+				style={{ display: 'grid', aspectRatio: '1 / 1', maxHeight: '100px' }}
 			/>
 
 			<VInput label='Weapon' {...register('name')} />
