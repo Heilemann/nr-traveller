@@ -13,12 +13,13 @@ interface AssetProps {
 	name: string
 	className?: string
 	style?: React.CSSProperties
+	mediaStyle?: React.CSSProperties
 	addLabel?: string
 	removeLabel?: string
 }
 
 const Asset: FC<AssetProps> = props => {
-	const { name, className, style, addLabel } = props
+	const { name, className, style, mediaStyle, addLabel } = props
 	const { state } = useContext(context)
 	const { editMode, assets, document } = state
 	const [assetId, setAssetId] = useState<string>(document?.values[name])
@@ -74,17 +75,18 @@ const Asset: FC<AssetProps> = props => {
 	// TODO: alt text
 	return (
 		<div
-			className={twMerge('relative m-auto max-w-xs space-y-2', className)}
+			className={twMerge(
+				'm-auto flex max-w-xs items-center justify-center space-y-2',
+				className,
+			)}
 			style={style}
 		>
 			{asset.filetype.includes('image') && (
 				<img
 					alt='wonderful'
 					src={parentOrigin + asset.fileurl}
-					className='rounded-lg object-cover'
-					style={{
-						objectFit: 'cover',
-					}}
+					className='rounded-lg object-contain'
+					style={mediaStyle}
 				/>
 			)}
 			{asset.filetype.includes('video') && (
@@ -94,7 +96,7 @@ const Asset: FC<AssetProps> = props => {
 					muted={true}
 					playsInline={true}
 					src={parentOrigin + asset.fileurl}
-					className='object-cover'
+					className='object-contain'
 				/>
 			)}
 			<Button

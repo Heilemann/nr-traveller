@@ -67,7 +67,7 @@ const Weapon: React.FC = () => {
 			<Asset
 				name='portrait'
 				addLabel='Add Image'
-				style={{ maxHeight: '200px' }}
+				mediaStyle={{ maxHeight: '150px' }}
 				className='mb-2'
 			/>
 
