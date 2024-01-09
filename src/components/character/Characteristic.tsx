@@ -31,7 +31,7 @@ const Characteristic: React.FC<CharacteristicProps> = ({
 		name: `characteristics.${characteristic}Current`,
 	})
 	const messageToApp = useMessageToApp()
-	const [diceModifier, setDiceModifier] = useState<string>('0')
+	const [diceModifier, setDiceModifier] = useState<string>('-')
 
 	const handleRoll = () => {
 		let DM = diceModifier ? diceModifier : null
@@ -64,10 +64,25 @@ const Characteristic: React.FC<CharacteristicProps> = ({
 	}
 
 	useEffect(() => {
-		if (!characteristicScoreCurrent) setDiceModifier('-')
-		const newDiceModifier = getDiceModifier(Number(characteristicScoreCurrent))
-		setDiceModifier(newDiceModifier.toString())
-	}, [characteristic, characteristicScoreCurrent, setValue])
+		let score = characteristicScoreCurrent
+		if (!score) {
+			console.log(
+				'no characteristicScoreCurrent, falling back to characteristicScore',
+			)
+			score = characteristicScore
+		}
+		if (!score) {
+			setDiceModifier('-')
+		} else {
+			const newDiceModifier = getDiceModifier(Number(score))
+			setDiceModifier(newDiceModifier.toString())
+		}
+	}, [
+		characteristic,
+		characteristicScoreCurrent,
+		characteristicScore,
+		setValue,
+	])
 
 	return (
 		<div>
@@ -76,11 +91,13 @@ const Characteristic: React.FC<CharacteristicProps> = ({
 				<Input
 					className='md:max-w-20 w-1/2 text-center'
 					type='text'
+					autoComplete='off'
 					{...register(`characteristics.${characteristic}`)}
 				/>
 				<Input
 					className='md:max-w-20 w-1/2 text-center'
 					type='text'
+					autoComplete='off'
 					placeholder={characteristicScore}
 					{...register(`characteristics.${characteristic}Current`)}
 				/>
