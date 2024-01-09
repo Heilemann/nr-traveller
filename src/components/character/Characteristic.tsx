@@ -1,9 +1,10 @@
 import { Input } from 'nrsystemtools'
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useFormContext, useWatch } from 'react-hook-form'
 import Label from '../BaseComponents/Form/Label'
 import useMessageToApp from '../BaseComponents/hooks/UseMessageToApp'
 import Button from '../BaseComponents/Form/Button'
+import context from '../BaseComponents/context'
 
 type CharacteristicNames =
 	| 'strength'
@@ -22,16 +23,22 @@ const Characteristic: React.FC<CharacteristicProps> = ({
 	label,
 	characteristic,
 }) => {
+	const { state } = useContext(context)
+	const { document } = state
+	const { values } = document
 	const { register, setValue } = useFormContext()
+	const messageToApp = useMessageToApp()
+	const [diceModifier, setDiceModifier] = useState<string>('-')
+
 	const characteristicScore = useWatch({
 		name: `characteristics.${characteristic}`,
+		defaultValue: values?.characteristics?.[characteristic] || '',
 	})
 
 	const characteristicScoreCurrent = useWatch({
 		name: `characteristics.${characteristic}Current`,
+		defaultValue: values?.characteristics?.[`${characteristic}Current`] || '',
 	})
-	const messageToApp = useMessageToApp()
-	const [diceModifier, setDiceModifier] = useState<string>('-')
 
 	const handleRoll = () => {
 		let DM = diceModifier ? diceModifier : null
