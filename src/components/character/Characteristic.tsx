@@ -85,21 +85,25 @@ const Characteristic: React.FC<CharacteristicProps> = ({
 		<div>
 			<Label className='block text-center text-gray-500'>{label}</Label>
 			<div className='flex flex-col space-y-1 md:flex-row md:space-x-1 md:space-y-0'>
-				<Input
-					className='md:max-w-20 w-1/2 text-center'
-					type='text'
-					autoComplete='off'
-					{...register(`characteristics.${characteristic}`)}
-				/>
-				<Input
-					className='md:max-w-20 w-1/2 text-center'
-					type='text'
-					autoComplete='off'
-					placeholder={characteristicScore}
-					{...register(`characteristics.${characteristic}Current`)}
-				/>
+				<div className='flex space-x-px'>
+					<Input
+						className='md:max-w-20 w-1/2 text-center'
+						style={{ borderTopRightRadius: 0, borderBottomRightRadius: 0 }}
+						type='text'
+						autoComplete='off'
+						{...register(`characteristics.${characteristic}`)}
+					/>
+					<Input
+						className='md:max-w-20 w-1/2 text-center'
+						style={{ borderTopLeftRadius: 0, borderBottomLeftRadius: 0 }}
+						type='text'
+						autoComplete='off'
+						placeholder={characteristicScore}
+						{...register(`characteristics.${characteristic}Current`)}
+					/>
+				</div>
 				<Button
-					className='w-1/2 p-1'
+					className='p-1 sm:w-full md:w-1/2'
 					onClick={handleRoll}
 					disabled={diceModifier === '-'}
 				>
