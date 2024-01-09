@@ -3,6 +3,7 @@ import React, { useEffect } from 'react'
 import { useFieldArray, useFormContext } from 'react-hook-form'
 import PlusButton from '../../BaseComponents/PlusButton'
 import Heading from '../../BaseComponents/Heading'
+import HTextArea from '../../BaseComponents/Form/HTextArea'
 
 type FormData = {
 	careers: {
@@ -54,16 +55,28 @@ const Careers: React.FC = () => {
 					{fields.map((field, index) => (
 						<tr key={field.id}>
 							<td>
-								<Input {...register(`careers.${index}.career` as const)} />
+								<Input
+									autoComplete='off'
+									{...register(`careers.${index}.career` as const)}
+								/>
 							</td>
 							<td>
-								<Input {...register(`careers.${index}.terms` as const)} />
+								<Input
+									autoComplete='off'
+									{...register(`careers.${index}.terms` as const)}
+								/>
 							</td>
 							<td>
-								<Input {...register(`careers.${index}.rank` as const)} />
+								<Input
+									autoComplete='off'
+									{...register(`careers.${index}.rank` as const)}
+								/>
 							</td>
 							<td>
-								<Input {...register(`careers.${index}.event` as const)} />
+								<HTextArea
+									label='Traits'
+									{...register(`careers.${index}.event` as const)}
+								/>
 							</td>
 						</tr>
 					))}
