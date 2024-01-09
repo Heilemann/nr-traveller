@@ -9,7 +9,15 @@ type FormData = {
 		career: string
 		terms: string
 		rank: string
+		event: string
 	}[]
+}
+
+const defaultValues = {
+	career: '',
+	terms: '',
+	rank: '',
+	event: '',
 }
 
 const Careers: React.FC = () => {
@@ -21,7 +29,7 @@ const Careers: React.FC = () => {
 
 	useEffect(() => {
 		if (fields.length === 0) {
-			append({ career: '', terms: '', rank: '' }, { shouldFocus: false })
+			append({ ...defaultValues }, { shouldFocus: false })
 		}
 	}, [fields, append])
 	return (
@@ -33,10 +41,11 @@ const Careers: React.FC = () => {
 						<th>Career</th>
 						<th>Terms</th>
 						<th>Rank</th>
+						<th>Event</th>
 						<th>
 							<PlusButton
 								className='hover:text-white'
-								onClick={() => append({ career: '', terms: '', rank: '' })}
+								onClick={() => append({ ...defaultValues })}
 							/>
 						</th>
 					</tr>
@@ -52,6 +61,9 @@ const Careers: React.FC = () => {
 							</td>
 							<td>
 								<Input {...register(`careers.${index}.rank` as const)} />
+							</td>
+							<td>
+								<Input {...register(`careers.${index}.event` as const)} />
 							</td>
 						</tr>
 					))}
