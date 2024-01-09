@@ -55,25 +55,25 @@ const Careers: React.FC = () => {
 				<tbody>
 					{fields.map((field, index) => (
 						<tr key={field.id}>
-							<td>
+							<td className='align-top'>
 								<Input
 									autoComplete='off'
 									{...register(`careers.${index}.career` as const)}
 								/>
 							</td>
-							<td>
+							<td className='align-top'>
 								<Input
 									autoComplete='off'
 									{...register(`careers.${index}.terms` as const)}
 								/>
 							</td>
-							<td>
+							<td className='align-top'>
 								<Input
 									autoComplete='off'
 									{...register(`careers.${index}.rank` as const)}
 								/>
 							</td>
-							<td>
+							<td className='align-top'>
 								<TextArea {...register(`careers.${index}.event` as const)} />
 							</td>
 						</tr>
