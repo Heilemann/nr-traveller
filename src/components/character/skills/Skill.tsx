@@ -36,6 +36,7 @@ export default function Skill({ name, canHaveSpecialities }: ISkillProps) {
 					<input
 						className='focus:ring-gray-800` w-12 rounded-md border border-gray-800 bg-gray-800 text-center text-sm text-white focus:border-transparent focus:outline-none focus:ring-2'
 						defaultValue=''
+						autoComplete='off'
 						{...register(`skills.${name}.rating`)}
 					/>
 				</div>
