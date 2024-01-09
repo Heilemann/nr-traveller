@@ -23,6 +23,10 @@ const Characteristic: React.FC<CharacteristicProps> = ({
 	characteristic,
 }) => {
 	const { register, setValue } = useFormContext()
+	const characteristicScore = useWatch({
+		name: `characteristics.${characteristic}`,
+	})
+
 	const characteristicScoreCurrent = useWatch({
 		name: `characteristics.${characteristic}Current`,
 	})
@@ -77,6 +81,7 @@ const Characteristic: React.FC<CharacteristicProps> = ({
 				<Input
 					className='md:max-w-20 w-1/2 text-center'
 					type='text'
+					placeholder={characteristicScore}
 					{...register(`characteristics.${characteristic}Current`)}
 				/>
 				<Button
