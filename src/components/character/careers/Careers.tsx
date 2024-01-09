@@ -4,6 +4,7 @@ import { useFieldArray, useFormContext } from 'react-hook-form'
 import PlusButton from '../../BaseComponents/PlusButton'
 import Heading from '../../BaseComponents/Heading'
 import HTextArea from '../../BaseComponents/Form/HTextArea'
+import TextArea from '../../BaseComponents/Form/Textarea'
 
 type FormData = {
 	careers: {
@@ -73,10 +74,7 @@ const Careers: React.FC = () => {
 								/>
 							</td>
 							<td>
-								<HTextArea
-									label='Traits'
-									{...register(`careers.${index}.event` as const)}
-								/>
+								<TextArea {...register(`careers.${index}.event` as const)} />
 							</td>
 						</tr>
 					))}
