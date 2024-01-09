@@ -74,7 +74,10 @@ const Careers: React.FC = () => {
 								/>
 							</td>
 							<td className='align-top'>
-								<TextArea {...register(`careers.${index}.event` as const)} />
+								<TextArea
+									className='my-0'
+									{...register(`careers.${index}.event` as const)}
+								/>
 							</td>
 						</tr>
 					))}
