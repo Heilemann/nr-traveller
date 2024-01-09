@@ -21,8 +21,8 @@ export default function Container() {
 	useFocusHandler()
 
 	const handleDocumentChanges = () => {
-		// type controls the sheet to show, if the document is updated
-		// we update the type as well
+		// the document type controls which sheet to show,
+		// if the document is updated we update the type as well
 		setType(state.document?.type || null)
 
 		const subscription = watch(values => {
@@ -58,7 +58,7 @@ export default function Container() {
 			subscription.unsubscribe()
 		}
 	}
-	useEffect(handleDocumentChanges, [state.document]) // eslint-disable-line
+	useEffect(handleDocumentChanges, [state.document]) // eslint-disable-line react-hooks/exhaustive-deps
 
 	// tell the platform we're ready to receive messages,
 	// the first of which will be 'load' containing our data

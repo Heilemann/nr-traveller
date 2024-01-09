@@ -17,8 +17,6 @@ function App() {
 		shouldUnregister: true,
 	})
 
-	console.log('state', state)
-
 	return (
 		<Context.Provider value={{ state, dispatch }}>
 			<FormProvider {...form}>
