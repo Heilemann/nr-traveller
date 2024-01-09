@@ -66,9 +66,6 @@ const Characteristic: React.FC<CharacteristicProps> = ({
 	useEffect(() => {
 		let score = characteristicScoreCurrent
 		if (!score) {
-			console.log(
-				'no characteristicScoreCurrent, falling back to characteristicScore',
-			)
 			score = characteristicScore
 		}
 		if (!score) {
