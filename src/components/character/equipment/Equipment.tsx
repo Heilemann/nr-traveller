@@ -3,6 +3,7 @@ import React, { useEffect } from 'react'
 import { useFieldArray, useFormContext } from 'react-hook-form'
 import PlusButton from '../../BaseComponents/PlusButton'
 import { MinusCircleIcon } from '@heroicons/react/24/solid'
+import RemoveRowButton from '../../BaseComponents/RemoveRowButton'
 
 type FormData = {
 	equipment: {
@@ -57,9 +58,7 @@ const Equipment: React.FC = () => {
 								/>
 							</td>
 							<td>
-								<button onClick={() => remove(index)}>
-									<MinusCircleIcon className='h-6 w-6 text-red-500 hover:text-red-700' />
-								</button>
+								<RemoveRowButton onClick={() => remove(index)} />
 							</td>
 						</tr>
 					))}

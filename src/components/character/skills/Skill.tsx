@@ -18,10 +18,6 @@ export default function Skill({ name, specialties }: ISkillProps) {
 		name: `skills.${name}.rating`,
 		defaultValue: null,
 	})
-	// const parsedRating = parseInt(rating)
-	// const specialtiesCount = isNaN(parsedRating)
-	// 	? []
-	// 	: Array(parsedRating).fill(null)
 
 	const handleRoll = () => {
 		let DM

@@ -5,6 +5,7 @@ import PlusButton from '../../BaseComponents/PlusButton'
 import Heading from '../../BaseComponents/Heading'
 import TextArea from '../../BaseComponents/Form/Textarea'
 import { MinusCircleIcon } from '@heroicons/react/24/solid'
+import RemoveRowButton from '../../BaseComponents/RemoveRowButton'
 
 type Relation = {
 	name: string
@@ -62,9 +63,7 @@ const Relations: React.FC<RelationsProps> = ({ title, name }) => {
 								/>
 							</td>
 							<td className='align-top'>
-								<button onClick={() => remove(index)}>
-									<MinusCircleIcon className='h-6 w-6 text-red-500' />
-								</button>
+								<RemoveRowButton onClick={() => remove(index)} />
 							</td>
 						</tr>
 					))}

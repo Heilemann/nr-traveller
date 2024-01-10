@@ -6,6 +6,7 @@ import { TWeapon, TWeaponOnCharacter } from '../../../interfaces'
 import PlusButton from '../../BaseComponents/PlusButton'
 import context from '../../BaseComponents/context'
 import WeaponReferenceButton from './WeaponReferenceButton'
+import RemoveRowButton from '../../BaseComponents/RemoveRowButton'
 
 type FormData = {
 	weapons: TWeapon[]
@@ -96,7 +97,8 @@ const Weapons: React.FC = () => {
 							<th className='w-1/12 text-xs'>Magazine</th>
 							<th className='w-1/12 text-xs'>Mag Cost</th>
 							<th className='w-3/12 text-left text-xs'>Traits</th>
-							<th className='w-0.5/12'>Worn</th>
+							<th className='w-0.5/12'>Carried</th>
+							<th className='w-0.5/12'></th>
 							<th>
 								<PlusButton onClick={() => append(emptyWeapon)} />
 							</th>
@@ -161,9 +163,7 @@ const Weapons: React.FC = () => {
 								</td>
 								<WeaponReferenceButton index={index} />
 								<td>
-									<button onClick={() => remove(index)}>
-										<MinusCircleIcon className='h-6 w-6 text-red-500 hover:text-red-700' />
-									</button>
+									<RemoveRowButton onClick={() => remove(index)} />
 								</td>
 							</tr>
 						))}

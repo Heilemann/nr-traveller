@@ -39,7 +39,7 @@ const Specialty = ({ index, skillName, specialties }: Props) => {
 				<option value=''>Unselected</option>
 				{specialties.map(specialty => (
 					<option key={specialty} value={specialty}>
-						{specialty}
+						{specialty} (DM +{index + 1})
 					</option>
 				))}
 			</Dropdown>

@@ -4,6 +4,7 @@ import React, { useEffect } from 'react'
 import { useFieldArray, useFormContext } from 'react-hook-form'
 import PlusButton from '../../BaseComponents/PlusButton'
 import Checkbox from '../../BaseComponents/Form/Checkbox'
+import RemoveRowButton from '../../BaseComponents/RemoveRowButton'
 
 type Armours = {
 	armour: {
@@ -95,9 +96,7 @@ const Armour: React.FC = () => {
 								/>
 							</td>
 							<td>
-								<button onClick={() => remove(index)}>
-									<MinusCircleIcon className='h-6 w-6 text-red-500 hover:text-red-700' />
-								</button>
+								<RemoveRowButton onClick={() => remove(index)} />
 							</td>
 						</tr>
 					))}
