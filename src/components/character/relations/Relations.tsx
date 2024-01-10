@@ -1,10 +1,9 @@
-import { Input, RichTextEditor } from 'nrsystemtools'
+import { Input } from 'nrsystemtools'
 import React, { useEffect } from 'react'
 import { useFieldArray, useFormContext } from 'react-hook-form'
-import PlusButton from '../../BaseComponents/PlusButton'
-import Heading from '../../BaseComponents/Heading'
 import TextArea from '../../BaseComponents/Form/Textarea'
-import { MinusCircleIcon } from '@heroicons/react/24/solid'
+import Heading from '../../BaseComponents/Heading'
+import PlusButton from '../../BaseComponents/PlusButton'
 import RemoveRowButton from '../../BaseComponents/RemoveRowButton'
 
 type Relation = {

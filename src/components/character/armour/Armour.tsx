@@ -1,9 +1,7 @@
-import { MinusCircleIcon } from '@heroicons/react/24/solid'
 import { Input } from 'nrsystemtools'
 import React, { useEffect } from 'react'
 import { useFieldArray, useFormContext } from 'react-hook-form'
 import PlusButton from '../../BaseComponents/PlusButton'
-import Checkbox from '../../BaseComponents/Form/Checkbox'
 import RemoveRowButton from '../../BaseComponents/RemoveRowButton'
 
 type Armours = {

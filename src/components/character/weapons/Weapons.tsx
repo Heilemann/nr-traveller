@@ -1,12 +1,11 @@
-import { MinusCircleIcon } from '@heroicons/react/24/solid'
 import { Input } from 'nrsystemtools'
 import React, { useContext, useEffect, useState } from 'react'
 import { useFieldArray, useFormContext } from 'react-hook-form'
 import { TWeapon, TWeaponOnCharacter } from '../../../interfaces'
 import PlusButton from '../../BaseComponents/PlusButton'
+import RemoveRowButton from '../../BaseComponents/RemoveRowButton'
 import context from '../../BaseComponents/context'
 import WeaponReferenceButton from './WeaponReferenceButton'
-import RemoveRowButton from '../../BaseComponents/RemoveRowButton'
 
 type FormData = {
 	weapons: TWeapon[]

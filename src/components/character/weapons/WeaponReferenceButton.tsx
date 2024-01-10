@@ -32,6 +32,8 @@ const WeaponReferenceButton = ({ index }: Props) => {
 		messageToApp({ message: 'open document', data: { documentId } })
 	}
 
+	console.log(isReferenceDocument, referenceDocumentExists)
+
 	return (
 		<td>
 			{isReferenceDocument && referenceDocumentExists && (
