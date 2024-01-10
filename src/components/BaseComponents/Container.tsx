@@ -27,7 +27,6 @@ export default function Container() {
 
 		const subscription = watch(values => {
 			if (!values || !state.document) return
-			// if (_.isEqual(values, state.document.values)) return
 			if (resetInProgress.current) {
 				resetInProgress.current = false
 				return

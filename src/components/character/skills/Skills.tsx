@@ -12,7 +12,7 @@ const Skills: React.FC = () => {
 					<Skill
 						key={skillName}
 						name={skillName}
-						canHaveSpecialities={skillslist[skillName].can_have_specialties}
+						specialties={skillslist[skillName].specialities || []}
 					/>
 				))}
 			</div>

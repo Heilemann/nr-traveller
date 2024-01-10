@@ -90,7 +90,7 @@ const Characteristic: React.FC<CharacteristicProps> = ({
 
 	return (
 		<div>
-			<Label className='block text-center text-gray-500'>{label}</Label>
+			<Label className='block text-gray-500'>{label}</Label>
 			<div className='flex flex-col space-y-1 md:flex-row md:space-x-1 md:space-y-0'>
 				<div className='flex space-x-px'>
 					<Input
@@ -110,7 +110,7 @@ const Characteristic: React.FC<CharacteristicProps> = ({
 					/>
 				</div>
 				<Button
-					className='p-1 sm:w-full md:w-1/2'
+					className='p-1 sm:w-12 md:w-1/2'
 					onClick={handleRoll}
 					disabled={diceModifier === '-'}
 				>

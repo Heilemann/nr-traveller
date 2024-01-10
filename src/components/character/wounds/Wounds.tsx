@@ -3,6 +3,7 @@ import { useFieldArray, useFormContext } from 'react-hook-form'
 import PlusButton from '../../BaseComponents/PlusButton'
 import { Input } from 'nrsystemtools'
 import Heading from '../../BaseComponents/Heading'
+import TextArea from '../../BaseComponents/Form/Textarea'
 
 type FormData = {
 	wounds: {
@@ -57,17 +58,20 @@ const Wounds: React.FC = () => {
 				<tbody>
 					{fields.map((field, index) => (
 						<tr key={field.id}>
-							<td>
+							<td className='align-top'>
 								<Input {...register(`wounds.${index}.type`)} />
 							</td>
-							<td>
+							<td className='align-top'>
 								<Input {...register(`wounds.${index}.location`)} />
 							</td>
-							<td>
+							<td className='align-top'>
 								<Input {...register(`wounds.${index}.recoveryPeriod`)} />
 							</td>
-							<td>
-								<Input {...register(`wounds.${index}.notes`)} />
+							<td className='align-top'>
+								<TextArea
+									className='mt-0'
+									{...register(`wounds.${index}.notes`)}
+								/>
 							</td>
 						</tr>
 					))}
