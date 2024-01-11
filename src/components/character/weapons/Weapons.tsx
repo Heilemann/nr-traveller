@@ -116,14 +116,14 @@ const Weapons: React.FC = () => {
 							</th>
 							<th className='w-1/12 text-xs'>KG</th>
 							<th className='w-1/12 text-xs'>
-								<span className='block md:hidden'>Mag</span>
-								<span className='hidden md:block'>Magazine</span>
+								<span className='block lg:hidden'>Mag</span>
+								<span className='hidden lg:block'>Magazine</span>
 							</th>
 							{/* <th className='w-1/12 text-xs'>Mag Cost</th> */}
 							<th className='w-2/12 text-left text-xs'>Traits</th>
 							<th className='w-0.5/12'></th>
 							<th className='w-0.5/12 text-xs'>Carry</th>
-							<th className='w-1/12'>
+							<th className='w-8'>
 								{/* <PlusButton onClick={() => append(emptyWeapon)} /> */}
 							</th>
 						</tr>

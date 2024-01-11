@@ -1,8 +1,9 @@
 import { Input } from 'nrsystemtools'
-import React, { useEffect } from 'react'
-import { useFieldArray, useFormContext } from 'react-hook-form'
-import PlusButton from '../../BaseComponents/PlusButton'
+import React, { useContext, useEffect } from 'react'
+import { useFieldArray, useFormContext, useWatch } from 'react-hook-form'
 import RemoveRowButton from '../../BaseComponents/RemoveRowButton'
+import { omit } from 'lodash'
+import context from '../../BaseComponents/context'
 
 type FormData = {
 	augments: {
@@ -12,7 +13,14 @@ type FormData = {
 	}[]
 }
 
+const emptyAugment = {
+	type: '',
+	TL: '',
+	improvement: '',
+}
+
 const Augments: React.FC = () => {
+	const { state } = useContext(context)
 	const { register, control } = useFormContext<FormData>()
 	const { fields, append, remove } = useFieldArray({
 		control,
@@ -21,9 +29,25 @@ const Augments: React.FC = () => {
 
 	useEffect(() => {
 		if (fields.length === 0) {
-			append({ type: '', TL: '', improvement: '' }, { shouldFocus: false })
+			append(emptyAugment, { shouldFocus: false })
 		}
 	}, [fields, append])
+
+	const augments = useWatch({
+		name: 'augments',
+		defaultValue: state.document.values.augments || [],
+	})
+
+	useEffect(() => {
+		const lastItem = augments[augments.length - 1]
+		const lastItemWithoutId = omit(lastItem, 'id')
+		const lastRowIsDirty =
+			JSON.stringify(lastItemWithoutId) !== JSON.stringify(emptyAugment)
+
+		if (lastRowIsDirty) {
+			append(emptyAugment, { shouldFocus: false })
+		}
+	}, [augments, append])
 
 	return (
 		<div>
@@ -33,11 +57,7 @@ const Augments: React.FC = () => {
 						<th className='w-4/12 text-left'>Augment</th>
 						<th className='w-1/12'>TL</th>
 						<th className='w-7/12 text-left'>Improvement</th>
-						<th>
-							<PlusButton
-								onClick={() => append({ type: '', TL: '', improvement: '' })}
-							/>
-						</th>
+						<th>{/* <PlusButton onClick={() => append(emptyAugment)} /> */}</th>
 					</tr>
 				</thead>
 				<tbody>

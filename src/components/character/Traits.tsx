@@ -8,7 +8,14 @@ const Traits: React.FC = () => {
 	return (
 		<div>
 			<label>
-				<HTextArea label='Traits' {...register('traits')} />
+				<HTextArea
+					label='Traits'
+					className='bg-gray-800 text-xs'
+					style={{
+						fontSize: '14px',
+					}}
+					{...register('traits')}
+				/>
 			</label>
 		</div>
 	)
