@@ -1,9 +1,10 @@
+import { Input } from 'nrsystemtools'
 import React, { useEffect } from 'react'
 import { useFieldArray, useFormContext } from 'react-hook-form'
-import PlusButton from '../../BaseComponents/PlusButton'
-import { Input } from 'nrsystemtools'
-import Heading from '../../BaseComponents/Heading'
 import TextArea from '../../BaseComponents/Form/Textarea'
+import Heading from '../../BaseComponents/Heading'
+import PlusButton from '../../BaseComponents/PlusButton'
+import RemoveRowButton from '../../BaseComponents/RemoveRowButton'
 
 type FormData = {
 	wounds: {
@@ -16,7 +17,7 @@ type FormData = {
 
 const Wounds: React.FC = () => {
 	const { register, control } = useFormContext<FormData>()
-	const { fields, append } = useFieldArray({
+	const { fields, append, remove } = useFieldArray({
 		control,
 		name: 'wounds',
 	})
@@ -35,7 +36,7 @@ const Wounds: React.FC = () => {
 			<Heading>Wounds</Heading>
 			<table>
 				<thead>
-					<tr className='text-gray-500'>
+					<tr className='text-left text-gray-500'>
 						<th>Type</th>
 						<th>Location</th>
 						<th>Recovery Period</th>
@@ -72,6 +73,9 @@ const Wounds: React.FC = () => {
 									className='mt-0'
 									{...register(`wounds.${index}.notes`)}
 								/>
+							</td>
+							<td>
+								<RemoveRowButton onClick={() => remove(index)} />
 							</td>
 						</tr>
 					))}

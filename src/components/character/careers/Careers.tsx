@@ -4,6 +4,7 @@ import { useFieldArray, useFormContext } from 'react-hook-form'
 import TextArea from '../../BaseComponents/Form/Textarea'
 import Heading from '../../BaseComponents/Heading'
 import PlusButton from '../../BaseComponents/PlusButton'
+import RemoveRowButton from '../../BaseComponents/RemoveRowButton'
 
 type FormData = {
 	careers: {
@@ -23,7 +24,7 @@ const defaultValues = {
 
 const Careers: React.FC = () => {
 	const { register, control } = useFormContext<FormData>()
-	const { fields, append } = useFieldArray({
+	const { fields, append, remove } = useFieldArray({
 		control,
 		name: 'careers',
 	})
@@ -38,7 +39,7 @@ const Careers: React.FC = () => {
 			<Heading>Careers</Heading>
 			<table>
 				<thead>
-					<tr className='text-gray-500'>
+					<tr className='text-left text-gray-500'>
 						<th>Career</th>
 						<th>Terms</th>
 						<th>Rank</th>
@@ -77,6 +78,9 @@ const Careers: React.FC = () => {
 									className='my-0'
 									{...register(`careers.${index}.event` as const)}
 								/>
+							</td>
+							<td>
+								<RemoveRowButton onClick={() => remove(index)} />
 							</td>
 						</tr>
 					))}
