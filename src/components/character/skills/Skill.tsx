@@ -4,6 +4,8 @@ import Label from '../../BaseComponents/Form/Label'
 import Specialty from './Speciality'
 import RollButton from '../../BaseComponents/RollButton'
 import useMessageToApp from '../../BaseComponents/hooks/UseMessageToApp'
+import { useContext } from 'react'
+import context from '../../BaseComponents/context'
 
 export interface ISkillProps {
 	name: string
@@ -11,12 +13,13 @@ export interface ISkillProps {
 }
 
 export default function Skill({ name, specialties }: ISkillProps) {
+	const { state } = useContext(context)
 	const { register } = useFormContext()
 	const messageToApp = useMessageToApp()
 
 	const rating = useWatch({
 		name: `skills.${name}.rating`,
-		defaultValue: null,
+		defaultValue: state.document.values.skills[name].rating,
 	})
 
 	const handleRoll = () => {
