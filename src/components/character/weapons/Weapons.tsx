@@ -1,17 +1,18 @@
+import { omit } from 'lodash'
 import { Input } from 'nrsystemtools'
 import React, { useContext, useEffect, useState } from 'react'
-import { useFieldArray, useFormContext } from 'react-hook-form'
+import { useFieldArray, useFormContext, useWatch } from 'react-hook-form'
 import { TWeapon, TWeaponOnCharacter } from '../../../interfaces'
-import PlusButton from '../../BaseComponents/PlusButton'
 import RemoveRowButton from '../../BaseComponents/RemoveRowButton'
 import context from '../../BaseComponents/context'
 import WeaponReferenceButton from './WeaponReferenceButton'
 
 type FormData = {
-	weapons: TWeapon[]
+	weapons: TWeaponOnCharacter[]
 }
 
-const emptyWeapon: TWeapon = {
+const emptyWeapon: TWeaponOnCharacter = {
+	documentId: '',
 	name: '',
 	TL: '',
 	range: '',
@@ -76,9 +77,24 @@ const Weapons: React.FC = () => {
 		e.preventDefault()
 	}
 
+	const weapons = useWatch({
+		name: 'weapons',
+		defaultValue: state.document.values.weapons || [],
+	})
+
+	useEffect(() => {
+		const lastItem = weapons[weapons.length - 1]
+		const lastItemWithoutId = omit(lastItem, 'id')
+		const lastRowIsDirty =
+			JSON.stringify(lastItemWithoutId) !== JSON.stringify(emptyWeapon)
+
+		if (lastRowIsDirty) {
+			append(emptyWeapon, { shouldFocus: false })
+		}
+	}, [weapons, append])
+
 	return (
 		<div>
-			{/* <Heading>Weapons</Heading> */}
 			<div
 				onDrop={handleDrop}
 				onDragEnter={handleDragEnter}
@@ -88,84 +104,111 @@ const Weapons: React.FC = () => {
 				<table>
 					<thead>
 						<tr>
-							<th className='w-3-/12 text-left text-xs'>Weapon</th>
+							<th className='w-4-/12 text-left text-xs'>Weapon</th>
 							<th className='w-1/12 text-xs'>TL</th>
-							<th className='w-1/12 text-xs'>Range</th>
-							<th className='w-1/12 text-xs'>Damage</th>
+							<th className='w-1/12 text-xs'>
+								<span className='block md:hidden'>Rng</span>
+								<span className='hidden md:block'>Range</span>
+							</th>
+							<th className='w-1/12 text-xs'>
+								<span className='block md:hidden'>Dmg</span>
+								<span className='hidden md:block'>Damage</span>
+							</th>
 							<th className='w-1/12 text-xs'>KG</th>
-							<th className='w-1/12 text-xs'>Magazine</th>
-							<th className='w-1/12 text-xs'>Mag Cost</th>
-							<th className='w-3/12 text-left text-xs'>Traits</th>
-							<th className='w-0.5/12'>Carried</th>
+							<th className='w-1/12 text-xs'>
+								<span className='block md:hidden'>Mag</span>
+								<span className='hidden md:block'>Magazine</span>
+							</th>
+							{/* <th className='w-1/12 text-xs'>Mag Cost</th> */}
+							<th className='w-2/12 text-left text-xs'>Traits</th>
 							<th className='w-0.5/12'></th>
-							<th>
-								<PlusButton onClick={() => append(emptyWeapon)} />
+							<th className='w-0.5/12 text-xs'>Carry</th>
+							<th className='w-1/12'>
+								{/* <PlusButton onClick={() => append(emptyWeapon)} /> */}
 							</th>
 						</tr>
 					</thead>
 					<tbody>
-						{fields.map((field, index) => (
-							<tr key={field.id}>
-								<td>
-									<Input
-										className='w-full'
-										{...register(`weapons.${index}.name` as const)}
-									/>
-								</td>
-								<td>
-									<Input
-										className='w-full'
-										{...register(`weapons.${index}.TL` as const)}
-									/>
-								</td>
-								<td>
-									<Input
-										className='w-full'
-										{...register(`weapons.${index}.range` as const)}
-									/>
-								</td>
-								<td>
-									<Input
-										className='w-full'
-										{...register(`weapons.${index}.damage` as const)}
-									/>
-								</td>
-								<td>
-									<Input
-										className='w-full'
-										{...register(`weapons.${index}.KG` as const)}
-									/>
-								</td>
-								<td>
-									<Input
-										className='w-full'
-										{...register(`weapons.${index}.magazine` as const)}
-									/>
-								</td>
-								<td>
-									<Input
-										className='w-full'
-										{...register(`weapons.${index}.magazineCost` as const)}
-									/>
-								</td>
-								<td>
-									<Input
-										className='w-full'
-										{...register(`weapons.${index}.traits` as const)}
-									/>
-								</td>
-								<td className='text-center'>
-									<input
-										type='checkbox'
-										{...register(`weapons.${index}.worn` as const)}
-									/>
-								</td>
-								<WeaponReferenceButton index={index} />
-								<td>
-									<RemoveRowButton onClick={() => remove(index)} />
-								</td>
-							</tr>
-						))}
+						{fields.map((field, index) => {
+							let referencedValues: any = {}
+							if (field?.documentId) {
+								referencedValues =
+									state.documents.byId[field.documentId]?.values || {}
+							}
+
+							return (
+								<tr key={field?.id}>
+									<td>
+										<Input
+											className='w-full'
+											placeholder={referencedValues.name || ''}
+											{...register(`weapons.${index}.name` as const)}
+										/>
+									</td>
+									<td>
+										<Input
+											className='w-full'
+											placeholder={referencedValues.TL || ''}
+											{...register(`weapons.${index}.TL` as const)}
+										/>
+									</td>
+									<td>
+										<Input
+											className='w-full'
+											placeholder={referencedValues.range || ''}
+											{...register(`weapons.${index}.range` as const)}
+										/>
+									</td>
+									<td>
+										<Input
+											className='w-full'
+											placeholder={referencedValues.damage || ''}
+											{...register(`weapons.${index}.damage` as const)}
+										/>
+									</td>
+									<td>
+										<Input
+											className='w-full'
+											placeholder={referencedValues.KG || ''}
+											{...register(`weapons.${index}.KG` as const)}
+										/>
+									</td>
+									<td>
+										<Input
+											className='w-full'
+											placeholder={referencedValues.magazine || ''}
+											{...register(`weapons.${index}.magazine` as const)}
+										/>
+									</td>
+									{/* <td>
+										<Input
+											className='w-full'
+											placeholder={referencedValues.magazineCost || ''}
+											{...register(`weapons.${index}.magazineCost` as const)}
+										/>
+									</td> */}
+									<td>
+										<Input
+											className='w-full'
+											placeholder={referencedValues.traits || ''}
+											{...register(`weapons.${index}.traits` as const)}
+										/>
+									</td>
+									<WeaponReferenceButton index={index} />
+									<td className='text-center'>
+										<input
+											type='checkbox'
+											{...register(`weapons.${index}.worn` as const)}
+										/>
+									</td>
+									<td className='text-right'>
+										{index !== fields.length - 1 && (
+											<RemoveRowButton onClick={() => remove(index)} />
+										)}
+									</td>
+								</tr>
+							)
+						})}
 					</tbody>
 				</table>
 			</div>

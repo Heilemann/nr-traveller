@@ -1,8 +1,9 @@
+import { omit } from 'lodash'
 import { Input } from 'nrsystemtools'
-import React, { useEffect } from 'react'
-import { useFieldArray, useFormContext } from 'react-hook-form'
-import PlusButton from '../../BaseComponents/PlusButton'
+import React, { useContext, useEffect } from 'react'
+import { useFieldArray, useFormContext, useWatch } from 'react-hook-form'
 import RemoveRowButton from '../../BaseComponents/RemoveRowButton'
+import context from '../../BaseComponents/context'
 
 type Armours = {
 	armour: {
@@ -15,7 +16,7 @@ type Armours = {
 	}[]
 }
 
-const emptyArmoor = {
+const emptyArmour = {
 	type: '',
 	rad: '',
 	protection: '',
@@ -25,21 +26,37 @@ const emptyArmoor = {
 }
 
 const Armour: React.FC = () => {
+	const { state } = useContext(context)
 	const { register, control } = useFormContext<Armours>()
 	const { fields, append, remove } = useFieldArray({
 		control,
 		name: 'armour',
 	})
 
+	const armour = useWatch({
+		name: 'armour',
+		defaultValue: state.document.values.armour || [],
+	})
+
 	useEffect(() => {
 		if (fields.length === 0) {
-			append(emptyArmoor, { shouldFocus: false })
+			append(emptyArmour, { shouldFocus: false })
 		}
 	}, [fields, append])
 
+	useEffect(() => {
+		const lastItem = armour[armour.length - 1]
+		const lastItemWithoutId = omit(lastItem, 'id')
+		const lastRowIsDirty =
+			JSON.stringify(lastItemWithoutId) !== JSON.stringify(emptyArmour)
+
+		if (lastRowIsDirty) {
+			append(emptyArmour, { shouldFocus: false })
+		}
+	}, [armour, append])
+
 	return (
 		<div>
-			{/* <Heading>Armour</Heading> */}
 			<table>
 				<thead>
 					<tr>
@@ -48,9 +65,9 @@ const Armour: React.FC = () => {
 						<th className='w-1/12 text-xs'>Rad</th>
 						<th className='w-1/12 text-xs'>KG</th>
 						<th className='w-5/12 text-left text-xs'>Notes</th>
-						<th className='w-0.5/12'>Worn</th>
-						<th>
-							<PlusButton onClick={() => append(emptyArmoor)} />
+						<th className='w-1/12 text-xs'>Wear</th>
+						<th className='w-1/12'>
+							{/* <PlusButton onClick={() => append(emptyArmour)} /> */}
 						</th>
 					</tr>
 				</thead>
@@ -65,19 +82,19 @@ const Armour: React.FC = () => {
 							</td>
 							<td>
 								<Input
-									className='w-full'
+									className='w-full text-center'
 									{...register(`armour.${index}.protection` as const)}
 								/>
 							</td>
 							<td>
 								<Input
-									className='w-full'
+									className='w-full text-center'
 									{...register(`armour.${index}.rad` as const)}
 								/>
 							</td>
 							<td>
 								<Input
-									className='w-full'
+									className='w-full text-center'
 									{...register(`armour.${index}.kg` as const)}
 								/>
 							</td>
@@ -93,8 +110,10 @@ const Armour: React.FC = () => {
 									{...register(`armour.${index}.worn` as const)}
 								/>
 							</td>
-							<td>
-								<RemoveRowButton onClick={() => remove(index)} />
+							<td className='w-8 text-right'>
+								{index !== fields.length - 1 && (
+									<RemoveRowButton onClick={() => remove(index)} />
+								)}
 							</td>
 						</tr>
 					))}

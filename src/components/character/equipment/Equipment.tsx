@@ -1,7 +1,6 @@
 import { Input } from 'nrsystemtools'
 import React, { useEffect } from 'react'
 import { useFieldArray, useFormContext } from 'react-hook-form'
-import PlusButton from '../../BaseComponents/PlusButton'
 import RemoveRowButton from '../../BaseComponents/RemoveRowButton'
 
 type FormData = {
@@ -34,10 +33,10 @@ const Equipment: React.FC = () => {
 			<table>
 				<thead>
 					<tr>
-						<th className='w-11/12 text-left'>Equipment</th>
-						<th className='w-1/12'>KG</th>
-						<th>
-							<PlusButton onClick={() => append({ name: '', mass: '' })} />
+						<th className='w-10/12 text-left text-sm'>Equipment</th>
+						<th className='w-1/12 text-sm'>KG</th>
+						<th className='w-8 text-sm'>
+							{/* <PlusButton onClick={() => append({ name: '', mass: '' })} /> */}
 						</th>
 					</tr>
 				</thead>
@@ -56,14 +55,14 @@ const Equipment: React.FC = () => {
 									{...register(`equipment.${index}.mass`)}
 								/>
 							</td>
-							<td>
+							<td className='text-right'>
 								<RemoveRowButton onClick={() => remove(index)} />
 							</td>
 						</tr>
 					))}
 				</tbody>
 			</table>
-			<div>Total Mass Carried: {totalMass}</div>
+			<div className='text-center text-gray-500'>{totalMass}kg Carried</div>
 		</div>
 	)
 }

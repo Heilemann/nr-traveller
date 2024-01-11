@@ -58,11 +58,9 @@ export default function Container() {
 
 	// tell the platform we're ready to receive messages,
 	// the first of which will be 'load' containing our data
-	const tellAppWeAreReady = () => {
+	useEffect(() => {
 		messageToApp({ message: 'system is ready', data: null })
-	}
-
-	useEffect(tellAppWeAreReady, []) // eslint-disable-line react-hooks/exhaustive-deps
+	}, []) // eslint-disable-line react-hooks/exhaustive-deps
 
 	if (!type) return null
 

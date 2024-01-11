@@ -36,35 +36,39 @@ const Relations: React.FC<RelationsProps> = ({ title, name }) => {
 	return (
 		<div>
 			<Heading>{title}</Heading>
-			<table>
+			<table className='w-full'>
 				<thead>
 					<tr>
-						<th className='w-1/3 text-left'>Name</th>
-						<th className='w-2/3 text-left'>Notes</th>
+						<th className='text-left'>Name</th>
 						<th>
-							<PlusButton onClick={() => append({ name: '', notes: '' })} />
+							{/* <PlusButton onClick={() => append({ name: '', notes: '' })} /> */}
 						</th>
 					</tr>
 				</thead>
 				<tbody>
 					{fields.map((item, index) => (
-						<tr key={item.id}>
-							<td className='align-top'>
-								<Input
-									className='w-full'
-									{...register(`relations.${name}.${index}.name`)}
-								/>
-							</td>
-							<td className='align-top'>
-								<TextArea
-									className='mt-0'
-									{...register(`relations.${name}.${index}.notes`)}
-								/>
-							</td>
-							<td className='align-top'>
-								<RemoveRowButton onClick={() => remove(index)} />
-							</td>
-						</tr>
+						<React.Fragment key={item.id}>
+							<tr>
+								<td className='align-middle'>
+									<Input
+										className='w-full'
+										{...register(`relations.${name}.${index}.name`)}
+									/>
+								</td>
+								<td className='w-8 text-right align-middle'>
+									<RemoveRowButton onClick={() => remove(index)} />
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<TextArea
+										className='mt-0'
+										placeholder='Notes'
+										{...register(`relations.${name}.${index}.notes`)}
+									/>
+								</td>
+							</tr>
+						</React.Fragment>
 					))}
 				</tbody>
 			</table>

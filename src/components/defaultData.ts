@@ -50,7 +50,7 @@ const character: TDocument = {
 		weapons: [
 			{
 				documentId: 'weapon',
-				...weapon,
+				...weapon.values,
 			},
 		],
 		skills: {

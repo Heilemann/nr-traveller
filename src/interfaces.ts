@@ -248,7 +248,7 @@ export type TWeapon = {
 }
 
 export type TWeaponOnCharacter = TWeapon & {
-	documentId: string
+	documentId?: string
 }
 
 export type TWeaponDocument = TDocument & {

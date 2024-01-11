@@ -27,13 +27,12 @@ const Augments: React.FC = () => {
 
 	return (
 		<div>
-			{/* <Heading>Augments</Heading> */}
 			<table>
 				<thead>
 					<tr>
 						<th className='w-4/12 text-left'>Augment</th>
 						<th className='w-1/12'>TL</th>
-						<th className='w-7/12'>Improvement</th>
+						<th className='w-7/12 text-left'>Improvement</th>
 						<th>
 							<PlusButton
 								onClick={() => append({ type: '', TL: '', improvement: '' })}

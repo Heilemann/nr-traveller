@@ -15,24 +15,28 @@ const WeaponReferenceButton = ({ index }: Props) => {
 	const messageToApp = useMessageToApp()
 	const { register } = useFormContext()
 
-	const watchedWeapon: TWeaponOnCharacter = useWatch({
+	const watchedWeapon: TWeaponOnCharacter | undefined = useWatch({
 		name: `weapons.${index}`,
 	})
 
 	const isReferenceDocument = useMemo(() => {
-		return watchedWeapon.documentId && watchedWeapon.documentId !== ''
-	}, [watchedWeapon.documentId])
+		return watchedWeapon?.documentId ? true : false
+	}, [watchedWeapon?.documentId])
 
 	const referenceDocumentExists = useMemo(() => {
-		return state.documents.byId.hasOwnProperty(watchedWeapon.documentId)
-	}, [state.documents.byId, watchedWeapon.documentId])
+		return watchedWeapon?.documentId
+			? state.documents.byId.hasOwnProperty(watchedWeapon.documentId)
+			: false
+	}, [state.documents.byId, watchedWeapon?.documentId])
 
 	const handleOpenWeapon = () => {
-		const { documentId } = watchedWeapon
-		messageToApp({ message: 'open document', data: { documentId } })
+		if (watchedWeapon?.documentId) {
+			messageToApp({
+				message: 'open document',
+				data: { documentId: watchedWeapon.documentId },
+			})
+		}
 	}
-
-	console.log(isReferenceDocument, referenceDocumentExists)
 
 	return (
 		<td>

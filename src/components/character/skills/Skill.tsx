@@ -19,7 +19,7 @@ export default function Skill({ name, specialties }: ISkillProps) {
 
 	const rating = useWatch({
 		name: `skills.${name}.rating`,
-		defaultValue: state.document.values.skills[name].rating,
+		defaultValue: state?.document?.values?.skills[name]?.rating || null,
 	})
 
 	const handleRoll = () => {
