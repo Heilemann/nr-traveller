@@ -20,14 +20,14 @@ export default function Character() {
 				<Portrait />
 			</div>
 			<Characteristics />
-			<Wounds />
-			<Careers />
 			<Skills />
-			<Finances />
+			<Careers />
 			<Armour />
 			<Weapons />
-			<Augments />
 			<Equipment />
+			<Wounds />
+			<Finances />
+			<Augments />
 			<BackgroundNotes />
 			<div className='grid grid-cols-1 gap-4 md:grid-cols-2'>
 				<Relations title='Allies' name='allies' />
