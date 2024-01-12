@@ -2,7 +2,7 @@ import { Input } from 'nrsystemtools'
 import React, { useContext, useEffect } from 'react'
 import { useFieldArray, useFormContext, useWatch } from 'react-hook-form'
 import RemoveRowButton from '../../BaseComponents/RemoveRowButton'
-import { omit } from 'lodash'
+import { isEqual, omit } from 'lodash'
 import context from '../../BaseComponents/context'
 
 type FormData = {
@@ -41,8 +41,7 @@ const Augments: React.FC = () => {
 	useEffect(() => {
 		const lastItem = augments[augments.length - 1]
 		const lastItemWithoutId = omit(lastItem, 'id')
-		const lastRowIsDirty =
-			JSON.stringify(lastItemWithoutId) !== JSON.stringify(emptyAugment)
+		const lastRowIsDirty = !isEqual(lastItemWithoutId, emptyAugment)
 
 		if (lastRowIsDirty) {
 			append(emptyAugment, { shouldFocus: false })
@@ -82,7 +81,9 @@ const Augments: React.FC = () => {
 								/>
 							</td>
 							<td>
-								<RemoveRowButton onClick={() => remove(index)} />
+								{index !== augments.length - 1 && (
+									<RemoveRowButton onClick={() => remove(index)} />
+								)}
 							</td>
 						</tr>
 					))}

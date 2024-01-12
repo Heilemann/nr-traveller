@@ -4,6 +4,7 @@ import { useFieldArray, useFormContext } from 'react-hook-form'
 import TextArea from '../../BaseComponents/Form/Textarea'
 import Heading from '../../BaseComponents/Heading'
 import RemoveRowButton from '../../BaseComponents/RemoveRowButton'
+import PlusButton from '../../BaseComponents/PlusButton'
 
 type Relation = {
 	name: string
@@ -19,6 +20,11 @@ type RelationsProps = {
 	name: string
 }
 
+const emptyRelation = {
+	name: '',
+	notes: '',
+}
+
 const Relations: React.FC<RelationsProps> = ({ title, name }) => {
 	const { register, control } = useFormContext<FormData>()
 	const { fields, append, remove } = useFieldArray({
@@ -28,7 +34,7 @@ const Relations: React.FC<RelationsProps> = ({ title, name }) => {
 
 	useEffect(() => {
 		if (fields.length === 0) {
-			append({ name: '', notes: '' }, { shouldFocus: false })
+			append(emptyRelation, { shouldFocus: false })
 		}
 	}, [fields, append])
 
@@ -40,7 +46,7 @@ const Relations: React.FC<RelationsProps> = ({ title, name }) => {
 					<tr>
 						<th className='text-left'>Name</th>
 						<th>
-							{/* <PlusButton onClick={() => append({ name: '', notes: '' })} /> */}
+							<PlusButton onClick={() => append(emptyRelation)} />
 						</th>
 					</tr>
 				</thead>

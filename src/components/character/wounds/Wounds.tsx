@@ -1,10 +1,12 @@
 import { Input } from 'nrsystemtools'
-import React, { useEffect } from 'react'
-import { useFieldArray, useFormContext } from 'react-hook-form'
+import React, { useContext, useEffect } from 'react'
+import { useFieldArray, useFormContext, useWatch } from 'react-hook-form'
 import TextArea from '../../BaseComponents/Form/Textarea'
 import Heading from '../../BaseComponents/Heading'
 import PlusButton from '../../BaseComponents/PlusButton'
 import RemoveRowButton from '../../BaseComponents/RemoveRowButton'
+import { isEqual, omit } from 'lodash'
+import context from '../../BaseComponents/context'
 
 type FormData = {
 	wounds: {
@@ -15,19 +17,39 @@ type FormData = {
 	}[]
 }
 
+const emptyWound = {
+	type: '',
+	location: '',
+	recoveryPeriod: '',
+	notes: '',
+}
+
 const Wounds: React.FC = () => {
+	const { state } = useContext(context)
 	const { register, control } = useFormContext<FormData>()
 	const { fields, append, remove } = useFieldArray({
 		control,
 		name: 'wounds',
 	})
 
+	const wounds = useWatch({
+		name: 'wounds',
+		defaultValue: state.document.values.wounds || [],
+	})
+
+	useEffect(() => {
+		const lastItem = wounds[wounds.length - 1]
+		const lastItemWithoutId = omit(lastItem, 'id')
+		const lastRowIsDirty = !isEqual(lastItemWithoutId, emptyWound)
+
+		if (lastRowIsDirty) {
+			append(emptyWound, { shouldFocus: false })
+		}
+	}, [wounds, append])
+
 	useEffect(() => {
 		if (fields.length === 0) {
-			append(
-				{ type: '', location: '', recoveryPeriod: '', notes: '' },
-				{ shouldFocus: false },
-			)
+			append(emptyWound, { shouldFocus: false })
 		}
 	}, [fields, append])
 
@@ -42,17 +64,10 @@ const Wounds: React.FC = () => {
 						<th>Recovery Period</th>
 						<th>Notes</th>
 						<th>
-							<PlusButton
+							{/* <PlusButton
 								className='hover:text-white'
-								onClick={() =>
-									append({
-										type: '',
-										location: '',
-										recoveryPeriod: '',
-										notes: '',
-									})
-								}
-							/>
+								onClick={() => append(emptyWound)}
+							/> */}
 						</th>
 					</tr>
 				</thead>
@@ -75,7 +90,9 @@ const Wounds: React.FC = () => {
 								/>
 							</td>
 							<td>
-								<RemoveRowButton onClick={() => remove(index)} />
+								{index !== wounds.length - 1 && (
+									<RemoveRowButton onClick={() => remove(index)} />
+								)}
 							</td>
 						</tr>
 					))}

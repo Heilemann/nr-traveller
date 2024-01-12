@@ -1,9 +1,11 @@
 import { Input } from 'nrsystemtools'
-import React, { useEffect } from 'react'
-import { useFieldArray, useFormContext } from 'react-hook-form'
+import React, { useContext, useEffect } from 'react'
+import { useFieldArray, useFormContext, useWatch } from 'react-hook-form'
 import TextArea from '../../BaseComponents/Form/Textarea'
 import Heading from '../../BaseComponents/Heading'
 import RemoveRowButton from '../../BaseComponents/RemoveRowButton'
+import context from '../../BaseComponents/context'
+import { isEqual, omit } from 'lodash'
 
 type FormData = {
 	careers: {
@@ -14,7 +16,7 @@ type FormData = {
 	}[]
 }
 
-const defaultValues = {
+const emptyCareer = {
 	career: '',
 	terms: '',
 	rank: '',
@@ -22,17 +24,28 @@ const defaultValues = {
 }
 
 const Careers: React.FC = () => {
+	const { state } = useContext(context)
 	const { register, control } = useFormContext<FormData>()
 	const { fields, append, remove } = useFieldArray({
 		control,
 		name: 'careers',
 	})
 
+	const careers = useWatch({
+		name: 'careers',
+		defaultValue: state.document.values.careers || [],
+	})
+
 	useEffect(() => {
-		if (fields.length === 0) {
-			append({ ...defaultValues }, { shouldFocus: false })
+		const lastItem = careers[careers.length - 1]
+		const lastItemWithoutId = omit(lastItem, 'id')
+		const lastRowIsDirty = !isEqual(lastItemWithoutId, emptyCareer)
+
+		if (lastRowIsDirty) {
+			append(emptyCareer, { shouldFocus: false })
 		}
-	}, [fields, append])
+	}, [careers, append])
+
 	return (
 		<div>
 			<Heading>Careers</Heading>
@@ -45,7 +58,7 @@ const Careers: React.FC = () => {
 						<th className='text-white'>
 							{/* <PlusButton
 								className='hover:text-white'
-								onClick={() => append({ ...defaultValues })}
+								onClick={() => append(emptyCareer)}
 							/> */}
 						</th>
 					</tr>
