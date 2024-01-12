@@ -14,7 +14,7 @@ const HTextArea = React.forwardRef<HTMLTextAreaElement, ITextareaProps>(
 		return (
 			<div className={twMerge('flex space-x-4 pb-1 text-xl', borderStyle)}>
 				<Label
-					className='mt-2 w-2/5 whitespace-nowrap text-gray-500 '
+					className='mt-2 w-1/5 whitespace-nowrap text-gray-500 '
 					htmlFor={rest.name}
 				>
 					{label}
