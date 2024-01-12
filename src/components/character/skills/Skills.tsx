@@ -1,11 +1,10 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import Heading from '../../BaseComponents/Heading'
-import context from '../../BaseComponents/context'
 import Skill from './Skill'
 import skillslist from './skillslist'
 
 const Skills: React.FC = () => {
-	const { state } = useContext(context)
+	// const { state } = useContext(context)
 
 	// const skills = useWatch({
 	// 	name: 'skills',
