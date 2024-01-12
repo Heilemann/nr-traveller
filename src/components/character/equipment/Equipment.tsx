@@ -1,34 +1,46 @@
 import { Input } from 'nrsystemtools'
-import React, { useEffect } from 'react'
-import { useFieldArray, useFormContext } from 'react-hook-form'
+import React, { useContext, useEffect } from 'react'
+import { useFieldArray, useFormContext, useWatch } from 'react-hook-form'
 import RemoveRowButton from '../../BaseComponents/RemoveRowButton'
+import { isEqual, omit } from 'lodash'
+import context from '../../BaseComponents/context'
 
 type FormData = {
 	equipment: {
 		name: string
 		mass: string
-		worn: boolean
+		carried: boolean
 	}[]
 }
 
 const emptyEquipment = {
 	name: '',
 	mass: '',
-	worn: false,
+	carried: false,
 }
 
 const Equipment: React.FC = () => {
+	const { state } = useContext(context)
 	const { register, control } = useFormContext<FormData>()
 	const { fields, append, remove } = useFieldArray({
 		control,
 		name: 'equipment',
 	})
 
+	const equipment = useWatch({
+		name: 'equipment',
+		defaultValue: state.document.values.equipment || [],
+	})
+
 	useEffect(() => {
-		if (fields.length === 0) {
+		const lastItem = equipment[equipment.length - 1]
+		const lastItemWithoutId = omit(lastItem, 'id')
+		const lastRowIsDirty = !isEqual(lastItemWithoutId, emptyEquipment)
+
+		if (lastRowIsDirty) {
 			append(emptyEquipment, { shouldFocus: false })
 		}
-	}, [fields, append])
+	}, [equipment, append])
 
 	const totalMass = fields
 		? fields.reduce((total, item) => total + Number(item.mass), 0)
@@ -66,11 +78,13 @@ const Equipment: React.FC = () => {
 							<td className='text-center'>
 								<input
 									type='checkbox'
-									{...register(`equipment.${index}.worn` as const)}
+									{...register(`equipment.${index}.carried` as const)}
 								/>
 							</td>
 							<td className='text-right'>
-								<RemoveRowButton onClick={() => remove(index)} />
+								{index !== equipment.length - 1 && (
+									<RemoveRowButton onClick={() => remove(index)} />
+								)}
 							</td>
 						</tr>
 					))}

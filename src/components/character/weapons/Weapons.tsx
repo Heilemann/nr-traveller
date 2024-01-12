@@ -87,12 +87,6 @@ const Weapons: React.FC = () => {
 		const lastItemWithoutId = omit(lastItem, 'id')
 		const lastRowIsDirty = !isEqual(lastItemWithoutId, emptyWeapon)
 
-		console.log('weapons update', {
-			emptyWeapon,
-			lastItemWithoutId,
-			lastRowIsDirty,
-		})
-
 		if (lastRowIsDirty) {
 			append(emptyWeapon, { shouldFocus: false })
 		}
@@ -207,7 +201,7 @@ const Weapons: React.FC = () => {
 										/>
 									</td>
 									<td className='text-right'>
-										{index !== fields.length - 1 && (
+										{index !== weapons.length - 1 && (
 											<RemoveRowButton onClick={() => remove(index)} />
 										)}
 									</td>
