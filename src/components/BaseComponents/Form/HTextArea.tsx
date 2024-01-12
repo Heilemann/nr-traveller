@@ -12,9 +12,7 @@ interface ITextareaProps
 const HTextArea = React.forwardRef<HTMLTextAreaElement, ITextareaProps>(
 	({ className, label, ...rest }, ref) => {
 		return (
-			<div
-				className={twMerge('flex flex-1 space-x-4 pb-1 text-xl', borderStyle)}
-			>
+			<div className={twMerge('flex space-x-4 pb-1 text-xl', borderStyle)}>
 				<Label
 					className='mt-2 w-2/5 whitespace-nowrap text-gray-500 '
 					htmlFor={rest.name}
