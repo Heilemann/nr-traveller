@@ -55,7 +55,7 @@ const usePostMessageListener = ({ resetInProgress }: Props) => {
 				case 'update data': {
 					// @ts-ignore
 					const { id: documentId } = data
-					const newDocument = data.document
+					const newDocument = data.document ? data.document : state.document
 
 					if (!newDocument) {
 						console.error('New document not found', documentId, data.documents)
