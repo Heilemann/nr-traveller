@@ -50,6 +50,15 @@ const Armour: React.FC = () => {
 		const lastRowIsDirty =
 			JSON.stringify(lastItemWithoutId) !== JSON.stringify(emptyArmour)
 
+		console.log(
+			'lololo',
+			armour,
+			lastItem,
+			lastItemWithoutId,
+			lastRowIsDirty,
+			emptyArmour,
+		)
+
 		if (lastRowIsDirty) {
 			append(emptyArmour, { shouldFocus: false })
 		}
