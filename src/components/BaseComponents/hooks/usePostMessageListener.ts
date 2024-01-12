@@ -61,6 +61,12 @@ const usePostMessageListener = ({ resetInProgress }: Props) => {
 						console.error('New document not found', documentId, data.documents)
 						return
 					}
+					console.log(
+						'System received update data message for document',
+						_.isEqual(data.documents, state.documents),
+						_.isEqual(newDocument, state.document),
+						_.isEqual(data.assets, state.assets),
+					)
 
 					if (
 						_.isEqual(data.documents, state.documents) &&
