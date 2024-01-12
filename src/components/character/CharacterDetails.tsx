@@ -45,7 +45,7 @@ const CharacterDetails: React.FC = () => {
 				style={{
 					fontSize: '14px',
 				}}
-				{...register('traits')}
+				{...register('beliefs')}
 			/>
 		</div>
 	)
