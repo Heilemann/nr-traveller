@@ -55,18 +55,14 @@ const usePostMessageListener = ({ resetInProgress }: Props) => {
 				case 'update data': {
 					// @ts-ignore
 					const { id: documentId } = data
-					const newDocument = data.document || state.document
+					const newDocument = data.documents.byId[documentId]
+
+					console.log(data.document, newDocument, state.document)
 
 					if (!newDocument) {
 						console.error('New document not found', documentId, data.documents)
 						return
 					}
-					console.log(
-						'System received update data message for document',
-						_.isEqual(data.documents, state.documents),
-						_.isEqual(newDocument, state.document),
-						_.isEqual(data.assets, state.assets),
-					)
 
 					if (
 						_.isEqual(data.documents, state.documents) &&
