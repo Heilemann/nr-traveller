@@ -192,6 +192,7 @@ export type TAppReceivableMessages =
 export type TSystemReceivableMessageData = {
 	documentId: string
 	documents: Documents
+	document: TDocument
 	assets: Assets
 	editMode: TEditMode
 }
