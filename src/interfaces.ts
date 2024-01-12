@@ -243,7 +243,7 @@ export type TWeapon = {
 	damage: string
 	KG: string
 	magazine: string
-	magazineCost: string
+	// magazineCost: string
 	traits: string
 	worn: boolean
 }

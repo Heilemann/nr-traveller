@@ -19,7 +19,7 @@ const emptyWeapon: TWeaponOnCharacter = {
 	damage: '',
 	KG: '',
 	magazine: '',
-	magazineCost: '',
+	// magazineCost: '',
 	traits: '',
 	worn: false,
 }
@@ -88,7 +88,7 @@ const Weapons: React.FC = () => {
 		const lastRowIsDirty = !isEqual(lastItemWithoutId, emptyWeapon)
 
 		console.log('weapons update', {
-			lastItem,
+			emptyWeapon,
 			lastItemWithoutId,
 			lastRowIsDirty,
 		})
