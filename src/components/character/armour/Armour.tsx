@@ -49,13 +49,6 @@ const Armour: React.FC = () => {
 		const lastItemWithoutId = omit(lastItem, 'id')
 		const lastRowIsDirty = !isEqual(lastItemWithoutId, emptyArmour)
 
-		console.log('lololo', {
-			armour,
-			lastRowIsDirty,
-			lastItemWithoutId,
-			emptyArmour,
-		})
-
 		if (lastRowIsDirty) {
 			append(emptyArmour, { shouldFocus: false })
 		}

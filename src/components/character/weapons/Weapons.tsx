@@ -1,4 +1,4 @@
-import { omit } from 'lodash'
+import { isEqual, omit } from 'lodash'
 import { Input } from 'nrsystemtools'
 import React, { useContext, useEffect, useState } from 'react'
 import { useFieldArray, useFormContext, useWatch } from 'react-hook-form'
@@ -85,8 +85,7 @@ const Weapons: React.FC = () => {
 	useEffect(() => {
 		const lastItem = weapons[weapons.length - 1]
 		const lastItemWithoutId = omit(lastItem, 'id')
-		const lastRowIsDirty =
-			JSON.stringify(lastItemWithoutId) !== JSON.stringify(emptyWeapon)
+		const lastRowIsDirty = !isEqual(lastItemWithoutId, emptyWeapon)
 
 		if (lastRowIsDirty) {
 			append(emptyWeapon, { shouldFocus: false })
