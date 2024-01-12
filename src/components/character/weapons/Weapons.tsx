@@ -87,6 +87,12 @@ const Weapons: React.FC = () => {
 		const lastItemWithoutId = omit(lastItem, 'id')
 		const lastRowIsDirty = !isEqual(lastItemWithoutId, emptyWeapon)
 
+		console.log('weapons update', {
+			lastItem,
+			lastItemWithoutId,
+			lastRowIsDirty,
+		})
+
 		if (lastRowIsDirty) {
 			append(emptyWeapon, { shouldFocus: false })
 		}
