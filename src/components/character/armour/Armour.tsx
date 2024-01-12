@@ -1,4 +1,4 @@
-import { omit } from 'lodash'
+import { isEqual, omit } from 'lodash'
 import { Input } from 'nrsystemtools'
 import React, { useContext, useEffect } from 'react'
 import { useFieldArray, useFormContext, useWatch } from 'react-hook-form'
@@ -47,14 +47,12 @@ const Armour: React.FC = () => {
 	useEffect(() => {
 		const lastItem = armour[armour.length - 1]
 		const lastItemWithoutId = omit(lastItem, 'id')
-		const lastRowIsDirty =
-			JSON.stringify(lastItemWithoutId) !== JSON.stringify(emptyArmour)
+		const lastRowIsDirty = !isEqual(lastItemWithoutId, emptyArmour)
 
 		console.log('lololo', {
 			armour,
-			lastItem,
-			lastItemWithoutId,
 			lastRowIsDirty,
+			lastItemWithoutId,
 			emptyArmour,
 		})
 
