@@ -1,8 +1,10 @@
 import {
 	Documents,
 	TAccess,
+	TArmourDocument,
 	TDocument,
 	TEffect,
+	TEquipmentDocument,
 	TNote,
 	TScene,
 	TWeaponDocument,
@@ -36,6 +38,40 @@ const weapon: TWeaponDocument = {
 		magazineCost: '0',
 		traits: '',
 		worn: false,
+	},
+}
+
+const equipment: TEquipmentDocument = {
+	_id: 'equipment',
+	type: 'equipment',
+	creator: 'abc',
+	access: 'public',
+	accessList: [],
+	values: {
+		item: 'Rope',
+		TL: '1',
+		notes: 'Useful for climbing and tying things up.',
+		KG: '2',
+		cost: '10',
+		description: 'A 50ft length of sturdy hemp rope.',
+	},
+}
+
+const armour: TArmourDocument = {
+	_id: 'armour',
+	type: 'equipment',
+	creator: 'abc',
+	access: 'public',
+	accessList: [],
+	values: {
+		item: 'Full Plate',
+		protection: '+6',
+		TL: '2',
+		Rad: '',
+		KG: '20',
+		cost: '1000',
+		skill: 'None',
+		description: 'A leather jacket.',
 	},
 }
 
@@ -106,12 +142,23 @@ const defaultDocuments: Documents = {
 	byId: {
 		note,
 		weapon,
+		equipment,
+		armour,
 		character,
 		handout,
 		scene,
 		effect,
 	},
-	allIds: ['note', 'weapon', 'character', 'handout', 'scene', 'effect'],
+	allIds: [
+		'note',
+		'weapon',
+		'equipment',
+		'armour',
+		'character',
+		'handout',
+		'scene',
+		'effect',
+	],
 }
 
 export default defaultDocuments

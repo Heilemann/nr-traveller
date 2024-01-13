@@ -48,6 +48,30 @@
 			"defaultAccess": "public"
 		},
 		{
+			"type": "armour",
+			"singularName": "Armour",
+			"pluralName": "Armours",
+			"description": "Various things to protect you from being hit, shot and blown up.",
+			"hasEditMode": "true",
+			"windowSize": "small",
+			"allowCreate": "false",
+			"canAssumeAsCharacter": "false",
+			"thumbnailField": ["portrait"],
+			"defaultAccess": "public"
+		},
+		{
+			"type": "equipment",
+			"singularName": "Equipment",
+			"pluralName": "Equipment",
+			"description": "Various things to carry around.",
+			"hasEditMode": "true",
+			"windowSize": "small",
+			"allowCreate": "false",
+			"canAssumeAsCharacter": "false",
+			"thumbnailField": ["portrait"],
+			"defaultAccess": "public"
+		},
+		{
 			"type": "handout",
 			"singularName": "Handout",
 			"pluralName": "Handouts",

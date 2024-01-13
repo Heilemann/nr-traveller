@@ -48,6 +48,8 @@ export type TDocumentType =
 	| 'note'
 	| 'scene'
 	| 'weapon'
+	| 'equipment'
+	| 'armour'
 	| 'handout'
 	| 'effect'
 
@@ -269,4 +271,32 @@ export type TEffect = TDocument & {
 		description: string
 		roundsRemaining: string
 	}
+}
+
+export type TEquipment = {
+	item: string
+	TL: string
+	notes: string
+	KG: string
+	cost: string
+	description: string
+}
+
+export type TEquipmentDocument = TDocument & {
+	values: TEquipment
+}
+
+export type TArmour = {
+	item: string
+	protection: string
+	TL: string
+	Rad: string
+	KG: string
+	cost: string
+	skill: string
+	description: string
+}
+
+export type TArmourDocument = TDocument & {
+	values: TArmour
 }
