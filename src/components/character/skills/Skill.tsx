@@ -25,7 +25,7 @@ export default function Skill({ name, specialties }: ISkillProps) {
 	const handleRoll = () => {
 		let DM
 		if (rating) {
-			DM = specialties ? '0' : `+${rating}`
+			DM = specialties ? '' : `+${rating}`
 		} else {
 			DM = '-3'
 		}
