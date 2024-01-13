@@ -42,7 +42,6 @@ const Asset: FC<AssetProps> = props => {
 	}
 
 	const handleUpload = () => {
-		console.log('system uploading asset')
 		messageToApp({
 			message: 'upload asset',
 			data: { name: name, documentId: document._id },
