@@ -7,6 +7,8 @@ import Handout from './handout/Handout'
 import Note from './note/Note'
 import Scene from './scene/Scene'
 import Weapon from './weapon/Weapon'
+import Equipment from './equipment/Equipment'
+import Armour from './armour/Armour'
 
 type Props = {
 	type: TDocumentType
@@ -23,6 +25,8 @@ export default function TypeSwitcher({ type }: Props) {
 			{type === 'weapon' && <Weapon />}
 			{type === 'handout' && <Handout />}
 			{type === 'effect' && <Effect />}
+			{type === 'equipment' && <Equipment />}
+			{type === 'armour' && <Armour />}
 		</div>
 	)
 }
