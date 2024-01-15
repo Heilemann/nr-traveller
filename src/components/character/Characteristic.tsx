@@ -43,6 +43,7 @@ const Characteristic: React.FC<CharacteristicProps> = ({
 	const handleRoll = () => {
 		let DM = diceModifier ? diceModifier : null
 		if (DM && parseInt(DM) > 0) DM = `+${DM}`
+		else if (DM && parseInt(DM) === 0) DM = ''
 
 		messageToApp({
 			message: 'send message',
