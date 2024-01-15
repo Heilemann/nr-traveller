@@ -27,17 +27,17 @@ const emptyWeapon: TWeaponOnCharacter = {
 const Weapons: React.FC = () => {
 	const { state } = useContext(context)
 	const { documents } = state
+	const [dragIsOver, setDragIsOver] = useState(false)
 	const { register, control } = useFormContext<FormData>()
 	const { fields, append, remove } = useFieldArray({
 		control,
 		name: 'weapons',
 	})
 
-	useEffect(() => {
-		if (fields.length === 0) {
-			append({ ...emptyWeapon }, { shouldFocus: false })
-		}
-	}, [fields, append])
+	const weapons = useWatch({
+		name: 'weapons',
+		defaultValue: state.document.values.weapons || [],
+	})
 
 	const handleDrop = (e: React.DragEvent) => {
 		// @ts-ignore
@@ -52,11 +52,11 @@ const Weapons: React.FC = () => {
 
 		if (type !== 'weapon') return
 
-		const droppedWeapon = droppedDoc.values as TWeapon
+		// const droppedWeapon = droppedDoc.values as TWeapon
 
 		append(
 			{
-				...droppedWeapon,
+				// ...droppedWeapon,
 				documentId: droppedDoc._id,
 			} as TWeaponOnCharacter,
 			{ shouldFocus: false },
@@ -65,22 +65,17 @@ const Weapons: React.FC = () => {
 		setDragIsOver(false)
 	}
 
-	const [dragIsOver, setDragIsOver] = useState(false)
-
 	const handleDragEnter = (e: React.DragEvent) => {
+		console.log('drag enter')
 		setDragIsOver(true)
 		e.preventDefault()
 	}
 
 	const handleDragLeave = (e: React.DragEvent) => {
+		console.log('drag leave')
 		setDragIsOver(false)
 		e.preventDefault()
 	}
-
-	const weapons = useWatch({
-		name: 'weapons',
-		defaultValue: state.document.values.weapons || [],
-	})
 
 	useEffect(() => {
 		const lastItem = weapons[weapons.length - 1]
