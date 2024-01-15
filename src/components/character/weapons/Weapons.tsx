@@ -52,11 +52,11 @@ const Weapons: React.FC = () => {
 
 		if (type !== 'weapon') return
 
-		// const droppedWeapon = droppedDoc.values as TWeapon
+		const droppedWeapon = droppedDoc.values as TWeapon
 
 		append(
 			{
-				// ...droppedWeapon,
+				...droppedWeapon,
 				documentId: droppedDoc._id,
 			} as TWeaponOnCharacter,
 			{ shouldFocus: false },

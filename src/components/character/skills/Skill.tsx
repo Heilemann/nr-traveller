@@ -52,7 +52,7 @@ export default function Skill({ name, specialties }: ISkillProps) {
 					autoComplete='off'
 					{...register(`skills.${name}.rating`)}
 				/>
-				<RollButton onClick={handleRoll} />
+				<RollButton onClick={handleRoll} className='-ml-2' />
 			</div>
 
 			<div className='flex flex-col'>
