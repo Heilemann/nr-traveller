@@ -41,6 +41,7 @@ export default function Skill({ name, specialties }: ISkillProps) {
 	const SkillContent = (
 		<div className='cursor-pointer border-b border-gray-800 py-1 text-base text-gray-300 hover:bg-gray-800/20'>
 			<div className='flex space-x-4'>
+				<RollButton onClick={handleRoll} className='' />
 				<Label
 					className={twMerge('flex-1 self-center', !rating && 'text-gray-500')}
 				>
@@ -52,7 +53,6 @@ export default function Skill({ name, specialties }: ISkillProps) {
 					autoComplete='off'
 					{...register(`skills.${name}.rating`)}
 				/>
-				<RollButton onClick={handleRoll} className='-ml-2' />
 			</div>
 
 			<div className='flex flex-col'>

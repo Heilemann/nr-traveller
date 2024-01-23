@@ -35,6 +35,8 @@ const Specialty = ({ index, skillName, specialties }: Props) => {
 
 	return (
 		<div className='flex items-center space-x-4'>
+			<RollButton onClick={handleRoll} />
+
 			<Dropdown
 				className='mt-1 py-1.5 text-sm'
 				{...register(`skills.${skillName}.specialty${index}`)}
@@ -47,8 +49,6 @@ const Specialty = ({ index, skillName, specialties }: Props) => {
 					</option>
 				))}
 			</Dropdown>
-
-			<RollButton onClick={handleRoll} />
 		</div>
 	)
 }

@@ -74,18 +74,26 @@ const Asset: FC<AssetProps> = props => {
 	return (
 		<div
 			className={twMerge(
-				'm-auto flex max-w-xs items-center justify-center space-y-2',
+				'relative flex max-w-xs items-center justify-center space-y-2',
 				className,
 			)}
 			style={style}
 		>
 			{asset.filetype.includes('image') && (
-				<img
-					alt='wonderful'
-					src={parentOrigin + asset.fileurl}
-					className='rounded-lg object-contain'
-					style={mediaStyle}
-				/>
+				<div className='relative aspect-square object-contain'>
+					<img
+						alt='na'
+						src={parentOrigin + asset.fileurl}
+						className='relative z-10 h-full w-full rounded-lg object-contain'
+						style={mediaStyle}
+					/>
+					<div
+						className='absolute inset-0 z-0 bg-contain bg-center opacity-20 blur-xl'
+						style={{
+							backgroundImage: `url(${parentOrigin + asset.fileurl})`,
+						}}
+					/>
+				</div>
 			)}
 			{asset.filetype.includes('video') && (
 				<video
@@ -95,6 +103,7 @@ const Asset: FC<AssetProps> = props => {
 					playsInline={true}
 					src={parentOrigin + asset.fileurl}
 					className='object-contain'
+					style={mediaStyle}
 				/>
 			)}
 			<Button

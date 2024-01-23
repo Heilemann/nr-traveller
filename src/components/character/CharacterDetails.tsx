@@ -8,7 +8,7 @@ const CharacterDetails: React.FC = () => {
 	const { register } = useFormContext()
 
 	return (
-		<div className='flex w-2/3 flex-col space-y-1'>
+		<div className='flex w-full flex-col space-y-1'>
 			<div className='flex space-x-4'>
 				<HInput
 					className='flex-1 text-sm'

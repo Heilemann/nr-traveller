@@ -63,6 +63,7 @@ export default function Container() {
 	}, []) // eslint-disable-line react-hooks/exhaustive-deps
 
 	if (!type) return null
+	if (!state.document) return null
 
 	return <TypeSwitcher type={type} />
 }

@@ -15,9 +15,9 @@ import Wounds from './wounds/Wounds'
 export default function Character() {
 	return (
 		<div className='space-y-8'>
-			<div className='flex space-x-4'>
-				<CharacterDetails />
+			<div className='flex items-start space-x-4'>
 				<Portrait />
+				<CharacterDetails />
 			</div>
 			<Characteristics />
 			<Skills />

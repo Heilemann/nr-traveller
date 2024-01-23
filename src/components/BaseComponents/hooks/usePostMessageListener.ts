@@ -27,11 +27,6 @@ const usePostMessageListener = ({ resetInProgress }: Props) => {
 			switch (message) {
 				case 'load':
 					const { documentId } = data
-					console.log(
-						'System received load message for document',
-						documentId,
-						data,
-					)
 					const document = data.documents.byId[documentId]
 
 					if (!document) {
@@ -71,13 +66,6 @@ const usePostMessageListener = ({ resetInProgress }: Props) => {
 					) {
 						return
 					}
-
-					// I think the problem is that when you type fast, the data coming back is lagging behind
-					// which causes the above check to fail, and the document to be reset to the old one
-					// I might have to add a timestamp to the message and only accept the latest one
-					// possibly a version instead of a timestamp
-					// I don't love any of this because it's one more complication, and I don't want to
-					// fuck up the system SDK with stuff
 
 					dispatch({
 						type: 'LOAD',
