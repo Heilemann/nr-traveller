@@ -45,6 +45,7 @@ export type TSystemConfig = {
 
 export type TDocumentType =
 	| 'character'
+	| 'ship'
 	| 'note'
 	| 'scene'
 	| 'weapon'
