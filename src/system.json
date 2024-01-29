@@ -26,6 +26,17 @@
 			"canAssumeAsCharacter": "true"
 		},
 		{
+			"type": "ship",
+			"singularName": "Ship",
+			"pluralName": "Ships",
+			"description": "A space- or starship.",
+			"hasEditMode": "false",
+			"windowSize": "large",
+			"thumbnailField": ["portrait", "token"],
+			"allowCreate": "false",
+			"canAssumeAsCharacter": "false"
+		},
+		{
 			"type": "note",
 			"singularName": "Note",
 			"pluralName": "Notes",

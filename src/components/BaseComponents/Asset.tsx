@@ -1,13 +1,13 @@
 // This file contains the Asset component which is used to display an asset
 // (image, video, pdf) and allow the user to upload a new asset or remove the
 // current asset.
+import { TrashIcon } from '@heroicons/react/24/solid'
 import { FC, useContext, useEffect, useState } from 'react'
 import { useFormContext } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
 import Button from './Form/Button'
 import context from './context'
 import useMessageToApp from './hooks/UseMessageToApp'
-import { TrashIcon } from '@heroicons/react/24/solid'
 
 interface AssetProps {
 	name: string
