@@ -1,5 +1,5 @@
 // this is a hook that returns a function that sends a message to the parent window
-import { TAppReceivableMessages } from '../../../interfaces'
+import { TAppReceivableMessages, TPostMessage } from '../../../interfaces'
 
 export default function useMessageToApp() {
 	// let searchParams = new URLSearchParams(window.parent.location.search)
@@ -11,7 +11,7 @@ export default function useMessageToApp() {
 
 	const targetOrigin = 'http://localhost:3003'
 
-	const messageToApp = ({ message, data }: TAppReceivableMessages) => {
+	const messageToApp = ({ message, data }: TPostMessage) => {
 		console.log('System sending message to app:', { message, data })
 
 		window.parent.postMessage(

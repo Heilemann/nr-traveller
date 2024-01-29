@@ -29,7 +29,10 @@ const HInput = forwardRef<HTMLInputElement, IHInputProps>(
 				<Input
 					ref={ref}
 					type='text'
-					className={twMerge('mb-1 w-3/5 py-1.5 text-right', inputClassName)}
+					className={twMerge(
+						'mb-1 w-3/5 py-1.5 text-right text-sm',
+						inputClassName,
+					)}
 					{...rest}
 				/>
 			</div>

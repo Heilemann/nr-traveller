@@ -129,14 +129,41 @@ export type TContext = {
 export type TPostMessage =
 	| {
 			message: 'load'
+			data: {}
 	  }
 	| {
 			message: 'save'
-			document: TDocument
+			data: {
+				payload: TDocument
+			}
 	  }
 	| {
 			message: 'send message'
 			data: { message: string }
+	  }
+	| {
+			message: 'upload asset'
+			data: { name: string; documentId: string }
+	  }
+	| {
+			message: 'remove asset'
+			data: { assetId: string }
+	  }
+	| {
+			message: 'system is ready'
+			data: null
+	  }
+	| {
+			message: 'focus'
+			data: undefined
+	  }
+	| {
+			message: 'open document'
+			data: { documentId: string }
+	  }
+	| {
+			message: 'set scene'
+			data: { sceneId: string }
 	  }
 
 export type TEditMode = 'view' | 'edit'

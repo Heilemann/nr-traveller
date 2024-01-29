@@ -47,7 +47,7 @@ export default function Container() {
 				},
 			})
 
-			messageToApp({ message: 'save', data: payload })
+			messageToApp({ message: 'save', data: { payload } })
 		})
 
 		return () => {

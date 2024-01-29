@@ -16,8 +16,8 @@ export default function Character() {
 	return (
 		<div className='space-y-8'>
 			<div className='flex items-start space-x-4'>
-				<Portrait />
 				<CharacterDetails />
+				<Portrait />
 			</div>
 			<Characteristics />
 			<Skills />
