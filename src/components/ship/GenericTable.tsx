@@ -65,14 +65,13 @@ const GenericTable: React.FC<GenericTableProps> = ({ title, name }) => {
 
 	return (
 		<div>
-			<h1>{title}</h1>
-			<table>
+			<table className='w-full'>
 				<thead>
 					<tr>
-						<th className='w-3/12 text-left text-xs'>Name</th>
-						<th className='w-1/12 text-xs'>Tons</th>
-						<th className='w-1/12 text-xs'>Cost (MCr)</th>
-						<th className='w-1/12'></th>
+						<th className='text-left text-xs'>{title}</th>
+						<th className='w-28 text-xs'>Tons</th>
+						<th className='w-28 text-xs'>Cost (MCr)</th>
+						<th className=''></th>
 					</tr>
 				</thead>
 				<tbody>

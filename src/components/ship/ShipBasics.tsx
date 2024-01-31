@@ -3,7 +3,7 @@ import { useFormContext } from 'react-hook-form'
 import HInput from '../BaseComponents/Form/HInput'
 import HTextArea from '../BaseComponents/Form/HTextArea'
 
-const ShipDetails: React.FC = () => {
+const ShipBasics: React.FC = () => {
 	const { register } = useFormContext()
 
 	return (
@@ -11,8 +11,9 @@ const ShipDetails: React.FC = () => {
 			<HInput label='Name' {...register('name')} />
 			<HInput label='Type' {...register('type')} />
 			<HTextArea label='Description' {...register('description')} />
+			<HTextArea label='Crew' {...register('crew')} />
 		</div>
 	)
 }
 
-export default ShipDetails
+export default ShipBasics

@@ -1,17 +1,25 @@
+import { Input } from 'nrsystemtools'
 import * as React from 'react'
 import { twMerge } from 'tailwind-merge'
-import { Input } from 'nrsystemtools'
-import Label from './Label'
 import context from '../context'
+import Label from './Label'
 
 interface IVInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
 	label: string
 	hide?: boolean
+	labelBelow?: boolean
 }
 
 const VInput = React.forwardRef<HTMLInputElement, IVInputProps>(
 	(
-		{ children, className, label, hide = false, ...rest }: IVInputProps,
+		{
+			children,
+			className,
+			label,
+			labelBelow = false,
+			hide = false,
+			...rest
+		}: IVInputProps,
 		ref,
 	) => {
 		const { state } = React.useContext(context)
@@ -20,8 +28,9 @@ const VInput = React.forwardRef<HTMLInputElement, IVInputProps>(
 		return (
 			<div
 				className={twMerge(
-					'mb-1 flex flex-1 flex-col',
-					hide ? 'hidden' : 'block',
+					'mb-1 flex-1',
+					labelBelow ? 'flex-col-reverse' : 'flex-col',
+					hide ? 'hidden' : 'flex',
 					className,
 				)}
 			>

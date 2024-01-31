@@ -111,6 +111,9 @@ const Asset: FC<AssetProps> = props => {
 					'absolute right-1 top-1 mt-0 p-2',
 					editMode === 'view' ? 'hidden' : 'block',
 				)}
+				style={{
+					zIndex: 100,
+				}}
 				onClick={handleRemoveAsset}
 			>
 				<TrashIcon className='h-4 w-4' />
