@@ -1,5 +1,6 @@
 // this is a hook that returns a function that sends a message to the parent window
 import { TAppReceivableMessages, TPostMessage } from '../../../interfaces'
+import useOrigin from '../useOrigin'
 
 export default function useMessageToApp() {
 	// let searchParams = new URLSearchParams(window.parent.location.search)
@@ -8,8 +9,9 @@ export default function useMessageToApp() {
 	// if (documentId === null) {
 	// 	console.warn('Document ID not found in AUX URL.')
 	// }
+	const { origin } = useOrigin()
 
-	const targetOrigin = 'http://localhost:3003'
+	// const targetOrigin = 'http://localhost:3003'
 
 	const messageToApp = ({ message, data }: TPostMessage) => {
 		console.log('System sending message to app:', { message, data })
@@ -20,7 +22,7 @@ export default function useMessageToApp() {
 				message,
 				data,
 			} as TAppReceivableMessages,
-			targetOrigin,
+			origin,
 		)
 	}
 
