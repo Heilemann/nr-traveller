@@ -13,7 +13,7 @@ import { TState, TValues } from './interfaces'
 function App() {
 	const [state, dispatch] = useReducer(Reducer, {} as TState)
 	// const isDevelopment = process.env.NODE_ENV === 'development'
-	const isDevelopment = true
+	const isDevelopment = false
 	const form = useForm<TValues>({
 		shouldUnregister: true,
 	})
