@@ -10,7 +10,7 @@ export default function useMessageToApp() {
 	// 	console.warn('Document ID not found in AUX URL.')
 	// }
 	const { origin } = useOrigin()
-
+	console.log('traveller origin:', origin)
 	// const targetOrigin = 'http://localhost:3003'
 
 	const messageToApp = ({ message, data }: TPostMessage) => {
