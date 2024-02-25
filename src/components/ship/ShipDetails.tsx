@@ -7,10 +7,10 @@ const ShipDetails: React.FC = () => {
 	const { register } = useFormContext()
 
 	return (
-		<div className='flex w-full space-x-2'>
+		<div className='flex w-full space-x-1'>
 			<div>
 				<SectionDivider>Hull</SectionDivider>
-				<div className='mt-1 flex space-x-2'>
+				<div className='mt-1 flex items-start space-x-1'>
 					<VInput
 						labelBelow
 						label='&nbsp;'
@@ -21,24 +21,23 @@ const ShipDetails: React.FC = () => {
 			</div>
 			<div>
 				<SectionDivider>Running Costs</SectionDivider>
-				<div className='mt-1 flex space-x-2'>
+				<div className='mt-1 flex items-start space-x-1'>
 					<VInput
 						labelBelow
 						label='Maint. Cost'
-						type='number'
 						{...register('maintenanceCost')}
 					/>
 					<VInput
 						labelBelow
 						label='Purchase Cost'
-						type='number'
 						{...register('purchaseCost')}
 					/>
 				</div>
 			</div>
+
 			<div>
 				<SectionDivider>Power Requirements</SectionDivider>
-				<div className='mt-1 flex w-full space-x-2'>
+				<div className='mt-1 flex items-start space-x-1'>
 					<VInput
 						labelBelow
 						label='Basic Systems'
