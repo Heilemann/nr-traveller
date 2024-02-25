@@ -9,7 +9,7 @@ export default function useMessageToApp() {
 	// 	console.warn('Document ID not found in AUX URL.')
 	// }
 	// const { origin } = useOrigin()
-	const targetOrigin = 'http://localhost:3003'
+	const targetOrigin = 'https://newrealms-aux.herokuapp.com'
 
 	const messageToApp = ({ message, data }: TPostMessage) => {
 		console.log('System sending message to app:', { message, data })
